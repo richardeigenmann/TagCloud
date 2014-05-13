@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 /*
 GradientColor.java:  A helper to pick the color along a gradient Line.
 
-Copyright (C) 2009  Richard Eigenmann.
+Copyright (C) 2009-2014  Richard Eigenmann.
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
@@ -27,7 +27,7 @@ See http://www.gnu.org/copyleft/gpl.html for the details.
  *
  * @author Richard Eigenmann
  */
-public class GradientColor {
+public class GradientColor implements ColorGradient {
 
     /**
      * Defines a logger for this class
@@ -40,49 +40,57 @@ public class GradientColor {
         new Color(0x36e410), new Color(0x64e410), new Color(0xa1e70c),
         new Color(0xc3d000), new Color(0xe8e410), new Color(0xdcaf1e),
         new Color(0xe87514), new Color(0xed723b)};
+    
     /**
      * Predefined color for a Black to White gradient
      */
     public final static Color[] BLACK_WHITE_COLORS = {Color.BLACK, Color.WHITE};
+    
     /**
      * Predefined color gradient points for a blue gradient
      */
     public final static Color[] SHADES_OF_LIGHT_BLUE = {new Color(0x355ddb), new Color(0x7aa5f4)};
 
+    private Color[] availableColors;
+    
     /**
      * This method returns a color along a multi point color gradiant. The
      * Gradiant color points are specified by an array of Colors. The Array must
      * have at least 2 color entries. If it has none then a black-white gradient
      * will be used, if it has less than one the gradient is from the supplied color
      * to white.
-     * @param availableColors An Array of Colors
-     * @param factor between 0 and 1
+     * @param weight between 0 and 1
      * @return The Color in the gradient
      */
-    public static Color getColor(Color[] availableColors, double factor) {
+    @Override
+    public Color getColor( float weight) {
         // Never trust input
-        if (availableColors.length < 1) {
+        /* if (availableColors.length < 1) {
             availableColors = BLACK_WHITE_COLORS;
         } else if (availableColors.length == 1) {
             Color[] newColors = {availableColors[0], Color.WHITE};
             availableColors = newColors;
-        }
-        if (factor > 1) {
+        }*/
+        
+        // never trust inputs
+        /*if (factor > 1) {
             factor = 1;
         }
         if (factor < 0) {
             factor = 0;
-        }
+        }*/
+        
+        availableColors = SHADES_OF_LIGHT_BLUE;
 
         // figure out the closest two color points
-        int lowerIndex = (int) (factor * (availableColors.length - 2));
+        int lowerIndex = (int) (weight * (availableColors.length - 2));
         int higherIndex = lowerIndex + 1;
         Color lowerColor = availableColors[lowerIndex];
         Color higherColor = availableColors[higherIndex];
 
         double lowerIndexFactor = (double) lowerIndex / (availableColors.length - 1);
         double higherIndexFactor = (double) higherIndex / (availableColors.length - 1);
-        double interpolationFactor = (factor - lowerIndexFactor) / (higherIndexFactor - lowerIndexFactor);
+        double interpolationFactor = (weight - lowerIndexFactor) / (higherIndexFactor - lowerIndexFactor);
 
         LOGGER.fine(String.format("Lower Index: %d Factor: %f ", lowerIndex, lowerIndexFactor));
         LOGGER.fine(String.format("Higher Index: %d Factor: %f ", higherIndex, higherIndexFactor));

@@ -1,20 +1,15 @@
 package org.TagCloud;
 
-
-
 import java.awt.event.MouseEvent;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 
-
-
 /*
  TagCloudJLabel.java:  A widget that shows a word in a Tag Cloud
 
- Copyright (C) 2009  Richard Eigenmann.
+ Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -38,20 +33,6 @@ import javax.swing.JLabel;
  */
 public class TagCloudJLabel extends JLabel {
 
-    /**
-     * An Array of increasing size fonts for the label to choose from
-     */
-    private static final Font[] fonts = {
-        new Font( "SansSerif", Font.PLAIN, 10 ),
-        new Font( "SansSerif", Font.PLAIN, 14 ),
-        new Font( "SansSerif", Font.PLAIN, 18 ),
-        new Font( "SansSerif", Font.PLAIN, 19 ),
-        new Font( "SansSerif", Font.PLAIN, 20 ),
-        new Font( "SansSerif", Font.PLAIN, 21 ),
-        new Font( "SansSerif", Font.PLAIN, 22 ),
-        new Font( "SansSerif", Font.PLAIN, 23 ),
-        new Font( "SansSerif", Font.PLAIN, 24 ),
-        new Font( "SansSerif", Font.PLAIN, 25 ) };
 
     /**
      * I have chosen a the GradientColor.SHADES_OF_LIGHT_BLUE colors for this
@@ -62,7 +43,7 @@ public class TagCloudJLabel extends JLabel {
     /**
      * The color to highlight the label in when moving the mouse over the label.
      */
-    private static final Color mouseoverColor = new Color( 0x421ed9 );
+    private Color mouseoverColor;
 
     /**
      * Defines a logger for this class
@@ -79,6 +60,11 @@ public class TagCloudJLabel extends JLabel {
         this( word, weight, weight );
     }
 
+    private float sizeWeight;
+    private float colorWeight;
+    private FontList fontList;
+    private ColorGradient colorGradient;
+
     /**
      * Constructs a Word Label
      *
@@ -90,31 +76,18 @@ public class TagCloudJLabel extends JLabel {
      */
     public TagCloudJLabel( String word, float sizeWeight, float colorWeight ) {
         super( word );
+        this.sizeWeight = verifyWeight( sizeWeight );
+        this.colorWeight = verifyWeight( colorWeight );
+        setFontList( new SansSerifFontList() );
+        setColorGradient( new GradientColor() );
+        setMouseoverColor(  new Color( 0x421ed9 ) );
+        
         LOGGER.finest( String.format( "Formatting word: \"%s\" sizeWeight: %f colorWeight %f", word, sizeWeight, colorWeight ) );
 
-        // never trust imputs
-        if ( sizeWeight > 1f ) {
-            LOGGER.finest( String.format( "sizeWeight was %f which is > 1; setting to 1", sizeWeight ) );
-            sizeWeight = 1;
-        }
-        if ( sizeWeight < 0f ) {
-            LOGGER.finest( String.format( "sizeWeight was %f which is < 0; setting to 0", sizeWeight ) );
-            sizeWeight = 0;
-        }
-        if ( colorWeight > 1f ) {
-            LOGGER.finest( String.format( "colorWeight was %f which is > 1; setting to 1", colorWeight ) );
-            colorWeight = 1;
-        }
-        if ( colorWeight < 0f ) {
-            LOGGER.finest( String.format( "colorWeight was %f which is < 0; setting to 0", colorWeight ) );
-            colorWeight = 0;
-        }
+        final float finalColorWeight = this.colorWeight;
 
-        final int index = (int) ( sizeWeight * ( fonts.length - 1 ) );
-        final float finalColorWeight = colorWeight;
-
-        setFont( fonts[index] );
-        setForeground( GradientColor.getColor( gradientColor, finalColorWeight ) );
+        setFont( fontList.getFont( this.sizeWeight ) );
+        setForeground( colorGradient.getColor( finalColorWeight ) );
         addMouseListener( new MouseAdapter() {
 
             @Override
@@ -127,9 +100,61 @@ public class TagCloudJLabel extends JLabel {
             @Override
             public void mouseExited( MouseEvent e ) {
                 super.mouseExited( e );
-                setForeground( GradientColor.getColor( gradientColor, finalColorWeight ) );
+                setForeground( colorGradient.getColor( finalColorWeight ) );
 
             }
         } );
     }
+    
+    public final void setFontList( FontList fontList ) {
+        this.fontList = fontList;
+    }
+
+    /**
+     * Ensures that a weight value is between 0 and 1. Lower values are set to
+     * 0, higher values are set to 1
+     *
+     * @param weight The weight to be validated
+     * @return the weight or 0 or 1 whatever is nearer
+     */
+    private static float verifyWeight( float weight ) {
+        if ( weight > 1f ) {
+            return 1;
+        }
+        if ( weight < 0f ) {
+            return 0;
+        }
+        return weight;
+    }
+
+    /**
+     * Returns the weight 0..1 for the label size
+     *
+     * @return the weight for the size between 0 and 1
+     */
+    public float getSizeWeight() {
+        return sizeWeight;
+    }
+
+    /**
+     * Returns the weight 0..1 for the label color
+     *
+     * @return the weight for the color between 0 and 1
+     */
+    public float getColorWeight() {
+        return colorWeight;
+    }
+    
+    /**
+     * Sets the color to use when the mouse moves over the word
+     * @param mouseoverColor the color for the mouseover
+     */
+    public final void setMouseoverColor( Color mouseoverColor ) {
+        this.mouseoverColor = mouseoverColor;
+    }
+
+    public final void setColorGradient( ColorGradient colorGradient) {
+        this.colorGradient = colorGradient;
+    }
+    
 }
