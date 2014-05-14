@@ -27,7 +27,7 @@ See http://www.gnu.org/copyleft/gpl.html for the details.
  *
  * @author Richard Eigenmann
  */
-public class GradientColor implements ColorGradient {
+public class GradientColor implements ColorProvider {
 
     /**
      * Defines a logger for this class

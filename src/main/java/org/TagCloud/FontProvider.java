@@ -1,5 +1,5 @@
 /*
- FontList.java:  Interface that defines how fonts should be returned
+ FontProvider.java:  Interface that defines how fonts should be returned
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -23,7 +23,7 @@ import java.awt.Font;
  * Defines how fonts should be returned for a given weight
  * @author Richard Eigenmann
  */
-public interface FontList {
+public interface FontProvider {
 
     /**
      * The implementing class must return an appropriate font for the supplied weight

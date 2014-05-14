@@ -1,5 +1,5 @@
 /*
- ColorGradient.java:  Interface that defines how colors should be returned
+ ColorProvider.java:  Interface that defines how colors should be returned
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -23,7 +23,7 @@ import java.awt.Color;
  * Defines how fonts should be returned for a given weight
  * @author Richard Eigenmann
  */
-public interface ColorGradient {
+public interface ColorProvider {
 
     /**
      * The implementing class must return an appropriate color for the supplied weight

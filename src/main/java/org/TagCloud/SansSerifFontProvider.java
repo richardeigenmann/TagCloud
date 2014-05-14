@@ -1,5 +1,5 @@
 /*
- SansSerifFontList.java:  An implementation of the FontList interface
+ SansSerifFontProvider.java:  An implementation of the FontList interface
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -24,7 +24,7 @@ import java.awt.Font;
  *
  * @author Richard Eigenmann
  */
-public class SansSerifFontList implements FontList {
+public class SansSerifFontProvider implements FontProvider {
 
     /**
      * An array of fonts in increasing size

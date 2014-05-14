@@ -62,8 +62,8 @@ public class TagCloudJLabel extends JLabel {
 
     private float sizeWeight;
     private float colorWeight;
-    private FontList fontList;
-    private ColorGradient colorGradient;
+    private FontProvider fontProvider;
+    private ColorProvider colorProvider;
 
     /**
      * Constructs a Word Label
@@ -78,7 +78,7 @@ public class TagCloudJLabel extends JLabel {
         super( word );
         this.sizeWeight = verifyWeight( sizeWeight );
         this.colorWeight = verifyWeight( colorWeight );
-        setFontList( new SansSerifFontList() );
+        setFontProvider( new SansSerifFontProvider() );
         setColorGradient( new GradientColor() );
         setMouseoverColor(  new Color( 0x421ed9 ) );
         
@@ -86,8 +86,8 @@ public class TagCloudJLabel extends JLabel {
 
         final float finalColorWeight = this.colorWeight;
 
-        setFont( fontList.getFont( this.sizeWeight ) );
-        setForeground( colorGradient.getColor( finalColorWeight ) );
+        setFont( fontProvider.getFont( this.sizeWeight ) );
+        setForeground( colorProvider.getColor( finalColorWeight ) );
         addMouseListener( new MouseAdapter() {
 
             @Override
@@ -100,14 +100,14 @@ public class TagCloudJLabel extends JLabel {
             @Override
             public void mouseExited( MouseEvent e ) {
                 super.mouseExited( e );
-                setForeground( colorGradient.getColor( finalColorWeight ) );
+                setForeground( colorProvider.getColor( finalColorWeight ) );
 
             }
         } );
     }
     
-    public final void setFontList( FontList fontList ) {
-        this.fontList = fontList;
+    public final void setFontProvider ( FontProvider fontProvider ) {
+        this.fontProvider = fontProvider;
     }
 
     /**
@@ -153,8 +153,8 @@ public class TagCloudJLabel extends JLabel {
         this.mouseoverColor = mouseoverColor;
     }
 
-    public final void setColorGradient( ColorGradient colorGradient) {
-        this.colorGradient = colorGradient;
+    public final void setColorGradient( ColorProvider colorGradient) {
+        this.colorProvider = colorGradient;
     }
     
 }

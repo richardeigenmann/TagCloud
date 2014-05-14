@@ -25,9 +25,9 @@ import static org.junit.Assert.*;
  *
  * @author richi
  */
-public class SansSerifFontListTest {
+public class SansSerifFontProviderTest {
     
-    public SansSerifFontListTest() {
+    public SansSerifFontProviderTest() {
     }
 
     /**
@@ -35,12 +35,12 @@ public class SansSerifFontListTest {
      */
     @Test
     public void testGetFont() {
-        SansSerifFontList sansSerifFontList = new SansSerifFontList();
-        Font font = sansSerifFontList.getFont( 0);
+        SansSerifFontProvider sansSerifFontProvider = new SansSerifFontProvider();
+        Font font = sansSerifFontProvider.getFont( 0);
         assertEquals( "Expecting font for weight 0 to be SansSerif", "SansSerif.plain", font.getFontName() );
         assertEquals( "Expecting font size for weight 0 to be 10", 10, font.getSize() );
 
-        font = sansSerifFontList.getFont( 1 );
+        font = sansSerifFontProvider.getFont( 1 );
         assertEquals( "Expecting font for weight 1 to be SansSerif", "SansSerif.plain", font.getFontName() );
         assertEquals( "Expecting font size for weight 1 to be 25", 25, font.getSize() );
     
