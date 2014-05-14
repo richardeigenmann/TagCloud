@@ -1,19 +1,3 @@
-package org.TagCloud;
-
-
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.logging.Logger;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-
-
 /*
  TagCloud.java:  A Widget that shows a TagCloud
 
@@ -31,6 +15,18 @@ import javax.swing.JScrollPane;
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
+package org.TagCloud;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.logging.Logger;
+import javax.swing.JScrollPane;
+
 /**
  * A controller that constructs the TagCloud of Labels and handles mouse clicks,
  * sending them on to TagClickListeners.
@@ -45,6 +41,11 @@ public class TagCloud extends JScrollPane {
     private static final Logger LOGGER = Logger.getLogger( TagCloud.class.getName() );
 
     /**
+     * This special panel holds the words (TagCloudJLabel).
+     */
+    private final VerticalGrowJPanel verticalGrowJPanel = new VerticalGrowJPanel();
+
+    /**
      * Constructor to call to create a new TagCloud. It used BorderLayout and
      * puts the Slider in the top part and the scroll pane in the centre part.
      */
@@ -57,7 +58,7 @@ public class TagCloud extends JScrollPane {
     /**
      * The number of words to show. The default is 10 words.
      */
-    private int wordsToShow = 10;
+    private int wordsToShow = 30;
 
     /**
      * Sets the maximum number of words to show. The number is validated and set
@@ -75,11 +76,6 @@ public class TagCloud extends JScrollPane {
         }
         this.wordsToShow = wordsToShow;
     }
-
-    /**
-     * This special panel holds the words (TagCloudJLabel).
-     */
-    private final VerticalGrowJPanel verticalGrowJPanel = new VerticalGrowJPanel();
 
     /**
      * The wordMap that will be used for the TagCloud
@@ -123,8 +119,6 @@ public class TagCloud extends JScrollPane {
                 tagCloudEntry.addMouseListener( wordClickListener );
                 verticalGrowJPanel.add( tagCloudEntry );
             }
-        } else {
-            verticalGrowJPanel.add( new JLabel( "hitting else" ) );
         }
         // After hours of frustration it turns out we need to validate the panel and the scrollpane.
         verticalGrowJPanel.validate();
@@ -160,7 +154,8 @@ public class TagCloud extends JScrollPane {
     }
 
     /**
-     * The TagClickListeners that want to be notified when the user clicks on a Tag.
+     * The TagClickListeners that want to be notified when the user clicks on a
+     * Tag.
      */
     private final Set<TagClickListener> tagClickListeners = Collections.synchronizedSet( new HashSet<TagClickListener>() );
 

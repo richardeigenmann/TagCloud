@@ -33,40 +33,45 @@ import javax.swing.JLabel;
  */
 public class TagCloudJLabel extends JLabel {
 
-
-    /**
-     * I have chosen a the GradientColor.SHADES_OF_LIGHT_BLUE colors for this
-     * component.
-     */
-    private static final Color[] gradientColor = GradientColor.SHADES_OF_LIGHT_BLUE;
-
-    /**
-     * The color to highlight the label in when moving the mouse over the label.
-     */
-    private Color mouseoverColor;
-
     /**
      * Defines a logger for this class
      */
     private static final Logger LOGGER = Logger.getLogger( TagCloudJLabel.class.getName() );
 
     /**
-     * Constructs a Word Label
+     * The weight for the size 0..1
+     */
+    private float sizeWeight;
+    /**
+     * The weight for the color 0..1
+     */
+    private float colorWeight;
+    /**
+     * The font provider for the label
+     */
+    private FontProvider fontProvider;
+    /**
+     * The color provider for the label
+     */
+    private ColorProvider colorProvider;
+    /**
+     * The color to highlight the label in when moving the mouse over the label.
+     */
+    private Color mouseoverColor;
+
+    /**
+     * Constructs a Word Label with default styles and one weight
      *
      * @param word The word to show
      * @param weight The weight between 0 and 1 to show the weight of the word
+     * used for both the weight of the font and the weight of the color
      */
     public TagCloudJLabel( String word, float weight ) {
         this( word, weight, weight );
     }
 
-    private float sizeWeight;
-    private float colorWeight;
-    private FontProvider fontProvider;
-    private ColorProvider colorProvider;
-
     /**
-     * Constructs a Word Label
+     * Constructs a Word Label with default styles with 2 weights
      *
      * @param word The word to show
      * @param sizeWeight The weight between 0 and 1 to determine the size of the
@@ -75,39 +80,62 @@ public class TagCloudJLabel extends JLabel {
      * the font
      */
     public TagCloudJLabel( String word, float sizeWeight, float colorWeight ) {
+        this( word, sizeWeight, new SansSerifFontProvider(), colorWeight, new GradientColor(), new Color( 0x421ed9 ) );
+    }
+
+    /**
+     * Constructs a Word Label
+     *
+     * @param word The word to show
+     * @param sizeWeight The weight between 0 and 1 to determine the size of the
+     * font
+     * @param fontProvider The font provider that will return the font to use
+     * @param colorWeight The weight between 0 and 1 to determine the color of
+     * the font
+     * @param colorProvider the color provider that will return the color to use
+     * @param mouseoverColor the color to use in the mouseover
+     */
+    public TagCloudJLabel( String word, float sizeWeight, FontProvider fontProvider, float colorWeight, ColorProvider colorProvider, Color mouseoverColor ) {
         super( word );
         this.sizeWeight = verifyWeight( sizeWeight );
         this.colorWeight = verifyWeight( colorWeight );
-        setFontProvider( new SansSerifFontProvider() );
-        setColorGradient( new GradientColor() );
-        setMouseoverColor(  new Color( 0x421ed9 ) );
-        
-        LOGGER.finest( String.format( "Formatting word: \"%s\" sizeWeight: %f colorWeight %f", word, sizeWeight, colorWeight ) );
+        setFontProvider( fontProvider );
+        setColorProvider( colorProvider );
+        setMouseoverColor( mouseoverColor );
 
-        final float finalColorWeight = this.colorWeight;
-
-        setFont( fontProvider.getFont( this.sizeWeight ) );
-        setForeground( colorProvider.getColor( finalColorWeight ) );
         addMouseListener( new MouseAdapter() {
 
             @Override
             public void mouseEntered( MouseEvent e ) {
                 super.mouseEntered( e );
-                setForeground( mouseoverColor );
+                setForeground( getMouseoverColor() );
 
             }
 
             @Override
             public void mouseExited( MouseEvent e ) {
                 super.mouseExited( e );
-                setForeground( colorProvider.getColor( finalColorWeight ) );
+                setForegroundColor();
 
             }
         } );
     }
-    
-    public final void setFontProvider ( FontProvider fontProvider ) {
+
+    /**
+     * Allows the Font provider to be set. Call validate after changing.
+     *
+     * @param fontProvider the new font provider.
+     */
+    public final void setFontProvider( FontProvider fontProvider ) {
         this.fontProvider = fontProvider;
+        setFont();
+    }
+
+    /**
+     * Sets the font based on the sizeWeight by querying the font provider.
+     */
+    private void setFont() {
+        setFont( fontProvider.getFont( this.sizeWeight ) );
     }
 
     /**
@@ -144,17 +172,42 @@ public class TagCloudJLabel extends JLabel {
     public float getColorWeight() {
         return colorWeight;
     }
-    
+
     /**
      * Sets the color to use when the mouse moves over the word
+     *
      * @param mouseoverColor the color for the mouseover
      */
     public final void setMouseoverColor( Color mouseoverColor ) {
         this.mouseoverColor = mouseoverColor;
     }
 
-    public final void setColorGradient( ColorProvider colorGradient) {
-        this.colorProvider = colorGradient;
+    /**
+     * Returns the color to use when the mouse moves over the word
+     *
+     * @return the color to use in a mouseover
+     */
+    public final Color getMouseoverColor() {
+        return mouseoverColor;
     }
-    
+
+    /**
+     * Sets the color provider for the label. Call validate() after changing.
+     * Internally calls setForegroundColor().
+     *
+     * @param colorProvider the new color provider
+     */
+    public final void setColorProvider( ColorProvider colorProvider ) {
+        this.colorProvider = colorProvider;
+        setForegroundColor();
+    }
+
+    /**
+     * Sets the foreground color according to the colorWeight by calling the
+     * color provider's getColor method
+     */
+    private void setForegroundColor() {
+        setForeground( colorProvider.getColor( colorWeight ) );
+    }
+
 }
