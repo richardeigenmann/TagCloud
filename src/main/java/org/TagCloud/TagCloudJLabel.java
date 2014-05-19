@@ -70,6 +70,8 @@ public class TagCloudJLabel extends JLabel {
         this( word, weight, weight );
     }
 
+    
+
     /**
      * Constructs a Word Label with default styles with 2 weights
      *
@@ -80,7 +82,7 @@ public class TagCloudJLabel extends JLabel {
      * the font
      */
     public TagCloudJLabel( String word, float sizeWeight, float colorWeight ) {
-        this( word, sizeWeight, new SansSerifFontProvider(), colorWeight, new GradientColor(), new Color( 0x421ed9 ) );
+        this( word, sizeWeight, new SansSerifFontProvider(), colorWeight, new ShadesOfLightBlue(), new Color( 0x421ed9 ) );
     }
 
     /**

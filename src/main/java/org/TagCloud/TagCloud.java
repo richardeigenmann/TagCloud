@@ -17,13 +17,14 @@
  */
 package org.TagCloud;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.logging.Logger;
 import javax.swing.JScrollPane;
 
@@ -78,28 +79,34 @@ public class TagCloud extends JScrollPane {
     }
 
     /**
-     * The wordMap that will be used for the TagCloud
+     * The list of weighted words being shown
      */
-    private WordMap wordMap;
+    private List<WeightedWord> weightedWords = null;
 
     /**
-     * This method receives the WordMap of the words to be shown in the
-     * TagCloud. Call showWords afterwards to update the tags being shown.
+     * This method receives the WeightedWord list of the words to be shown in
+     * the TagCloud. Call showWords afterwards to update the tags being shown.
      *
-     * @param wordMap The WordMap of the words to be shown.
+     * @param weightedWords The WeightedWord of the words to be shown.
      */
-    public void setWordMap( WordMap wordMap ) {
-        this.wordMap = wordMap;
+    public void setWordsList( List<WeightedWord> weightedWords ) {
+        this.weightedWords = weightedWords;
     }
 
     /**
-     * Returns the currently used WordMap. Careful, could be null!
+     * This method returns the WeightedWords List shown in the TagCloud.
      *
-     * @return the currently used WordMap
+     * @return weightedWords The WeightedWord of the words to be shown.
      */
-    public WordMap getWordMap() {
-        return wordMap;
+    public List<WeightedWord> getWordsList() {
+        return weightedWords;
     }
+
+    private ColorProvider colorProvider = new ShadesOfLightBlue();
+
+    private FontProvider fontProvider = new SansSerifFontProvider();
+
+    private Color mouseOverColor = new Color( 0x421ed9 );
 
     /**
      * Runs off an creates the labels for the wordsToShow number of words.
@@ -108,14 +115,20 @@ public class TagCloud extends JScrollPane {
      */
     public void showWords() {
         verticalGrowJPanel.removeAll();
-        if ( wordMap != null ) { // if no wordMap, leave panel empty
-            TreeSet<String> topWords = wordMap.getTopWords( wordsToShow );
+        if ( weightedWords != null ) { // if no wordMap, leave panel empty
+            WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
 
-            Iterator<String> it = topWords.iterator();
-            while ( it.hasNext() ) {
-                String s = it.next();
-                float percent = (float) wordMap.getWordValueMap().get( s ) / (float) wordMap.getMaximumWordValue();
-                TagCloudJLabel tagCloudEntry = new TagCloudJLabel( s, percent );
+            List<WeightedWord> topWords = wordAnalyser.getTopWordsSizeWeighted( wordsToShow );
+
+            for ( WeightedWord weightedWord : topWords ) {
+                TagCloudJLabel tagCloudEntry = new TagCloudJLabel(
+                        weightedWord.getWord(),
+                        wordAnalyser.getSizeWeight( weightedWord.getSizeValue() ),
+                        fontProvider,
+                        wordAnalyser.getSizeWeight( weightedWord.getColorValue() ),
+                        colorProvider,
+                        mouseOverColor
+                );
                 tagCloudEntry.addMouseListener( wordClickListener );
                 verticalGrowJPanel.add( tagCloudEntry );
             }
@@ -126,6 +139,39 @@ public class TagCloud extends JScrollPane {
         repaint();
     }
 
+    /**
+     * Sets the color Provider of the tagCloudJLabels
+     *
+     * @param colorProvider
+     */
+    public void setColorProvider( ColorProvider colorProvider ) {
+        this.colorProvider = colorProvider;
+        for ( Component component : verticalGrowJPanel.getComponents() ) {
+            if ( component instanceof TagCloudJLabel ) {
+                ( (TagCloudJLabel) component ).setColorProvider( colorProvider );
+            }
+        }
+    }
+
+    
+    /**
+     * Sets the font Provider of the tagCloudJLabels
+     *
+     * @param fontProvider
+     */
+    public void setFontProvider( FontProvider fontProvider ) {
+        this.fontProvider = fontProvider;
+        for ( Component component : verticalGrowJPanel.getComponents() ) {
+            if ( component instanceof TagCloudJLabel ) {
+                ( (TagCloudJLabel) component ).setFontProvider( fontProvider );
+                //component.validate();
+            }
+        }
+        verticalGrowJPanel.validate();
+    }
+
+    
+    
     /**
      * A click listener that fires off the tagClicked event to the
      * tagClickListener when a click is registered on a word label.

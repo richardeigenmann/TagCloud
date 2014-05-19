@@ -1,5 +1,5 @@
 /*
- SansSerifFontProvider.java:  An implementation of the FontProvider interface
+ SerifFontProvider.java:  An implementation of the FontProvider interface
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -24,28 +24,28 @@ import java.awt.Font;
  *
  * @author Richard Eigenmann
  */
-public class SansSerifFontProvider implements FontProvider {
+public class SerifFontProvider implements FontProvider {
 
     /**
      * An array of fonts in increasing size
      */
     private static final Font[] fonts = {
-        new Font( "SansSerif", Font.PLAIN, 10 ),
-        new Font( "SansSerif", Font.PLAIN, 11 ),
-        new Font( "SansSerif", Font.PLAIN, 12 ),
-        new Font( "SansSerif", Font.PLAIN, 13 ),
-        new Font( "SansSerif", Font.PLAIN, 14 ),
-        new Font( "SansSerif", Font.PLAIN, 15 ),
-        new Font( "SansSerif", Font.PLAIN, 16 ),
-        new Font( "SansSerif", Font.PLAIN, 17 ),
-        new Font( "SansSerif", Font.PLAIN, 18 ),
-        new Font( "SansSerif", Font.PLAIN, 19 ),
-        new Font( "SansSerif", Font.PLAIN, 20 ),
-        new Font( "SansSerif", Font.PLAIN, 21 ),
-        new Font( "SansSerif", Font.PLAIN, 22 ),
-        new Font( "SansSerif", Font.PLAIN, 23 ),
-        new Font( "SansSerif", Font.PLAIN, 24 ),
-        new Font( "SansSerif", Font.PLAIN, 25 ) };
+        new Font( "Serif", Font.PLAIN, 10 ),
+        new Font( "Serif", Font.PLAIN, 11 ),
+        new Font( "Serif", Font.PLAIN, 12 ),
+        new Font( "Serif", Font.PLAIN, 13 ),
+        new Font( "Serif", Font.PLAIN, 14 ),
+        new Font( "Serif", Font.PLAIN, 15 ),
+        new Font( "Serif", Font.PLAIN, 16 ),
+        new Font( "Serif", Font.PLAIN, 17 ),
+        new Font( "Serif", Font.PLAIN, 18 ),
+        new Font( "Serif", Font.PLAIN, 19 ),
+        new Font( "Serif", Font.PLAIN, 20 ),
+        new Font( "Serif", Font.PLAIN, 21 ),
+        new Font( "Serif", Font.PLAIN, 22 ),
+        new Font( "Serif", Font.PLAIN, 23 ),
+        new Font( "Serif", Font.PLAIN, 24 ),
+        new Font( "Serif", Font.PLAIN, 25 ) };
 
     /**
      * Returns the font for the specified weight

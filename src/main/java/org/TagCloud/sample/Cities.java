@@ -1,8 +1,7 @@
 package org.TagCloud.sample;
 
-import java.util.HashMap;
-import java.util.Map;
-import org.TagCloud.WordMap;
+import java.util.ArrayList;
+import org.TagCloud.WeightedWord;
 
 
 /*
@@ -30,73 +29,69 @@ import org.TagCloud.WordMap;
  * Cities by Population</a>
  * @author Richard Eigenmann
  */
-public class Cities extends WordMap {
+public class Cities extends ArrayList<WeightedWord> {
 
-    @Override
-    public Map<String, Integer> getWordValueMap() {
-        Map<String, Integer> cities = new HashMap<>();
-        cities.put( "Mumbai", 13922125 );
-        cities.put( "Shanghai", 13831900 );
-        cities.put( "Karachi", 12991000 );
-        cities.put( "Delhi", 12259230 );
-        cities.put( "Istanbul", 11372613 );
-        cities.put( "São Paulo", 10990249 );
-        cities.put( "Moscow", 10452000 );
-        cities.put( "Seoul", 10421782 );
-        cities.put( "Beijing", 10123000 );
-        cities.put( "Mexico City", 8836045 );
-        cities.put( "Tokyo", 8731000 );
-        cities.put( "Jakarta", 8489910 );
-        cities.put( "New York City", 8310212 );
-        cities.put( "Wuhan", 8001541 );
-        cities.put( "Lagos", 7937932 );
-        cities.put( "Kinshasa", 784000 );
-        cities.put( "Tehran", 7797520 );
-        cities.put( "Lima", 7605742 );
-        cities.put( "London", 7556900 );
-        cities.put( "Bogotá", 7155052 );
-        cities.put( "Hong Kong", 6985200 );
-        cities.put( "Bangkok", 6972000 );
-        cities.put( "Cairo", 6758581 );
-        cities.put( "Dhaka", 6737774 );
-        cities.put( "Ho Chi Minh City", 6650942 );
-        cities.put( "Lahore", 6318745 );
-        cities.put( "Guangzhou", 6172839 );
-        cities.put( "Rio de Janeiro", 6161047 );
-        cities.put( "Tianjin", 5800000 );
-        cities.put( "Baghdad", 5337684 );
-        cities.put( "Bangalore", 5310318 );
-        cities.put( "Kolkata", 5080519 );
-        cities.put( "Santiago", 4985893 );
-        cities.put( "Singapore", 4839400 );
-        cities.put( "Chongqing", 4776027 );
-        cities.put( "Saint Petersburg", 4596000 );
-        cities.put( "Chennai", 4590267 );
-        cities.put( "Riyadh", 4465000 );
-        cities.put( "Surat", 4274429 );
-        cities.put( "Alexandria", 4110015 );
-        cities.put( "Shenyang", 4101197 );
-        cities.put( "Yangon", 4088000 );
-        cities.put( "Hyderabad", 4025335 );
-        cities.put( "Ahmedabad", 3913793 );
-        cities.put( "Ankara", 3901201 );
-        cities.put( "Johannesburg", 3888180 );
-        cities.put( "Los Angeles", 3849378 );
-        cities.put( "Abidjan", 3802000 );
-        cities.put( "Yokohama", 3650000 );
-        cities.put( "Busan", 3615101 );
-        cities.put( "Cape Town", 3497097 );
-        cities.put( "Durban", 3468086 );
-        cities.put( "Berlin", 3426354 );
-        cities.put( "Pune", 3337481 );
-        cities.put( "Pyongyang", 3255388 );
-        cities.put( "Madrid", 3213271 );
-        cities.put( "Kanpur", 3144267 );
-        cities.put( "Jaipur", 3102808 );
-        cities.put( "Buenos Aires", 3050728 );
-        cities.put( "Nairobi", 3038553 );
-        cities.put( "Jeddah", 3012000 );
-
-        return cities;
+    public Cities() {
+        add( new WeightedWord( "Mumbai", 13922125 ) );
+        add( new WeightedWord( "Shanghai", 13831900 ) );
+        add( new WeightedWord( "Karachi", 12991000 ) );
+        add( new WeightedWord( "Delhi", 12259230 ) );
+        add( new WeightedWord( "Istanbul", 11372613 ) );
+        add( new WeightedWord( "São Paulo", 10990249 ) );
+        add( new WeightedWord( "Moscow", 10452000 ) );
+        add( new WeightedWord( "Seoul", 10421782 ) );
+        add( new WeightedWord( "Beijing", 10123000 ) );
+        add( new WeightedWord( "Mexico City", 8836045 ) );
+        add( new WeightedWord( "Tokyo", 8731000 ) );
+        add( new WeightedWord( "Jakarta", 8489910 ) );
+        add( new WeightedWord( "New York City", 8310212 ) );
+        add( new WeightedWord( "Wuhan", 8001541 ) );
+        add( new WeightedWord( "Lagos", 7937932 ) );
+        add( new WeightedWord( "Kinshasa", 784000 ) );
+        add( new WeightedWord( "Tehran", 7797520 ) );
+        add( new WeightedWord( "Lima", 7605742 ) );
+        add( new WeightedWord( "London", 7556900 ) );
+        add( new WeightedWord( "Bogotá", 7155052 ) );
+        add( new WeightedWord( "Hong Kong", 6985200 ) );
+        add( new WeightedWord( "Bangkok", 6972000 ) );
+        add( new WeightedWord( "Cairo", 6758581 ) );
+        add( new WeightedWord( "Dhaka", 6737774 ) );
+        add( new WeightedWord( "Ho Chi Minh City", 6650942 ) );
+        add( new WeightedWord( "Lahore", 6318745 ) );
+        add( new WeightedWord( "Guangzhou", 6172839 ) );
+        add( new WeightedWord( "Rio de Janeiro", 6161047 ) );
+        add( new WeightedWord( "Tianjin", 5800000 ) );
+        add( new WeightedWord( "Baghdad", 5337684 ) );
+        add( new WeightedWord( "Bangalore", 5310318 ) );
+        add( new WeightedWord( "Kolkata", 5080519 ) );
+        add( new WeightedWord( "Santiago", 4985893 ) );
+        add( new WeightedWord( "Singapore", 4839400 ) );
+        add( new WeightedWord( "Chongqing", 4776027 ) );
+        add( new WeightedWord( "Saint Petersburg", 4596000 ) );
+        add( new WeightedWord( "Chennai", 4590267 ) );
+        add( new WeightedWord( "Riyadh", 4465000 ) );
+        add( new WeightedWord( "Surat", 4274429 ) );
+        add( new WeightedWord( "Alexandria", 4110015 ) );
+        add( new WeightedWord( "Shenyang", 4101197 ) );
+        add( new WeightedWord( "Yangon", 4088000 ) );
+        add( new WeightedWord( "Hyderabad", 4025335 ) );
+        add( new WeightedWord( "Ahmedabad", 3913793 ) );
+        add( new WeightedWord( "Ankara", 3901201 ) );
+        add( new WeightedWord( "Johannesburg", 3888180 ) );
+        add( new WeightedWord( "Los Angeles", 3849378 ) );
+        add( new WeightedWord( "Abidjan", 3802000 ) );
+        add( new WeightedWord( "Yokohama", 3650000 ) );
+        add( new WeightedWord( "Busan", 3615101 ) );
+        add( new WeightedWord( "Cape Town", 3497097 ) );
+        add( new WeightedWord( "Durban", 3468086 ) );
+        add( new WeightedWord( "Berlin", 3426354 ) );
+        add( new WeightedWord( "Pune", 3337481 ) );
+        add( new WeightedWord( "Pyongyang", 3255388 ) );
+        add( new WeightedWord( "Madrid", 3213271 ) );
+        add( new WeightedWord( "Kanpur", 3144267 ) );
+        add( new WeightedWord( "Jaipur", 3102808 ) );
+        add( new WeightedWord( "Buenos Aires", 3050728 ) );
+        add( new WeightedWord( "Nairobi", 3038553 ) );
+        add( new WeightedWord( "Jeddah", 3012000 ) );
     }
 }

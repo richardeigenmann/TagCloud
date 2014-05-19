@@ -1,8 +1,3 @@
-package org.TagCloud;
-
-import java.awt.Color;
-import java.util.logging.Logger;
-
 /*
 GradientColor.java:  A helper to pick the color along a gradient Line.
 
@@ -20,76 +15,48 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 The license is in gpl.txt.
 See http://www.gnu.org/copyleft/gpl.html for the details.
  */
+
+package org.TagCloud;
+
+import java.awt.Color;
+import java.util.logging.Logger;
+
 /**
- * A helper to pick the color along a gradient Line.
- * This class can be used as a regular class or it can be used for it's
- * static getColor method.
+ * This class can interpolate a color from a set of color points
  *
  * @author Richard Eigenmann
  */
-public class GradientColor implements ColorProvider {
+public abstract class ColorInterpolator implements ColorProvider {
 
     /**
      * Defines a logger for this class
      */
-    private static final Logger LOGGER = Logger.getLogger(GradientColor.class.getName());
-    /**
-     * Sample gradient colors for use in the application
-     */
-    public final static Color[] SAMPLE_GRADIENT_COLORS = {new Color(0x099716), new Color(0x18c928),
-        new Color(0x36e410), new Color(0x64e410), new Color(0xa1e70c),
-        new Color(0xc3d000), new Color(0xe8e410), new Color(0xdcaf1e),
-        new Color(0xe87514), new Color(0xed723b)};
-    
-    /**
-     * Predefined color for a Black to White gradient
-     */
-    public final static Color[] BLACK_WHITE_COLORS = {Color.BLACK, Color.WHITE};
-    
-    /**
-     * Predefined color gradient points for a blue gradient
-     */
-    public final static Color[] SHADES_OF_LIGHT_BLUE = {new Color(0x355ddb), new Color(0x7aa5f4)};
+    private static final Logger LOGGER = Logger.getLogger(ColorInterpolator.class.getName());
 
-    private Color[] availableColors;
+ 
+    /**
+     * The extending class must implement this method and provide an array of colors
+     * @return The array of colors between which to interpolate
+     */
+    public abstract Color[] getColorPoints();
     
     /**
      * This method returns a color along a multi point color gradiant. The
      * Gradiant color points are specified by an array of Colors. The Array must
-     * have at least 2 color entries. If it has none then a black-white gradient
-     * will be used, if it has less than one the gradient is from the supplied color
-     * to white.
+     * have at least 2 color entries. 
      * @param weight between 0 and 1
      * @return The Color in the gradient
      */
     @Override
     public Color getColor( float weight) {
-        // Never trust input
-        /* if (availableColors.length < 1) {
-            availableColors = BLACK_WHITE_COLORS;
-        } else if (availableColors.length == 1) {
-            Color[] newColors = {availableColors[0], Color.WHITE};
-            availableColors = newColors;
-        }*/
-        
-        // never trust inputs
-        /*if (factor > 1) {
-            factor = 1;
-        }
-        if (factor < 0) {
-            factor = 0;
-        }*/
-        
-        availableColors = SHADES_OF_LIGHT_BLUE;
-
         // figure out the closest two color points
-        int lowerIndex = (int) (weight * (availableColors.length - 2));
+        int lowerIndex = (int) (weight * (getColorPoints().length - 2));
         int higherIndex = lowerIndex + 1;
-        Color lowerColor = availableColors[lowerIndex];
-        Color higherColor = availableColors[higherIndex];
+        Color lowerColor = getColorPoints()[lowerIndex];
+        Color higherColor = getColorPoints()[higherIndex];
 
-        double lowerIndexFactor = (double) lowerIndex / (availableColors.length - 1);
-        double higherIndexFactor = (double) higherIndex / (availableColors.length - 1);
+        double lowerIndexFactor = (double) lowerIndex / (getColorPoints().length - 1);
+        double higherIndexFactor = (double) higherIndex / (getColorPoints().length - 1);
         double interpolationFactor = (weight - lowerIndexFactor) / (higherIndexFactor - lowerIndexFactor);
 
         LOGGER.fine(String.format("Lower Index: %d Factor: %f ", lowerIndex, lowerIndexFactor));
@@ -111,6 +78,5 @@ public class GradientColor implements ColorProvider {
         Color gradientColor = new Color(newRed, newGreen, newBlue);
 
         return gradientColor;
-
     }
 }

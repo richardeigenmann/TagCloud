@@ -1,24 +1,3 @@
-package org.TagCloud.sample;
-
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.util.Map;
-import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import org.TagCloud.TagClickListener;
-import org.TagCloud.TagCloud;
-import org.TagCloud.WordMap;
-
-
 /*
  Copyright (C) 2009, 2014 Richard Eigenmann, Zürich, Switzerland
 
@@ -35,6 +14,35 @@ import org.TagCloud.WordMap;
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
+
+package org.TagCloud.sample;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import org.TagCloud.BlackToWhiteGradient;
+import org.TagCloud.HeavyFontProvider;
+import org.TagCloud.SampleGradientColors;
+import org.TagCloud.SansSerifFontProvider;
+import org.TagCloud.SerifFontProvider;
+import org.TagCloud.ShadesOfLightBlue;
+import org.TagCloud.TagClickListener;
+import org.TagCloud.TagCloud;
+import org.TagCloud.WeightedWord;
+import org.TagCloud.YellowBrownGradient;
+import org.TagCloud.YellowOrBrown;
+
 /**
  * Shows how to generate a sample tag cloud
  *
@@ -63,22 +71,6 @@ public class SampleTagCloud extends JFrame {
     }
 
     /**
-     * One set of words for cities and their population
-     */
-    private final WordMap cities = new Cities();
-
-        /**
-     * One set of words for cities and their population
-     */
-    private final WordMap europeanCities = new EuropeanCities();
-
-    
-    /**
-     * One set of words for countries and their population
-     */
-    private final WordMap countries = new Countries();
-
-    /**
      * The TagCloud widget that we would like to show.
      */
     private final TagCloud tagCloud = new TagCloud();
@@ -92,6 +84,7 @@ public class SampleTagCloud extends JFrame {
 
     private void initComponents() {
         setPreferredSize( new Dimension( 850, 400 ) );
+        setTitle( "Sample Tag Cloud");
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         this.getContentPane().add( getControlsPanel(), BorderLayout.PAGE_START );
 
@@ -115,44 +108,104 @@ public class SampleTagCloud extends JFrame {
      */
     private JPanel getControlsPanel() {
         JPanel controlsPanel = new JPanel();
-        JButton citiesButton = new JButton( "Cities" );
-        citiesButton.addActionListener( new ActionListener() {
+
+        String[] wordLists = { "Cities", "European Cities", "Countries", "Short Cities List" };
+        final JComboBox wordListChooser = new JComboBox( wordLists );
+        wordListChooser.setSelectedIndex( 0 );
+        wordListChooser.addActionListener( new ActionListener() {
 
             @Override
             public void actionPerformed( ActionEvent e ) {
-                commentLabel.setText( "Setting the TagCloud to show cities" );
-                tagCloud.setWordMap( cities );
-                tagCloud.showWords();
+                int index = wordListChooser.getSelectedIndex();
+                switch ( index ) {
+                    case 0:
+                        tagCloud.setWordsList( new Cities() );
+                        tagCloud.showWords();
+                        break;
+                    case 1:
+                        tagCloud.setWordsList( new EuropeanCities() );
+                        tagCloud.showWords();
+                        break;
+                    case 2:
+                        tagCloud.setWordsList( new Countries() );
+                        tagCloud.showWords();
+                        break;
+                    case 3:
+                        tagCloud.setWordsList( new ShortCitiesList() );
+                        tagCloud.showWords();
+                        break;
+                    default:
+                        tagCloud.setWordsList( new Cities() );
+                        tagCloud.showWords();
+
+                }
             }
         } );
-        controlsPanel.add( citiesButton );
+        controlsPanel.add( wordListChooser );
 
-        JButton europeanCitiesButton = new JButton( "European Cities" );
-        europeanCitiesButton.addActionListener( new ActionListener() {
+        String[] colorSchemes = { "Shades of Light Blue", "Sample Gradient Colors", "Black to White Gradient", "Yellow Brown Gradient", "Yellow or Brown" };
+        final JComboBox colorSchemeChooser = new JComboBox( colorSchemes );
+        colorSchemeChooser.setSelectedIndex( 0 );
+        colorSchemeChooser.addActionListener( new ActionListener() {
 
             @Override
             public void actionPerformed( ActionEvent e ) {
-                commentLabel.setText( "Setting the TagCloud to show cities" );
-                tagCloud.setWordMap( europeanCities );
-                tagCloud.showWords();
+                int index = colorSchemeChooser.getSelectedIndex();
+                switch ( index ) {
+                    case 0:
+                        tagCloud.setColorProvider( new ShadesOfLightBlue() );
+                        break;
+                    case 1:
+                        tagCloud.setColorProvider( new SampleGradientColors() );
+                        break;
+                    case 2:
+                        tagCloud.setColorProvider( new BlackToWhiteGradient() );
+                        break;
+                    case 3:
+                        tagCloud.setColorProvider( new YellowBrownGradient() );
+                        break;
+                    case 4:
+                        tagCloud.setColorProvider( new YellowOrBrown() );
+                        break;
+                    default:
+                        tagCloud.setColorProvider( new ShadesOfLightBlue() );
+                        tagCloud.showWords();
+
+                }
             }
         } );
-        controlsPanel.add( europeanCitiesButton );
+        controlsPanel.add( colorSchemeChooser );
+        
+        String[] fontSchemes = { "Sans Serif", "Serif", "Heavy Font"};
+        final JComboBox fontProviderChooser = new JComboBox( fontSchemes );
+        fontProviderChooser.setSelectedIndex( 0 );
+        fontProviderChooser.addActionListener( new ActionListener() {
+
+            @Override
+            public void actionPerformed( ActionEvent e ) {
+                int index = fontProviderChooser.getSelectedIndex();
+                switch ( index ) {
+                    case 0:
+                        tagCloud.setFontProvider( new SansSerifFontProvider() );
+                        break;
+                    case 1:
+                        tagCloud.setFontProvider( new SerifFontProvider() );
+                        break;
+                    case 2:
+                        tagCloud.setFontProvider( new HeavyFontProvider() );
+                        break;
+                    default:
+                        tagCloud.setFontProvider( new SansSerifFontProvider() );
+                        tagCloud.showWords();
+
+                }
+            }
+        } );
+        controlsPanel.add( fontProviderChooser );
         
         
-        JButton countriesButton = new JButton( "Countries" );
-        countriesButton.addActionListener( new ActionListener() {
 
-            @Override
-            public void actionPerformed( ActionEvent e ) {
-                commentLabel.setText( "Setting the TagCloud to show countries" );
-                tagCloud.setWordMap( countries );
-                tagCloud.showWords();
-            }
-        } );
-        controlsPanel.add( countriesButton );
-
-        JSlider slider = new JSlider( 0, 10 ); // we will only use the slider for the percentage of total
+        JSlider slider = new JSlider( 0, 100 ); // we will only use the slider for the percentage of total
         slider.setPreferredSize( new Dimension( 150, 20 ) );
         slider.addChangeListener( new MySliderChangeListener() );
         controlsPanel.add( slider );
@@ -172,10 +225,14 @@ public class SampleTagCloud extends JFrame {
      * @param key The string that the user clicked on
      */
     public void doTagClicked( String key ) {
-        WordMap wordMap = tagCloud.getWordMap();
-        Map<String, Integer> wordValueMap = wordMap.getWordValueMap();
-        int population = wordValueMap.get( key );
-        commentLabel.setText( String.format( "Clicked: %s; Population: %,d", key, population ) );
+        List<WeightedWord> weightedWords = tagCloud.getWordsList();
+        for ( WeightedWord weightedWord : weightedWords ) {
+            if ( key.equals( weightedWord.getWord() ) ) {
+                int population = weightedWord.getSizeValue();
+                commentLabel.setText( String.format( "Clicked: %s; Population: %,d", key, population ) );
+                break;
+            }
+        }
     }
 
     /**
@@ -196,21 +253,18 @@ public class SampleTagCloud extends JFrame {
         public void stateChanged( ChangeEvent ce ) {
             final JSlider slider = (JSlider) ce.getSource();
             final int value = slider.getValue();
-            double pct = Math.pow( 2f, value ) / Math.pow( 2f, slider.getMaximum() );
-            if ( value == 0 ) {
-                // correct for the value 0 which I want to have 0 for.
-                pct = 0f;
-            }
-            WordMap map = tagCloud.getWordMap();
-            if ( map == null ) {
+            double pct = (double) value / slider.getMaximum();
+
+            List<WeightedWord> weightedWords = tagCloud.getWordsList();
+            if ( weightedWords == null ) {
                 return;
             }
-            int availableWords = map.getWordValueMap().size();
+            int availableWords = tagCloud.getWordsList().size();
             int numberOfWords = (int) ( pct * ( availableWords - minimumWords ) ) + minimumWords;
-            if ( numberOfWords > availableWords ) {
+/*            if ( numberOfWords > availableWords ) {
                 LOGGER.severe( String.format( "Limit (%d) is greater than available words (%d) setting to available words", numberOfWords, availableWords ) );
                 numberOfWords = availableWords;
-            }
+            }*/
             commentLabel.setText( String.format( "Slider set to %d%%; showing %d words", (int) ( pct * 100f ), numberOfWords ) );
             tagCloud.setMaxWordsToShow( numberOfWords );
             tagCloud.showWords();
