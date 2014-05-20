@@ -1,5 +1,5 @@
 /*
- WordAnalyserTest.java:  Tests WordAnalyser
+ WordAnalyserTest.java:  Unit tests of the WordAnalyser
 
  Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -24,16 +24,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * Unit tests for the WordAnalyser
  *
  * @author Richard Eigenmann
  */
 public class WordAnalyserTest {
 
     private List<WeightedWord> weightedWords;
-    private WeightedWord word1 = new WeightedWord( "word1", 10, 100 );
-    private WeightedWord word2 = new WeightedWord( "word2", 20, 40 );
-    private WeightedWord word3 = new WeightedWord( "abcWord3", 30, 200 );
-    private WeightedWord word4 = new WeightedWord( "word4", 4, 300 );
+    private final WeightedWord word1 = new WeightedWord( "word1", 10, 100 );
+    private final WeightedWord word2 = new WeightedWord( "word2", 20, 40 );
+    private final WeightedWord word3 = new WeightedWord( "abcWord3", 30, 200 );
+    private final WeightedWord word4 = new WeightedWord( "word4", 4, 300 );
 
     @Before
     public void setUp() {
@@ -204,8 +205,7 @@ public class WordAnalyserTest {
         assertEquals( "If we come with value 0 we should get a weight of 0", 0f, zeroWordAnalyser.getColorWeight( 0 ), 0.000001 );
     }
 
-    
-        @Test
+    @Test
     public void testGetTopWordsColorWeighted() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         List<WeightedWord> fourWords = wordAnalyser.getTopWordsColorWeighted( 4 );
@@ -241,5 +241,4 @@ public class WordAnalyserTest {
 
     }
 
-    
 }

@@ -17,13 +17,14 @@
  */
 package org.TagCloud;
 
+import org.TagCloud.FontProviders.SansSerifFontProvider;
 import java.awt.Font;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author richi
+ * Unit tests for SansSerifFontList
+ * @author Richard Eigenmann
  */
 public class SansSerifFontProviderTest {
     

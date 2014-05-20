@@ -1,5 +1,5 @@
 /*
- SansSerifFontProvider.java:  An implementation of the FontProvider interface
+ SansSerifFontProvider.java:  An implementation of the FontList interface with large fat Sans Serif fonts
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -15,12 +15,13 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.TagCloud;
+package org.TagCloud.FontProviders;
 
 import java.awt.Font;
+import org.TagCloud.FontProvider;
 
 /**
- * An implementation of the FontList interface with Sans Serif fonts
+ * An implementation of the FontList interface with large fat Sans Serif fonts
  *
  * @author Richard Eigenmann
  */

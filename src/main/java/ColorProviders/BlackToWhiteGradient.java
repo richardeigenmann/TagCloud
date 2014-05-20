@@ -1,5 +1,5 @@
 /*
- ColorPicker.java:  Picks the nearest color
+ BlackToWhiteGradient.java:  A ColorProvider that returns a color on the gradient from Black to White based on the suplied weight
 
  Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -15,35 +15,31 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.TagCloud;
+package ColorProviders;
 
 import java.awt.Color;
+import org.TagCloud.ColorInterpolator;
 
 /**
- * This class picks the nearest color based on weight
+ * A ColorProvider that returns a color on the gradient from Black to White
+ * based on the suplied weight
  *
  * @author Richard Eigenmann
  */
-public abstract class ColorPicker implements ColorProvider {
+public class BlackToWhiteGradient extends ColorInterpolator {
 
     /**
-     * The extending class must implement this method and provide an array of
-     * colors
-     *
-     * @return The array of colors between which to interpolate
+     * Predefined colors for a Black to White gradient
      */
-    public abstract Color[] getColorPoints();
+    public final static Color[] BLACK_WHITE_COLORS = { Color.BLACK, Color.WHITE };
 
     /**
-     * This method returns the nearest color from a set
+     * Returns the two colors to the ColorInterpolator
      *
-     * @param weight between 0 and 1
-     * @return The Color picked
+     * @return the color points for interpolation
      */
     @Override
-    public Color getColor( float weight ) {
-        int index = (int) Math.round( weight * ( getColorPoints().length - 1 ) );
-        Color color = getColorPoints()[index];
-        return color;
+    public Color[] getColorPoints() {
+        return BLACK_WHITE_COLORS;
     }
 }

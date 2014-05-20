@@ -1,5 +1,5 @@
 /*
- ColorPicker.java:  Picks the nearest color
+ YellowBrownGradient.java:  A ColorProvider that returns a color from Yellow to Brown
 
  Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -15,35 +15,30 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.TagCloud;
+package ColorProviders;
 
 import java.awt.Color;
+import org.TagCloud.ColorInterpolator;
 
 /**
- * This class picks the nearest color based on weight
+ * A ColorProvider that returns a color from Yellow to Brown
  *
  * @author Richard Eigenmann
  */
-public abstract class ColorPicker implements ColorProvider {
+public class YellowBrownGradient extends ColorInterpolator {
 
     /**
-     * The extending class must implement this method and provide an array of
-     * colors
-     *
-     * @return The array of colors between which to interpolate
+     * Predefined color gradient points for a yellow to chocolate brown
      */
-    public abstract Color[] getColorPoints();
+    private final static Color[] YELLOW_BROWN = { Color.YELLOW, new Color( 123, 63, 0 ) };
 
     /**
-     * This method returns the nearest color from a set
+     * Provides the color points to the ColorInterpolator
      *
-     * @param weight between 0 and 1
-     * @return The Color picked
+     * @return the color points for interpolation
      */
     @Override
-    public Color getColor( float weight ) {
-        int index = (int) Math.round( weight * ( getColorPoints().length - 1 ) );
-        Color color = getColorPoints()[index];
-        return color;
+    public Color[] getColorPoints() {
+        return YELLOW_BROWN;
     }
 }

@@ -1,9 +1,3 @@
-package org.TagCloud.sample;
-
-import java.util.ArrayList;
-import org.TagCloud.WeightedWord;
-
-
 /*
  Copyright (C)) 2009, 2014 Richard Eigenmann, Zürich, Switzerland
 
@@ -20,9 +14,14 @@ import org.TagCloud.WeightedWord;
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
+package org.TagCloud.sample;
+
+import java.util.ArrayList;
+import org.TagCloud.WeightedWord;
+
 /**
- * This class extends the WordMap with a list of European cities and their
- * population taken from the Internet to illustrate the TagCloud.
+ * This class creates a List of WeightedWords for European cities and their (out
+ * of date) population taken from the Internet to illustrate the TagCloud.
  *
  * @see <a href="http://www.citymayors.com/features/euro_cities1.html">Link</a>
  *

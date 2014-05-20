@@ -25,8 +25,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
+ * Unit tests for TagCloudJLabel
  *
- * @author richi
+ * @author Richard Eigenmann
  */
 public class TagCloudJLabelTest {
 
@@ -90,8 +91,8 @@ public class TagCloudJLabelTest {
         Font font = tagCloudJLabel.getFont();
         assertEquals( "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have a SansSerif font",
                 "SansSerif.plain", font.getFontName() );
-        assertEquals( "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have the size 15",
-                17, font.getSize() );
+        assertEquals( "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have the size 18",
+                18, font.getSize() );
 
     }
 

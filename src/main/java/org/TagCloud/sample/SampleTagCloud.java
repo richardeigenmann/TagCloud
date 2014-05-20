@@ -14,7 +14,6 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-
 package org.TagCloud.sample;
 
 import java.awt.BorderLayout;
@@ -31,17 +30,18 @@ import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import org.TagCloud.BlackToWhiteGradient;
-import org.TagCloud.HeavyFontProvider;
-import org.TagCloud.SampleGradientColors;
-import org.TagCloud.SansSerifFontProvider;
-import org.TagCloud.SerifFontProvider;
-import org.TagCloud.ShadesOfLightBlue;
+import ColorProviders.BlackToWhiteGradient;
+import org.TagCloud.FontProviders.HeavyFontProvider;
+import ColorProviders.SampleGradientColors;
+import org.TagCloud.FontProviders.SansSerifFontProvider;
+import org.TagCloud.FontProviders.SerifFontProvider;
+import ColorProviders.ShadesOfLightBlue;
 import org.TagCloud.TagClickListener;
 import org.TagCloud.TagCloud;
 import org.TagCloud.WeightedWord;
-import org.TagCloud.YellowBrownGradient;
-import org.TagCloud.YellowOrBrown;
+import ColorProviders.YellowBrownGradient;
+import ColorProviders.YellowOrBrown;
+import javax.swing.BoxLayout;
 
 /**
  * Shows how to generate a sample tag cloud
@@ -79,12 +79,8 @@ public class SampleTagCloud extends JFrame {
      * Creates the JFrame, control widgets and TagCloud
      */
     public SampleTagCloud() {
-        initComponents();
-    }
-
-    private void initComponents() {
-        setPreferredSize( new Dimension( 850, 400 ) );
-        setTitle( "Sample Tag Cloud");
+        setPreferredSize( new Dimension( 600, 400 ) );
+        setTitle( "Sample Tag Cloud" );
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         this.getContentPane().add( getControlsPanel(), BorderLayout.PAGE_START );
 
@@ -107,11 +103,10 @@ public class SampleTagCloud extends JFrame {
      * @return Returns a panel with stuff
      */
     private JPanel getControlsPanel() {
-        JPanel controlsPanel = new JPanel();
+        JPanel firstLinePanel = new JPanel();
 
         String[] wordLists = { "Cities", "European Cities", "Countries", "Short Cities List" };
         final JComboBox wordListChooser = new JComboBox( wordLists );
-        wordListChooser.setSelectedIndex( 0 );
         wordListChooser.addActionListener( new ActionListener() {
 
             @Override
@@ -141,11 +136,11 @@ public class SampleTagCloud extends JFrame {
                 }
             }
         } );
-        controlsPanel.add( wordListChooser );
+        firstLinePanel.add( wordListChooser );
+        wordListChooser.setSelectedIndex( 0 );
 
         String[] colorSchemes = { "Shades of Light Blue", "Sample Gradient Colors", "Black to White Gradient", "Yellow Brown Gradient", "Yellow or Brown" };
         final JComboBox colorSchemeChooser = new JComboBox( colorSchemes );
-        colorSchemeChooser.setSelectedIndex( 0 );
         colorSchemeChooser.addActionListener( new ActionListener() {
 
             @Override
@@ -174,11 +169,11 @@ public class SampleTagCloud extends JFrame {
                 }
             }
         } );
-        controlsPanel.add( colorSchemeChooser );
-        
-        String[] fontSchemes = { "Sans Serif", "Serif", "Heavy Font"};
+        firstLinePanel.add( colorSchemeChooser );
+        colorSchemeChooser.setSelectedIndex( 0 );
+
+        String[] fontSchemes = { "Sans Serif", "Serif", "Heavy Font" };
         final JComboBox fontProviderChooser = new JComboBox( fontSchemes );
-        fontProviderChooser.setSelectedIndex( 0 );
         fontProviderChooser.addActionListener( new ActionListener() {
 
             @Override
@@ -201,23 +196,29 @@ public class SampleTagCloud extends JFrame {
                 }
             }
         } );
-        controlsPanel.add( fontProviderChooser );
-        
-        
+        firstLinePanel.add( fontProviderChooser );
+        fontProviderChooser.setSelectedIndex( 0 );
 
         JSlider slider = new JSlider( 0, 100 ); // we will only use the slider for the percentage of total
         slider.setPreferredSize( new Dimension( 150, 20 ) );
         slider.addChangeListener( new MySliderChangeListener() );
-        controlsPanel.add( slider );
+        JPanel secondLinePanel = new JPanel();
+        secondLinePanel.add( slider );
+        secondLinePanel.add( commentLabel );
 
-        controlsPanel.add( commentLabel );
+        JPanel controlsPanel = new JPanel();
+        BoxLayout boxLayout = new BoxLayout( controlsPanel, BoxLayout.Y_AXIS );
+        controlsPanel.setLayout( boxLayout );
+        controlsPanel.add( firstLinePanel );
+        controlsPanel.add( secondLinePanel );
+
         return controlsPanel;
     }
 
     /**
      * A label that we can use to show what is happening.
      */
-    private final JLabel commentLabel = new JLabel( "what's going on" );
+    private final JLabel commentLabel = new JLabel( "Try out the controls!" );
 
     /**
      * handles the click on a word
@@ -247,11 +248,11 @@ public class SampleTagCloud extends JFrame {
          * Receive slider moves and using an exponential formula to adjust the
          * number of words being shown.
          *
-         * @param ce The event
+         * @param changeEvent The event
          */
         @Override
-        public void stateChanged( ChangeEvent ce ) {
-            final JSlider slider = (JSlider) ce.getSource();
+        public void stateChanged( ChangeEvent changeEvent ) {
+            final JSlider slider = (JSlider) changeEvent.getSource();
             final int value = slider.getValue();
             double pct = (double) value / slider.getMaximum();
 
@@ -261,10 +262,6 @@ public class SampleTagCloud extends JFrame {
             }
             int availableWords = tagCloud.getWordsList().size();
             int numberOfWords = (int) ( pct * ( availableWords - minimumWords ) ) + minimumWords;
-/*            if ( numberOfWords > availableWords ) {
-                LOGGER.severe( String.format( "Limit (%d) is greater than available words (%d) setting to available words", numberOfWords, availableWords ) );
-                numberOfWords = availableWords;
-            }*/
             commentLabel.setText( String.format( "Slider set to %d%%; showing %d words", (int) ( pct * 100f ), numberOfWords ) );
             tagCloud.setMaxWordsToShow( numberOfWords );
             tagCloud.showWords();

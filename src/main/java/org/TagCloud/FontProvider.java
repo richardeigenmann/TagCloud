@@ -1,5 +1,5 @@
 /*
- FontProvider.java:  Interface that defines how fonts should be returned
+ FontProvider.java:  Interface that defines the method that returns the font
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -20,14 +20,18 @@ package org.TagCloud;
 import java.awt.Font;
 
 /**
- * Defines how fonts should be returned for a given weight
+ * Defines the method called to retrieve the font for a given weight
+ *
  * @author Richard Eigenmann
  */
 public interface FontProvider {
 
     /**
-     * The implementing class must return an appropriate font for the supplied weight
-     * @param weight The weight for which the font should be returned range is 0 to 1
+     * The implementing class must return an appropriate font for the supplied
+     * weight
+     *
+     * @param weight The weight for which the font should be returned range is 0
+     * to 1
      * @return The Font to use for the supplied weight.
      */
     public Font getFont( float weight );

@@ -1,5 +1,5 @@
 /*
- SerifFontProvider.java:  An implementation of the FontProvider interface
+ SansSerifFontProvider.java:  An implementation of the FontList interface with Sans Serif fonts
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -15,37 +15,38 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.TagCloud;
+package org.TagCloud.FontProviders;
 
 import java.awt.Font;
+import org.TagCloud.FontProvider;
 
 /**
  * An implementation of the FontList interface with Sans Serif fonts
  *
  * @author Richard Eigenmann
  */
-public class SerifFontProvider implements FontProvider {
+public class SansSerifFontProvider implements FontProvider {
 
     /**
      * An array of fonts in increasing size
      */
     private static final Font[] fonts = {
-        new Font( "Serif", Font.PLAIN, 10 ),
-        new Font( "Serif", Font.PLAIN, 11 ),
-        new Font( "Serif", Font.PLAIN, 12 ),
-        new Font( "Serif", Font.PLAIN, 13 ),
-        new Font( "Serif", Font.PLAIN, 14 ),
-        new Font( "Serif", Font.PLAIN, 15 ),
-        new Font( "Serif", Font.PLAIN, 16 ),
-        new Font( "Serif", Font.PLAIN, 17 ),
-        new Font( "Serif", Font.PLAIN, 18 ),
-        new Font( "Serif", Font.PLAIN, 19 ),
-        new Font( "Serif", Font.PLAIN, 20 ),
-        new Font( "Serif", Font.PLAIN, 21 ),
-        new Font( "Serif", Font.PLAIN, 22 ),
-        new Font( "Serif", Font.PLAIN, 23 ),
-        new Font( "Serif", Font.PLAIN, 24 ),
-        new Font( "Serif", Font.PLAIN, 25 ) };
+        new Font( "SansSerif", Font.PLAIN, 10 ),
+        new Font( "SansSerif", Font.PLAIN, 11 ),
+        new Font( "SansSerif", Font.PLAIN, 12 ),
+        new Font( "SansSerif", Font.PLAIN, 13 ),
+        new Font( "SansSerif", Font.PLAIN, 14 ),
+        new Font( "SansSerif", Font.PLAIN, 15 ),
+        new Font( "SansSerif", Font.PLAIN, 16 ),
+        new Font( "SansSerif", Font.PLAIN, 17 ),
+        new Font( "SansSerif", Font.PLAIN, 18 ),
+        new Font( "SansSerif", Font.PLAIN, 19 ),
+        new Font( "SansSerif", Font.PLAIN, 20 ),
+        new Font( "SansSerif", Font.PLAIN, 21 ),
+        new Font( "SansSerif", Font.PLAIN, 22 ),
+        new Font( "SansSerif", Font.PLAIN, 23 ),
+        new Font( "SansSerif", Font.PLAIN, 24 ),
+        new Font( "SansSerif", Font.PLAIN, 25 ) };
 
     /**
      * Returns the font for the specified weight

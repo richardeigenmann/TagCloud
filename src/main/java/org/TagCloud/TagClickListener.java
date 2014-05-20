@@ -1,5 +1,3 @@
-package org.TagCloud;
-
 /*
  TagClickListener.java:  Interface to notify listeners that a tag was clicked
 
@@ -17,6 +15,8 @@ package org.TagCloud;
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
+package org.TagCloud;
+
 /**
  * Notifies a listener that a tag was selected by the user
  *
@@ -28,7 +28,7 @@ public interface TagClickListener {
      * The implementing class should implement this method to get notified which
      * word the user clicked on
      *
-     * @param word The word that was clicked 
+     * @param word The word that was clicked
      */
     public void tagClicked( String word );
 }

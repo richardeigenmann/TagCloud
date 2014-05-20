@@ -1,5 +1,5 @@
 /*
- ColorPicker.java:  Picks the nearest color
+ ShadesOfLightBlue.java:  A ColorProvider that returns a shade of light blue based on the supplied weight
 
  Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -15,35 +15,30 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.TagCloud;
+package ColorProviders;
 
 import java.awt.Color;
+import org.TagCloud.ColorInterpolator;
 
 /**
- * This class picks the nearest color based on weight
+ * A ColorProvider that returns a shade of light blue based on the supplied
+ * weight
  *
  * @author Richard Eigenmann
  */
-public abstract class ColorPicker implements ColorProvider {
+public class ShadesOfLightBlue extends ColorInterpolator {
 
     /**
-     * The extending class must implement this method and provide an array of
-     * colors
-     *
-     * @return The array of colors between which to interpolate
+     * Predefined color gradient points for a blue gradient
      */
-    public abstract Color[] getColorPoints();
+    private final static Color[] SHADES_OF_LIGHT_BLUE = { new Color( 0x355ddb ), new Color( 0x7aa5f4 ) };
 
     /**
-     * This method returns the nearest color from a set
-     *
-     * @param weight between 0 and 1
-     * @return The Color picked
+     * Returns two blue colors to the ColorInterpolator
+     * @return the color points for interpolation
      */
     @Override
-    public Color getColor( float weight ) {
-        int index = (int) Math.round( weight * ( getColorPoints().length - 1 ) );
-        Color color = getColorPoints()[index];
-        return color;
+    public Color[] getColorPoints() {
+        return SHADES_OF_LIGHT_BLUE;
     }
 }

@@ -1,5 +1,5 @@
 /*
- TagCloud.java:  A Widget that shows a TagCloud
+ TagCloud.java:  A Swing Component that shows a TagCloud
 
  Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -17,6 +17,8 @@
  */
 package org.TagCloud;
 
+import ColorProviders.ShadesOfLightBlue;
+import org.TagCloud.FontProviders.SansSerifFontProvider;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -44,20 +46,21 @@ public class TagCloud extends JScrollPane {
     /**
      * This special panel holds the words (TagCloudJLabel).
      */
-    private final VerticalGrowJPanel verticalGrowJPanel = new VerticalGrowJPanel();
+    private final VerticalGrowJPanel verticalGrowJPanel;
 
     /**
      * Constructor to call to create a new TagCloud. It used BorderLayout and
      * puts the Slider in the top part and the scroll pane in the centre part.
      */
     public TagCloud() {
+        verticalGrowJPanel = new VerticalGrowJPanel();
         setViewportView( verticalGrowJPanel );
         setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
         setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED );
     }
 
     /**
-     * The number of words to show. The default is 10 words.
+     * The number of words to show. The default is 30 words.
      */
     private int wordsToShow = 30;
 
@@ -107,6 +110,15 @@ public class TagCloud extends JScrollPane {
     private FontProvider fontProvider = new SansSerifFontProvider();
 
     private Color mouseOverColor = new Color( 0x421ed9 );
+
+    /**
+     * Sets the color to use on a mouseover event
+     * @param mouseOverColor the color to use on a mouseOverEvent
+     */
+    public void setMouseOverColor( Color mouseOverColor ) {
+        this.mouseOverColor = mouseOverColor;
+    }
+    
 
     /**
      * Runs off an creates the labels for the wordsToShow number of words.

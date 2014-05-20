@@ -1,5 +1,5 @@
 /*
- ColorProvider.java:  Interface that defines how colors should be returned
+ ColorProvider.java:  Interface that defines the method to call to receive a color for a weight
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -20,14 +20,19 @@ package org.TagCloud;
 import java.awt.Color;
 
 /**
- * Defines how fonts should be returned for a given weight
+ * Defines the method signature of a call to retrieve the color for a given
+ * weight
+ *
  * @author Richard Eigenmann
  */
 public interface ColorProvider {
 
     /**
-     * The implementing class must return an appropriate color for the supplied weight
-     * @param weight The weight for which the color should be returned range is 0 to 1
+     * The implementing class must return an appropriate color for the supplied
+     * weight
+     *
+     * @param weight The weight for which the color should be returned range is
+     * 0 to 1
      * @return The color to use for the supplied weight.
      */
     public Color getColor( float weight );
