@@ -113,12 +113,12 @@ public class TagCloud extends JScrollPane {
 
     /**
      * Sets the color to use on a mouseover event
+     *
      * @param mouseOverColor the color to use on a mouseOverEvent
      */
     public void setMouseOverColor( Color mouseOverColor ) {
         this.mouseOverColor = mouseOverColor;
     }
-    
 
     /**
      * Runs off an creates the labels for the wordsToShow number of words.
@@ -133,8 +133,11 @@ public class TagCloud extends JScrollPane {
             List<WeightedWord> topWords = wordAnalyser.getTopWordsSizeWeighted( wordsToShow );
 
             for ( WeightedWord weightedWord : topWords ) {
+                weightedWord.setSizeWeight( wordAnalyser.getSizeWeight( weightedWord.getSizeValue() ) );
+                weightedWord.setColorWeight( wordAnalyser.getSizeWeight( weightedWord.getColorValue() ) );
+
                 TagCloudJLabel tagCloudEntry = new TagCloudJLabel(
-                        weightedWord.getWord(),
+                        weightedWord,
                         wordAnalyser.getSizeWeight( weightedWord.getSizeValue() ),
                         fontProvider,
                         wordAnalyser.getSizeWeight( weightedWord.getColorValue() ),
@@ -165,7 +168,6 @@ public class TagCloud extends JScrollPane {
         }
     }
 
-    
     /**
      * Sets the font Provider of the tagCloudJLabels
      *
@@ -182,8 +184,6 @@ public class TagCloud extends JScrollPane {
         verticalGrowJPanel.validate();
     }
 
-    
-    
     /**
      * A click listener that fires off the tagClicked event to the
      * tagClickListener when a click is registered on a word label.

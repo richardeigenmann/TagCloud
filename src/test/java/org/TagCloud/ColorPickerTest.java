@@ -23,6 +23,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for the ColorPicker class
+ *
  * @author Richard Eigenmann
  */
 public class ColorPickerTest {
@@ -33,16 +34,16 @@ public class ColorPickerTest {
     @Test
     public void testGetColor() {
         ColorPicker twoColorPicket = new ColorPickerImpl();
-        assertEquals( "For weight 0 we expect the first color", twoColorArray[0], twoColorPicket.getColor( 0f ) );
-        assertEquals( "For weight 1 we expect the second color", twoColorArray[1], twoColorPicket.getColor( 1f ) );
-        assertEquals( "For weight 0.3 we expect the first color", twoColorArray[0], twoColorPicket.getColor( 0.3f ) );
-        assertEquals( "For weight 0.48 we expect the first color", twoColorArray[0], twoColorPicket.getColor( 0.48f ) );
-        assertEquals( "For weight 0.5 we expect the second color", twoColorArray[1], twoColorPicket.getColor( 0.5f ) );
-        assertEquals( "For weight 0.7 we expect the second color", twoColorArray[1], twoColorPicket.getColor( 0.7f ) );
+        assertEquals( "For weight 0 we expect the first color", twoColorArray[0], twoColorPicket.getColor( 0f, 0 ) );
+        assertEquals( "For weight 1 we expect the second color", twoColorArray[1], twoColorPicket.getColor( 1f, 0 ) );
+        assertEquals( "For weight 0.3 we expect the first color", twoColorArray[0], twoColorPicket.getColor( 0.3f, 0 ) );
+        assertEquals( "For weight 0.48 we expect the first color", twoColorArray[0], twoColorPicket.getColor( 0.48f, 0 ) );
+        assertEquals( "For weight 0.5 we expect the second color", twoColorArray[1], twoColorPicket.getColor( 0.5f, 0 ) );
+        assertEquals( "For weight 0.7 we expect the second color", twoColorArray[1], twoColorPicket.getColor( 0.7f, 0 ) );
     }
 
     public static Color[] twoColorArray = { Color.black, Color.white };
-    
+
     public class ColorPickerImpl extends ColorPicker {
 
         @Override
@@ -50,5 +51,5 @@ public class ColorPickerTest {
             return twoColorArray;
         }
     }
-    
+
 }

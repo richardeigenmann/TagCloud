@@ -38,9 +38,19 @@ public class WeightedWord {
     private final int sizeValue;
 
     /**
+     * The sizeWeight
+     */
+    private float sizeWeight;
+
+    /**
      * Remembers the value for the color. Should be any positive integer
      */
     private final int colorValue;
+
+    /**
+     * The colorWeight
+     */
+    private float colorWeight;
 
     /**
      * Constructs a word with the same value for the size and color
@@ -90,6 +100,59 @@ public class WeightedWord {
      */
     public int getColorValue() {
         return colorValue;
+    }
+
+    /**
+     * Sets the sizeWeight
+     *
+     * @param sizeWeight the new sizeWeight
+     */
+    public void setSizeWeight( float sizeWeight ) {
+        this.sizeWeight = verifyWeight( sizeWeight );
+    }
+
+    /**
+     * Returns the sizeWeight
+     *
+     * @return the sizeWeight
+     */
+    public float getSizeWeight() {
+        return sizeWeight;
+    }
+
+    /**
+     * Sets the colorWeight
+     *
+     * @param colorWeight the new sizeWeight
+     */
+    public void setColorWeight( float colorWeight ) {
+        this.colorWeight = verifyWeight( colorWeight );
+    }
+
+    /**
+     * Returns the colorWeight
+     *
+     * @return the colorWeight
+     */
+    public float getColorWeight() {
+        return colorWeight;
+    }
+
+    /**
+     * Ensures that a weight value is between 0 and 1. Lower values are set to
+     * 0, higher values are set to 1
+     *
+     * @param weight The weight to be validated
+     * @return the weight or 0 or 1 whatever is nearer
+     */
+    private static float verifyWeight( float weight ) {
+        if ( weight > 1f ) {
+            return 1;
+        }
+        if ( weight < 0f ) {
+            return 0;
+        }
+        return weight;
     }
 
 }

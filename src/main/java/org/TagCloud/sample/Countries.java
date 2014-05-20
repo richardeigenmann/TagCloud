@@ -31,6 +31,9 @@ import org.TagCloud.WeightedWord;
  */
 public class Countries extends ArrayList<WeightedWord> {
 
+    /**
+     * List of countries and their population
+     */
     public Countries() {
         add( new WeightedWord( "People's Republic of China", 1332120000 ) );
         add( new WeightedWord( "India", 1167020000 ) );

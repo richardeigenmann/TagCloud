@@ -53,10 +53,11 @@ public class SerifFontProvider implements FontProvider {
      * Returns the font for the specified weight
      *
      * @param weight the weight for which to return the font
+     * @paran value ignored
      * @return the font for the weight
      */
     @Override
-    public Font getFont( float weight ) {
+    public Font getFont( float weight, int value  ) {
         final int index = (int) Math.round( ( weight * ( fonts.length - 1 ) ) );
         return fonts[index];
     }

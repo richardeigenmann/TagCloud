@@ -29,6 +29,9 @@ import org.TagCloud.WeightedWord;
  */
 public class EuropeanCities extends ArrayList<WeightedWord> {
 
+    /**
+     * List of European Cities
+     */
     public EuropeanCities() {
         add( new WeightedWord( "Moscow", 8297000 ) );
         add( new WeightedWord( "London", 7074000 ) );

@@ -24,10 +24,11 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for SansSerifFontList
+ *
  * @author Richard Eigenmann
  */
 public class SansSerifFontProviderTest {
-    
+
     public SansSerifFontProviderTest() {
     }
 
@@ -37,14 +38,14 @@ public class SansSerifFontProviderTest {
     @Test
     public void testGetFont() {
         SansSerifFontProvider sansSerifFontProvider = new SansSerifFontProvider();
-        Font font = sansSerifFontProvider.getFont( 0);
+        Font font = sansSerifFontProvider.getFont( 0, 0 );
         assertEquals( "Expecting font for weight 0 to be SansSerif", "SansSerif.plain", font.getFontName() );
         assertEquals( "Expecting font size for weight 0 to be 10", 10, font.getSize() );
 
-        font = sansSerifFontProvider.getFont( 1 );
+        font = sansSerifFontProvider.getFont( 1, 0 );
         assertEquals( "Expecting font for weight 1 to be SansSerif", "SansSerif.plain", font.getFontName() );
         assertEquals( "Expecting font size for weight 1 to be 25", 25, font.getSize() );
-    
+
     }
-    
+
 }

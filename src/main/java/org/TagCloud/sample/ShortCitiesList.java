@@ -30,6 +30,9 @@ import org.TagCloud.WeightedWord;
  */
 public class ShortCitiesList extends ArrayList<WeightedWord> {
 
+    /**
+     * Short list of cities
+     */
     public ShortCitiesList() {
         add( new WeightedWord( "Shanghai", 13831900 ) );
         add( new WeightedWord( "Cape Town", 3497097 ) );

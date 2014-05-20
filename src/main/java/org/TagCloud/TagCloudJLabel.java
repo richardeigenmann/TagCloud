@@ -41,6 +41,10 @@ public class TagCloudJLabel extends JLabel {
     private static final Logger LOGGER = Logger.getLogger( TagCloudJLabel.class.getName() );
 
     /**
+     * The weighted word for which we are building a label
+     */
+    private WeightedWord weightedWord;
+    /**
      * The weight for the size 0..1
      */
     private float sizeWeight;
@@ -68,7 +72,7 @@ public class TagCloudJLabel extends JLabel {
      * @param weight The weight between 0 and 1 to show the weight of the word
      * used for both the weight of the font and the weight of the color
      */
-    public TagCloudJLabel( String word, float weight ) {
+    public TagCloudJLabel( WeightedWord word, float weight ) {
         this( word, weight, weight );
     }
 
@@ -83,7 +87,7 @@ public class TagCloudJLabel extends JLabel {
      * @param colorWeight The weight between 0 and 1 to determine the color of
      * the font
      */
-    public TagCloudJLabel( String word, float sizeWeight, float colorWeight ) {
+    public TagCloudJLabel( WeightedWord word, float sizeWeight, float colorWeight ) {
         this( word, sizeWeight, new SansSerifFontProvider(), colorWeight, new ShadesOfLightBlue(), new Color( 0x421ed9 ) );
     }
 
@@ -99,8 +103,9 @@ public class TagCloudJLabel extends JLabel {
      * @param colorProvider the color provider that will return the color to use
      * @param mouseoverColor the color to use in the mouseover
      */
-    public TagCloudJLabel( String word, float sizeWeight, FontProvider fontProvider, float colorWeight, ColorProvider colorProvider, Color mouseoverColor ) {
-        super( word );
+    public TagCloudJLabel( WeightedWord word, float sizeWeight, FontProvider fontProvider, float colorWeight, ColorProvider colorProvider, Color mouseoverColor ) {
+        super( word.getWord() );
+        this.weightedWord = word;
         this.sizeWeight = verifyWeight( sizeWeight );
         this.colorWeight = verifyWeight( colorWeight );
         setFontProvider( fontProvider );
@@ -139,7 +144,7 @@ public class TagCloudJLabel extends JLabel {
      * Sets the font based on the sizeWeight by querying the font provider.
      */
     private void setFont() {
-        setFont( fontProvider.getFont( this.sizeWeight ) );
+        setFont( fontProvider.getFont( weightedWord.getSizeWeight(), weightedWord.getSizeValue() ) );
     }
 
     /**
@@ -211,7 +216,15 @@ public class TagCloudJLabel extends JLabel {
      * color provider's getColor method
      */
     private void setForegroundColor() {
-        setForeground( colorProvider.getColor( colorWeight ) );
+        setForeground( colorProvider.getColor( weightedWord.getColorWeight(), weightedWord.getColorValue() ) );
+    }
+    
+    /**
+     * Returns the WeightedWord for the Label
+     * @return the weighted word
+     */
+    public WeightedWord getWeightedWord() {
+        return weightedWord;
     }
 
 }

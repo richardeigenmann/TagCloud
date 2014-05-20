@@ -32,9 +32,10 @@ public interface ColorProvider {
      * weight
      *
      * @param weight The weight for which the color should be returned range is
-     * 0 to 1
+     * 0 to 1 for relative weight choices
+     * @param value The value for providers that work on absolute numbers
      * @return The color to use for the supplied weight.
      */
-    public Color getColor( float weight );
+    public Color getColor( float weight, int value );
 
 }

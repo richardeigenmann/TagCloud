@@ -18,8 +18,6 @@
 package org.TagCloud;
 
 import java.awt.Color;
-import java.util.logging.Logger;
-import org.TagCloud.sample.SampleTagCloud;
 
 /**
  * This abstract class can interpolate a color from a set of color points based
@@ -47,13 +45,14 @@ public abstract class ColorInterpolator implements ColorProvider {
     /**
      * This method returns a color along a multi point color gradiant. The
      * Gradiant color points are specified by an array of Colors. The Array must
-     * have at least 2 color entries.
+     * have at least 2 color entries. The interpolation uses the weight parameter.
      *
      * @param weight between 0 and 1
+     * @param value ignored
      * @return The Color in the gradient
      */
     @Override
-    public Color getColor( float weight ) {
+    public Color getColor( float weight, int value ) {
         // figure out the closest two color points
         int lowerIndex = (int) Math.round( weight * ( getColorPoints().length - 2 ) );
         int higherIndex = lowerIndex + 1;

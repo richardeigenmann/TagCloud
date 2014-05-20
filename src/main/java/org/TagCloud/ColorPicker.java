@@ -35,13 +35,14 @@ public abstract class ColorPicker implements ColorProvider {
     public abstract Color[] getColorPoints();
 
     /**
-     * This method returns the nearest color from a set
+     * This method returns the nearest color from a set and ignores the value parameter
      *
      * @param weight between 0 and 1
+     * @param value ignored
      * @return The Color picked
      */
     @Override
-    public Color getColor( float weight ) {
+    public Color getColor( float weight, int value ) {
         int index = (int) Math.round( weight * ( getColorPoints().length - 1 ) );
         Color color = getColorPoints()[index];
         return color;
