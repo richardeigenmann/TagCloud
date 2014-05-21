@@ -9,5 +9,6 @@ gradle-app.setting
 
 .nb-gradle-properties
 .nb-gradle/
+Gemfile.lock
 
 
