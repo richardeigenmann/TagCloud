@@ -1,5 +1,5 @@
 /*
- BlackToWhiteGradient.java:  A ColorProvider that returns a color on the gradient from Black to White based on the suplied weight
+ SampleGradientColors.java:  A multi color gradient
 
  Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -15,31 +15,33 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package ColorProviders;
+package org.TagCloud.ColorProviders;
 
 import java.awt.Color;
 import org.TagCloud.ColorInterpolator;
 
 /**
- * A ColorProvider that returns a color on the gradient from Black to White
- * based on the suplied weight
+ * A multi color gradient.
  *
  * @author Richard Eigenmann
  */
-public class BlackToWhiteGradient extends ColorInterpolator {
+public class SampleGradientColors extends ColorInterpolator {
 
     /**
-     * Predefined colors for a Black to White gradient
+     * Sample gradient color points
      */
-    public final static Color[] BLACK_WHITE_COLORS = { Color.BLACK, Color.WHITE };
+    public final static Color[] SAMPLE_GRADIENT_COLORS = { new Color( 0x099716 ), new Color( 0x18c928 ),
+        new Color( 0x36e410 ), new Color( 0x64e410 ), new Color( 0xa1e70c ),
+        new Color( 0xc3d000 ), new Color( 0xe8e410 ), new Color( 0xdcaf1e ),
+        new Color( 0xe87514 ), new Color( 0xed723b ) };
 
     /**
-     * Returns the two colors to the ColorInterpolator
+     * Provides the color points to the ColorInterpolator
      *
-     * @return the color points for interpolation
+     * @return The color points for interpolation
      */
     @Override
     public Color[] getColorPoints() {
-        return BLACK_WHITE_COLORS;
+        return SAMPLE_GRADIENT_COLORS;
     }
 }

@@ -14,7 +14,7 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.TagCloud.sample;
+package org.TagCloud.Sample;
 
 import java.util.ArrayList;
 import org.TagCloud.WeightedWord;

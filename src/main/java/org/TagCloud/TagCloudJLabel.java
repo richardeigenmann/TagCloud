@@ -1,6 +1,6 @@
 package org.TagCloud;
 
-import ColorProviders.ShadesOfLightBlue;
+import org.TagCloud.ColorProviders.ShadesOfLightBlue;
 import org.TagCloud.FontProviders.SansSerifFontProvider;
 import java.awt.event.MouseEvent;
 import java.awt.Color;

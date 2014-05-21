@@ -17,7 +17,7 @@
  */
 package org.TagCloud;
 
-import ColorProviders.ShadesOfLightBlue;
+import org.TagCloud.ColorProviders.ShadesOfLightBlue;
 import org.TagCloud.FontProviders.SansSerifFontProvider;
 import java.awt.Color;
 import java.awt.Component;

@@ -14,9 +14,9 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.TagCloud.sample;
+package org.TagCloud.Sample;
 
-import ColorProviders.BMIColorProvider;
+import org.TagCloud.ColorProviders.BMIColorProvider;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
@@ -31,17 +31,17 @@ import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import ColorProviders.BlackToWhiteGradient;
+import org.TagCloud.ColorProviders.BlackToWhiteGradient;
 import org.TagCloud.FontProviders.HeavyFontProvider;
-import ColorProviders.SampleGradientColors;
+import org.TagCloud.ColorProviders.SampleGradientColors;
 import org.TagCloud.FontProviders.SansSerifFontProvider;
 import org.TagCloud.FontProviders.SerifFontProvider;
-import ColorProviders.ShadesOfLightBlue;
+import org.TagCloud.ColorProviders.ShadesOfLightBlue;
 import org.TagCloud.TagClickListener;
 import org.TagCloud.TagCloud;
 import org.TagCloud.WeightedWord;
-import ColorProviders.YellowBrownGradient;
-import ColorProviders.YellowOrBrown;
+import org.TagCloud.ColorProviders.YellowBrownGradient;
+import org.TagCloud.ColorProviders.YellowOrBrown;
 import javax.swing.BoxLayout;
 
 /**

@@ -1,5 +1,5 @@
 /*
- ShadesOfLightBlue.java:  A ColorProvider that returns a shade of light blue based on the supplied weight
+ BlackToWhiteGradient.java:  A ColorProvider that returns a color on the gradient from Black to White based on the suplied weight
 
  Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -15,30 +15,31 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package ColorProviders;
+package org.TagCloud.ColorProviders;
 
 import java.awt.Color;
 import org.TagCloud.ColorInterpolator;
 
 /**
- * A ColorProvider that returns a shade of light blue based on the supplied
- * weight
+ * A ColorProvider that returns a color on the gradient from Black to White
+ * based on the suplied weight
  *
  * @author Richard Eigenmann
  */
-public class ShadesOfLightBlue extends ColorInterpolator {
+public class BlackToWhiteGradient extends ColorInterpolator {
 
     /**
-     * Predefined color gradient points for a blue gradient
+     * Predefined colors for a Black to White gradient
      */
-    private final static Color[] SHADES_OF_LIGHT_BLUE = { new Color( 0x355ddb ), new Color( 0x7aa5f4 ) };
+    public final static Color[] BLACK_WHITE_COLORS = { Color.BLACK, Color.WHITE };
 
     /**
-     * Returns two blue colors to the ColorInterpolator
+     * Returns the two colors to the ColorInterpolator
+     *
      * @return the color points for interpolation
      */
     @Override
     public Color[] getColorPoints() {
-        return SHADES_OF_LIGHT_BLUE;
+        return BLACK_WHITE_COLORS;
     }
 }

@@ -1,7 +1,6 @@
 /*
- YellowBrownGradient.java:  A ColorProvider that returns a color from Yellow to Brown
+ Copyright (C) 2009, 2014 Richard Eigenmann, Zürich, Switzerland
 
- Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -15,30 +14,28 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package ColorProviders;
 
-import java.awt.Color;
-import org.TagCloud.ColorInterpolator;
+package org.TagCloud.Sample;
+
+import java.util.ArrayList;
+import org.TagCloud.WeightedWord;
 
 /**
- * A ColorProvider that returns a color from Yellow to Brown
+ * This class creates a list of WeightedWords with just 3 cities to illustrate the TagCloud on a short list.
  *
+ * @see <a
+ * href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia
+ * Cities by Population</a>
  * @author Richard Eigenmann
  */
-public class YellowBrownGradient extends ColorInterpolator {
+public class ShortCitiesList extends ArrayList<WeightedWord> {
 
     /**
-     * Predefined color gradient points for a yellow to chocolate brown
+     * Short list of cities
      */
-    private final static Color[] YELLOW_BROWN = { Color.YELLOW, new Color( 123, 63, 0 ) };
-
-    /**
-     * Provides the color points to the ColorInterpolator
-     *
-     * @return the color points for interpolation
-     */
-    @Override
-    public Color[] getColorPoints() {
-        return YELLOW_BROWN;
+    public ShortCitiesList() {
+        add( new WeightedWord( "Shanghai", 13831900 ) );
+        add( new WeightedWord( "Cape Town", 3497097 ) );
+        add( new WeightedWord( "Zürich", 366765 ) ); // Google, value from 2009
     }
 }

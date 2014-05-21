@@ -15,7 +15,7 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package ColorProviders;
+package org.TagCloud.ColorProviders;
 
 import java.awt.Color;
 import org.TagCloud.ColorProvider;

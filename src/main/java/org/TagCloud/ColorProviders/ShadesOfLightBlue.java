@@ -1,5 +1,5 @@
 /*
- SampleGradientColors.java:  A multi color gradient
+ ShadesOfLightBlue.java:  A ColorProvider that returns a shade of light blue based on the supplied weight
 
  Copyright (C) 2009-2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
@@ -15,33 +15,30 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package ColorProviders;
+package org.TagCloud.ColorProviders;
 
 import java.awt.Color;
 import org.TagCloud.ColorInterpolator;
 
 /**
- * A multi color gradient.
+ * A ColorProvider that returns a shade of light blue based on the supplied
+ * weight
  *
  * @author Richard Eigenmann
  */
-public class SampleGradientColors extends ColorInterpolator {
+public class ShadesOfLightBlue extends ColorInterpolator {
 
     /**
-     * Sample gradient color points
+     * Predefined color gradient points for a blue gradient
      */
-    public final static Color[] SAMPLE_GRADIENT_COLORS = { new Color( 0x099716 ), new Color( 0x18c928 ),
-        new Color( 0x36e410 ), new Color( 0x64e410 ), new Color( 0xa1e70c ),
-        new Color( 0xc3d000 ), new Color( 0xe8e410 ), new Color( 0xdcaf1e ),
-        new Color( 0xe87514 ), new Color( 0xed723b ) };
+    private final static Color[] SHADES_OF_LIGHT_BLUE = { new Color( 0x355ddb ), new Color( 0x7aa5f4 ) };
 
     /**
-     * Provides the color points to the ColorInterpolator
-     *
-     * @return The color points for interpolation
+     * Returns two blue colors to the ColorInterpolator
+     * @return the color points for interpolation
      */
     @Override
     public Color[] getColorPoints() {
-        return SAMPLE_GRADIENT_COLORS;
+        return SHADES_OF_LIGHT_BLUE;
     }
 }
