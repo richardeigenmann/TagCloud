@@ -1,0 +1,6 @@
+.gradle/
+.nb-gradle-properties
+.nb-gradle/
+Gemfile.lock
+build/
+
