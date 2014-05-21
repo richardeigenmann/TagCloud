@@ -16,6 +16,7 @@
  */
 package org.TagCloud.sample;
 
+import ColorProviders.BMIColorProvider;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
@@ -87,8 +88,8 @@ public class SampleTagCloud extends JFrame {
         tagCloud.addTagClickListener( new TagClickListener() {
 
             @Override
-            public void tagClicked( String word ) {
-                doTagClicked( word );
+            public void tagClicked( WeightedWord weightedWord ) {
+                doTagClicked( weightedWord );
             }
         } );
         this.getContentPane().add( tagCloud );
@@ -96,6 +97,8 @@ public class SampleTagCloud extends JFrame {
         pack();
         setVisible( true );
     }
+
+    private final JComboBox wordListChooser = new JComboBox( new String[]{ "Cities", "European Cities", "Countries", "Short Cities List", "People" } );
 
     /**
      * Build the widgets to have some interaction on the screen
@@ -105,8 +108,6 @@ public class SampleTagCloud extends JFrame {
     private JPanel getControlsPanel() {
         JPanel firstLinePanel = new JPanel();
 
-        String[] wordLists = { "Cities", "European Cities", "Countries", "Short Cities List" };
-        final JComboBox wordListChooser = new JComboBox( wordLists );
         wordListChooser.addActionListener( new ActionListener() {
 
             @Override
@@ -115,23 +116,21 @@ public class SampleTagCloud extends JFrame {
                 switch ( index ) {
                     case 0:
                         tagCloud.setWordsList( new Cities() );
-                        tagCloud.showWords();
                         break;
                     case 1:
                         tagCloud.setWordsList( new EuropeanCities() );
-                        tagCloud.showWords();
                         break;
                     case 2:
                         tagCloud.setWordsList( new Countries() );
-                        tagCloud.showWords();
                         break;
                     case 3:
                         tagCloud.setWordsList( new ShortCitiesList() );
-                        tagCloud.showWords();
+                        break;
+                    case 4:
+                        tagCloud.setWordsList( new People() );
                         break;
                     default:
                         tagCloud.setWordsList( new Cities() );
-                        tagCloud.showWords();
 
                 }
             }
@@ -139,8 +138,7 @@ public class SampleTagCloud extends JFrame {
         firstLinePanel.add( wordListChooser );
         wordListChooser.setSelectedIndex( 0 );
 
-        String[] colorSchemes = { "Shades of Light Blue", "Sample Gradient Colors", "Black to White Gradient", "Yellow Brown Gradient", "Yellow or Brown" };
-        final JComboBox colorSchemeChooser = new JComboBox( colorSchemes );
+        final JComboBox colorSchemeChooser = new JComboBox( new String[]{ "Shades of Light Blue", "Sample Gradient Colors", "Black to White Gradient", "Yellow Brown Gradient", "Yellow or Brown", "Body Mass Index" } );
         colorSchemeChooser.addActionListener( new ActionListener() {
 
             @Override
@@ -162,9 +160,11 @@ public class SampleTagCloud extends JFrame {
                     case 4:
                         tagCloud.setColorProvider( new YellowOrBrown() );
                         break;
+                    case 5:
+                        tagCloud.setColorProvider( new BMIColorProvider() );
+                        break;
                     default:
                         tagCloud.setColorProvider( new ShadesOfLightBlue() );
-                        tagCloud.showWords();
 
                 }
             }
@@ -172,8 +172,7 @@ public class SampleTagCloud extends JFrame {
         firstLinePanel.add( colorSchemeChooser );
         colorSchemeChooser.setSelectedIndex( 0 );
 
-        String[] fontSchemes = { "Sans Serif", "Serif", "Heavy Font" };
-        final JComboBox fontProviderChooser = new JComboBox( fontSchemes );
+        final JComboBox fontProviderChooser = new JComboBox( new String[]{ "Sans Serif", "Serif", "Heavy Font" } );
         fontProviderChooser.addActionListener( new ActionListener() {
 
             @Override
@@ -191,8 +190,6 @@ public class SampleTagCloud extends JFrame {
                         break;
                     default:
                         tagCloud.setFontProvider( new SansSerifFontProvider() );
-                        tagCloud.showWords();
-
                 }
             }
         } );
@@ -223,17 +220,21 @@ public class SampleTagCloud extends JFrame {
     /**
      * handles the click on a word
      *
-     * @param key The string that the user clicked on
+     * @param weightedWord The string that the user clicked on
      */
-    public void doTagClicked( String key ) {
-        List<WeightedWord> weightedWords = tagCloud.getWordsList();
-        for ( WeightedWord weightedWord : weightedWords ) {
-            if ( key.equals( weightedWord.getWord() ) ) {
-                int population = weightedWord.getSizeValue();
-                commentLabel.setText( String.format( "Clicked: %s; Population: %,d", key, population ) );
-                break;
-            }
+    public void doTagClicked( WeightedWord weightedWord ) {
+        String comment;
+        if ( wordListChooser.getSelectedIndex() != 4 ) {
+            comment = String.format( "%s, Population: %d", weightedWord.getWord(),
+                    weightedWord.getSizeValue() );
+        } else {
+            comment = String.format( "%s; Height: %d, BMI: %d",
+                    weightedWord.getWord(),
+                    weightedWord.getSizeValue(),
+                    weightedWord.getColorValue()
+            );
         }
+        commentLabel.setText( comment );
     }
 
     /**
@@ -262,9 +263,8 @@ public class SampleTagCloud extends JFrame {
             }
             int availableWords = tagCloud.getWordsList().size();
             int numberOfWords = (int) ( pct * ( availableWords - minimumWords ) ) + minimumWords;
-            commentLabel.setText( String.format( "Slider set to %d%%; showing %d words", (int) ( pct * 100f ), numberOfWords ) );
+            commentLabel.setText( String.format( "Slider is %d%%; showing %d words", (int) ( pct * 100f ), numberOfWords ) );
             tagCloud.setMaxWordsToShow( numberOfWords );
-            tagCloud.showWords();
         }
     }
 

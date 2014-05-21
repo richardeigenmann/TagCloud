@@ -33,82 +33,82 @@ public class TagCloudJLabelTest {
 
     @Test
     public void testVerifyWeightVanilla() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
-        weightedWord.setSizeWeight( 0.5f);
-        weightedWord.setColorWeight( 0.6f);
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, 0.5f, 0.6f );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
+        weightedWord.setSizeWeight( 0.5f );
+        weightedWord.setColorWeight( 0.6f );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         assertEquals( "After creating a TagCloudJLabel with a sizeWeight of 0.5 and colorWeight of 0.6 we expect the correct sizeWeight to be returned.",
-                0.5f, tagCloudJLabel.getSizeWeight(), 0.01f );
+                0.5f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
         assertEquals( "After creating a TagCloudJLabel with a sizeWeight of 0.5 and colorWeight of 0.6 we expect the correct colorWeight to be returned.",
-                0.6f, tagCloudJLabel.getColorWeight(), 0.01f );
+                0.6f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
     }
 
     @Test
     public void testVerifyWeightSingleArg() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
-        weightedWord.setSizeWeight( 0.4f);
-        weightedWord.setColorWeight( 0.4f);
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, 0.4f );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
+        weightedWord.setSizeWeight( 0.4f );
+        weightedWord.setColorWeight( 0.4f );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         assertEquals( "After creating a TagCloudJLabel with a single weight of 0.4 we expect the correct sizeWeight to be returned.",
-                0.4f, tagCloudJLabel.getSizeWeight(), 0.01f );
+                0.4f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
         assertEquals( "After creating a TagCloudJLabel with a single weight of 0.4 we expect the correct colorWeight to be returned.",
-                0.4f, tagCloudJLabel.getColorWeight(), 0.01f );
+                0.4f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
     }
 
     @Test
     public void testVerifyWeightZero() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
-        weightedWord.setSizeWeight( 0);
-        weightedWord.setColorWeight( 0);
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, 0 );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
+        weightedWord.setSizeWeight( 0 );
+        weightedWord.setColorWeight( 0 );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         assertEquals( "After creating a TagCloudJLabel with a single weight of 0 we expect the correct sizeWeight to be returned.",
-                0f, tagCloudJLabel.getSizeWeight(), 0.01f );
+                0f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
         assertEquals( "After creating a TagCloudJLabel with a single weight of 0 we expect the correct colorWeight to be returned.",
-                0f, tagCloudJLabel.getColorWeight(), 0.01f );
+                0f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
     }
 
     @Test
     public void testVerifyWeight1() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
-        weightedWord.setSizeWeight( 1);
-        weightedWord.setColorWeight( 1);
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, 1 );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
+        weightedWord.setSizeWeight( 1 );
+        weightedWord.setColorWeight( 1 );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         assertEquals( "After creating a TagCloudJLabel with a single weight of 1 we expect the correct sizeWeight to be returned.",
-                1f, tagCloudJLabel.getSizeWeight(), 0.01f );
+                1f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
         assertEquals( "After creating a TagCloudJLabel with a single weight of 1 we expect the correct colorWeight to be returned.",
-                1f, tagCloudJLabel.getColorWeight(), 0.01f );
+                1f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
     }
 
     @Test
     public void testVerifyWeightTooLarge() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 1.5f );
         weightedWord.setColorWeight( 2000 );
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, 1.5f, 2000 );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         assertEquals( "After creating a TagCloudJLabel with a sizeWeight of 1.5f and colorWeight of 2000  we expect the sizeWeight to be clipped at 1",
-                1f, tagCloudJLabel.getSizeWeight(), 0.01f );
+                1f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
         assertEquals( "After creating a TagCloudJLabel with a sizeWeight of 1.5f and colorWeight of 2000  we expect the colorWeight to be clipped at 1",
-                1f, tagCloudJLabel.getColorWeight(), 0.01f );
+                1f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
     }
 
     @Test
     public void testVerifyWeightTooSmall() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( -0.5f );
         weightedWord.setColorWeight( -2000 );
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, -0.5f, -2000 );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         assertEquals( "After creating a TagCloudJLabel with a sizeWeight of -0.5f and colorWeight of -2000  we expect the sizeWeight to be floored at 0",
-                0f, tagCloudJLabel.getSizeWeight(), 0.01f );
+                0f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
         assertEquals( "After creating a TagCloudJLabel with a sizeWeight of -0.5f and colorWeight of -2000  we expect the colorWeight to be floored at 0",
-                0f, tagCloudJLabel.getColorWeight(), 0.01f );
+                0f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
     }
 
     @Test
     public void testFont() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0.5f );
         weightedWord.setColorWeight( 0.6f );
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, 0.5f, 0.6f );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         Font font = tagCloudJLabel.getFont();
         assertEquals( "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have a SansSerif font",
                 "SansSerif.plain", font.getFontName() );
@@ -119,10 +119,10 @@ public class TagCloudJLabelTest {
 
     @Test
     public void testMousoverColor() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0.5f );
         weightedWord.setColorWeight( 0.6f );
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, 0.5f, 0.6f );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         // send a mouseEntered event to the tagCloudJLabel
         MouseEvent e1 = new MouseEvent( tagCloudJLabel, 0, 0, 0, 100, 100, 0, false );
         for ( MouseListener ml : tagCloudJLabel.getMouseListeners() ) {
@@ -142,10 +142,10 @@ public class TagCloudJLabelTest {
 
     @Test
     public void testSetMousoverColor() {
-        WeightedWord weightedWord = new WeightedWord("Word", 10 );
+        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0.5f );
         weightedWord.setColorWeight( 0.6f );
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord, 0.5f, 0.6f );
+        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         Color colorBeforeTest = tagCloudJLabel.getForeground();
         tagCloudJLabel.setMouseoverColor( Color.YELLOW );
 

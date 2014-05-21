@@ -28,7 +28,7 @@ public interface TagClickListener {
      * The implementing class should implement this method to get notified which
      * word the user clicked on
      *
-     * @param word The word that was clicked
+     * @param weightedWord The word that was clicked
      */
-    public void tagClicked( String word );
+    public void tagClicked( WeightedWord weightedWord );
 }

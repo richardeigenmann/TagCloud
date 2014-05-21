@@ -79,6 +79,7 @@ public class TagCloud extends JScrollPane {
             wordsToShow = 1;
         }
         this.wordsToShow = wordsToShow;
+        showWords();
     }
 
     /**
@@ -86,14 +87,53 @@ public class TagCloud extends JScrollPane {
      */
     private List<WeightedWord> weightedWords = null;
 
+    private WordAnalyser wordAnalyser;
+
     /**
      * This method receives the WeightedWord list of the words to be shown in
-     * the TagCloud. Call showWords afterwards to update the tags being shown.
+     * the TagCloud and puts them on the container removing any that might have
+     * been there before.
      *
      * @param weightedWords The WeightedWord of the words to be shown.
      */
     public void setWordsList( List<WeightedWord> weightedWords ) {
         this.weightedWords = weightedWords;
+        wordAnalyser = new WordAnalyser( this.weightedWords );
+        // initialise the weights
+        for ( WeightedWord weightedWord : this.weightedWords ) {
+            weightedWord.setSizeWeight( wordAnalyser.getSizeWeight( weightedWord.getSizeValue() ) );
+            weightedWord.setColorWeight( wordAnalyser.getColorWeight( weightedWord.getColorValue() ) );
+        }
+
+        showWords();
+    }
+
+    /**
+     * Runs off an creates the labels for the wordsToShow number of words.
+     * Removes all previous labels and adds the labels for the supplied map.
+     * Adds the MouseListener to the labels.
+     */
+    private void showWords() {
+        verticalGrowJPanel.removeAll();
+        if ( weightedWords != null ) { // if no wordMap, leave panel empty
+
+            List<WeightedWord> topWords = wordAnalyser.getTopWordsSizeWeighted( wordsToShow );
+
+            for ( WeightedWord weightedWord : topWords ) {
+                TagCloudJLabel tagCloudEntry = new TagCloudJLabel(
+                        weightedWord,
+                        fontProvider,
+                        colorProvider,
+                        mouseOverColor
+                );
+                tagCloudEntry.addMouseListener( wordClickListener );
+                verticalGrowJPanel.add( tagCloudEntry );
+            }
+        }
+        // After hours of frustration it turns out we need to validate the panel and the scrollpane.
+        verticalGrowJPanel.validate();
+        validate();
+        repaint();
     }
 
     /**
@@ -118,40 +158,6 @@ public class TagCloud extends JScrollPane {
      */
     public void setMouseOverColor( Color mouseOverColor ) {
         this.mouseOverColor = mouseOverColor;
-    }
-
-    /**
-     * Runs off an creates the labels for the wordsToShow number of words.
-     * Removes all previous labels and adds the labels for the supplied map.
-     * Adds the MouseListener to the labels.
-     */
-    public void showWords() {
-        verticalGrowJPanel.removeAll();
-        if ( weightedWords != null ) { // if no wordMap, leave panel empty
-            WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
-
-            List<WeightedWord> topWords = wordAnalyser.getTopWordsSizeWeighted( wordsToShow );
-
-            for ( WeightedWord weightedWord : topWords ) {
-                weightedWord.setSizeWeight( wordAnalyser.getSizeWeight( weightedWord.getSizeValue() ) );
-                weightedWord.setColorWeight( wordAnalyser.getSizeWeight( weightedWord.getColorValue() ) );
-
-                TagCloudJLabel tagCloudEntry = new TagCloudJLabel(
-                        weightedWord,
-                        wordAnalyser.getSizeWeight( weightedWord.getSizeValue() ),
-                        fontProvider,
-                        wordAnalyser.getSizeWeight( weightedWord.getColorValue() ),
-                        colorProvider,
-                        mouseOverColor
-                );
-                tagCloudEntry.addMouseListener( wordClickListener );
-                verticalGrowJPanel.add( tagCloudEntry );
-            }
-        }
-        // After hours of frustration it turns out we need to validate the panel and the scrollpane.
-        verticalGrowJPanel.validate();
-        validate();
-        repaint();
     }
 
     /**
@@ -192,21 +198,20 @@ public class TagCloud extends JScrollPane {
 
         @Override
         public void mouseClicked( MouseEvent e ) {
-            TagCloudJLabel wl = (TagCloudJLabel) e.getComponent();
-            String tag = wl.getText();
-            notifyTagClickListeners( tag );
+            TagCloudJLabel tagCloudJLabel = (TagCloudJLabel) e.getComponent();
+            notifyTagClickListeners( tagCloudJLabel.getWeightedWord() );
         }
     };
 
     /**
      * Notifies the listeners that a tag was clicked
      *
-     * @param tag the tag that was clicked
+     * @param weightedWord the tag that was clicked
      */
-    private void notifyTagClickListeners( String tag ) {
+    private void notifyTagClickListeners( WeightedWord weightedWord ) {
         synchronized ( tagClickListeners ) {
             for ( TagClickListener tagClickListener : tagClickListeners ) {
-                tagClickListener.tagClicked( tag );
+                tagClickListener.tagClicked( weightedWord );
             }
         }
     }

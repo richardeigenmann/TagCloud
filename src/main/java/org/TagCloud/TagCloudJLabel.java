@@ -45,14 +45,6 @@ public class TagCloudJLabel extends JLabel {
      */
     private WeightedWord weightedWord;
     /**
-     * The weight for the size 0..1
-     */
-    private float sizeWeight;
-    /**
-     * The weight for the color 0..1
-     */
-    private float colorWeight;
-    /**
      * The font provider for the label
      */
     private FontProvider fontProvider;
@@ -65,49 +57,28 @@ public class TagCloudJLabel extends JLabel {
      */
     private Color mouseoverColor;
 
-    /**
-     * Constructs a Word Label with default styles and one weight
-     *
-     * @param word The word to show
-     * @param weight The weight between 0 and 1 to show the weight of the word
-     * used for both the weight of the font and the weight of the color
-     */
-    public TagCloudJLabel( WeightedWord word, float weight ) {
-        this( word, weight, weight );
-    }
-
     
 
     /**
-     * Constructs a Word Label with default styles with 2 weights
+     * Constructs a Word Label with default styles
      *
      * @param word The word to show
-     * @param sizeWeight The weight between 0 and 1 to determine the size of the
-     * font
-     * @param colorWeight The weight between 0 and 1 to determine the color of
-     * the font
      */
-    public TagCloudJLabel( WeightedWord word, float sizeWeight, float colorWeight ) {
-        this( word, sizeWeight, new SansSerifFontProvider(), colorWeight, new ShadesOfLightBlue(), new Color( 0x421ed9 ) );
+    public TagCloudJLabel( WeightedWord word ) {
+        this( word, new SansSerifFontProvider(), new ShadesOfLightBlue(), new Color( 0x421ed9 ) );
     }
 
     /**
      * Constructs a Word Label
      *
      * @param word The word to show
-     * @param sizeWeight The weight between 0 and 1 to determine the size of the
-     * font
      * @param fontProvider The font provider that will return the font to use
-     * @param colorWeight The weight between 0 and 1 to determine the color of
-     * the font
      * @param colorProvider the color provider that will return the color to use
      * @param mouseoverColor the color to use in the mouseover
      */
-    public TagCloudJLabel( WeightedWord word, float sizeWeight, FontProvider fontProvider, float colorWeight, ColorProvider colorProvider, Color mouseoverColor ) {
+    public TagCloudJLabel( WeightedWord word,  FontProvider fontProvider, ColorProvider colorProvider, Color mouseoverColor ) {
         super( word.getWord() );
         this.weightedWord = word;
-        this.sizeWeight = verifyWeight( sizeWeight );
-        this.colorWeight = verifyWeight( colorWeight );
         setFontProvider( fontProvider );
         setColorProvider( colorProvider );
         setMouseoverColor( mouseoverColor );
@@ -147,40 +118,6 @@ public class TagCloudJLabel extends JLabel {
         setFont( fontProvider.getFont( weightedWord.getSizeWeight(), weightedWord.getSizeValue() ) );
     }
 
-    /**
-     * Ensures that a weight value is between 0 and 1. Lower values are set to
-     * 0, higher values are set to 1
-     *
-     * @param weight The weight to be validated
-     * @return the weight or 0 or 1 whatever is nearer
-     */
-    private static float verifyWeight( float weight ) {
-        if ( weight > 1f ) {
-            return 1;
-        }
-        if ( weight < 0f ) {
-            return 0;
-        }
-        return weight;
-    }
-
-    /**
-     * Returns the weight 0..1 for the label size
-     *
-     * @return the weight for the size between 0 and 1
-     */
-    public float getSizeWeight() {
-        return sizeWeight;
-    }
-
-    /**
-     * Returns the weight 0..1 for the label color
-     *
-     * @return the weight for the color between 0 and 1
-     */
-    public float getColorWeight() {
-        return colorWeight;
-    }
 
     /**
      * Sets the color to use when the mouse moves over the word
