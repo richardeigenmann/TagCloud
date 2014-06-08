@@ -50,15 +50,16 @@ test {
 // Pick Dinky
 // Click publish
 
-// now add Javadoc & Tar file
+// now add Javadoc & Jar file
 // git checkout master
-// gradle javadoc java
+// /home/richi/gradle-1.12/bin/gradle javadoc java
 // git checkout gh-pages
 // cp build/libs/TagCloud.jar .
 // mkdir -p javadoc
-// cp -r build/docs/* javadoc/
+// cp -r build/docs/javadoc/* javadoc/
 // git add TagCloud.jar javadoc
 // git commit -m "update website"
+// git push
 
 
 
