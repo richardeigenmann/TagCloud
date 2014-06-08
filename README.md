@@ -2,6 +2,7 @@ TagCloud
 ========
 
 Java Swing Component that shows words in different colors and font sizes based on weights.
+[Project Page](http://richardeigenmann.github.io/TagCloud)
 
 Quickstart
 ----------
@@ -12,7 +13,7 @@ Quickstart
 java  -jar ./TagCloud.jar
 ```
 
-![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/Screenshot1.png)
+![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/images/Screenshot1.png)
 
 
 Usage
