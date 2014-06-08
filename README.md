@@ -9,7 +9,7 @@ Quickstart
 [Download the jar file](http://richardeigenmann.github.io/TagCloud/TagCloud.jar) and run the sample program:
 
 ```Bash
-java  -jar ./build/libs/TagCloud.jar
+java  -jar ./TagCloud.jar
 ```
 
 ![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/Screenshot1.png)
