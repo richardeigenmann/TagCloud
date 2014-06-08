@@ -41,3 +41,29 @@ test {
      logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
   }
 }
+
+
+// Reminder how to build the github webpage http://richardeigenmann.github.io/TagCloud/
+// Go to Github repository > Settings > Automatic Page Generator
+// Click Load Readme.md 
+// Click Continue to Layouts
+// Pick Dinky
+// Click publish
+
+// now add Javadoc & Tar file
+// git checkout master
+// gradle javadoc java
+// git checkout gh-pages
+// cp build/libs/TagCloud.jar .
+// mkdir -p javadoc
+// cp -r build/docs/* javadoc/
+// git add TagCloud.jar javadoc
+// git commit -m "update website"
+
+
+
+
+
+
+
+
