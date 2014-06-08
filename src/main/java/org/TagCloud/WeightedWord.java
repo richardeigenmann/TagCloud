@@ -1,5 +1,5 @@
 /*
- WeightedWord.java:  Unit tests for TagCloudJLabel
+ WeightedWord.java:  Stores the attributes of a word for the Tag Cloud
 
  Copyright (C) 2014  Richard Eigenmann.
  This program is free software; you can redistribute it and/or

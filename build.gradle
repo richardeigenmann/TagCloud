@@ -16,7 +16,7 @@ if (!hasProperty('mainClass')) {
 }
 
 jar {
-    manifest.attributes("Main-Class": "org.TagCloud.sample.SampleTagCloud")
+    manifest.attributes("Main-Class": "org.TagCloud.Sample.SampleTagCloud")
 }
 
 
