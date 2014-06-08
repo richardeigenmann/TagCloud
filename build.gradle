@@ -60,8 +60,8 @@ test {
 
 // Edit index.html page
 // in <header> add these two li entries, removing the 2 download enties:
-// <li class="download"><a class="buttons" href="https://github.com/richardeigenmann/TagCloud/TagCloud.jar">Download JAR</a></li>
-// <li><a class="buttons github" href="https://github.com/richardeigenmann/TagCloud/javadoc">Javadoc</a></li>
+// <li class="download"><a class="buttons" href="TagCloud.jar">Download JAR</a></li>
+// <li><a class="buttons github" href="javadoc">Javadoc</a></li>
 
 // git add TagCloud.jar javadoc index.html
 // git commit -m "update website"
