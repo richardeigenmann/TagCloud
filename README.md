@@ -3,6 +3,21 @@ TagCloud
 
 Java Swing Component that shows words in different colors and font sizes based on weights.
 
+Quickstart
+----------
+
+[Download the jar file](http://richardeigenmann.github.io/TagCloud/TagCloud.jar) and run the sample program:
+
+```Bash
+java  -jar ./build/libs/TagCloud.jar
+```
+
+![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/Screenshot1.png)
+
+
+Usage
+-----
+
 To create the component, create a List of WeightedWord objects, create a TagCloud and associate the List<WeighetdWord> with the TagCloud and add the TagCloud to your Swing tree:
 
 ```Java
@@ -13,7 +28,35 @@ TagCloud tagCloud = new TagCloud();
 tagCloud.setWordsList( weightedWordList );
 ```
 
-See the Project [website](http://richardeigenmann.github.io/TagCloud) for full information 
+To become more interactive you can add a TagClickListener to the TagCloud and will receive a WeighedWord if the user clicks on a word:
+
+```Java
+tagCloud.addTagClickListener( new TagClickListener() {
+
+  @Override
+  public void tagClicked( WeightedWord weightedWord ) {
+    doTagClicked( weightedWord );
+  }
+} );
+
+...
+
+public void doTagClicked( WeightedWord weightedWord ) {
+  System.out.println( String.format( "The word: %s was clicked", weightedWord.getWord() ) );
+}
+```
+
+
+See the included [sample program](https://github.com/richardeigenmann/TagCloud/blob/master/src/main/java/org/TagCloud/Sample/SampleTagCloud.java) for a worked example.
+
+
+Feedback
+--------
+
+Please feel free to contact the Author with comments, suggestions, improvements, pull requests or encouragement:
+Richard Eigenmann
+<mailto:richard.eigenmann@gmail.com>
+
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
