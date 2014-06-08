@@ -52,10 +52,10 @@ public class BMIColorProvider implements ColorProvider {
     /**
      * Returns the color for the supplied value
      *
-     * @see http://en.wikipedia.org/wiki/Body_mass_index
+     * @see <a href="http://en.wikipedia.org/wiki/Body_mass_index">http://en.wikipedia.org/wiki/Body_mass_index</a>
      * @param weight ignored
      * @param value returns colors based on the value
-     * @return
+     * @return the appropriate color for the BMI
      */
     @Override
     public Color getColor( float weight, int value ) {

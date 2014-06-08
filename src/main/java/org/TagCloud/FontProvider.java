@@ -32,7 +32,7 @@ public interface FontProvider {
      *
      * @param weight The weight for which the font should be returned range is 0
      * to 1 for choices based on relative weight
-     * @parm value the value for the weight if the choice is to be based on absolute values
+     * @param value the value for the weight if the choice is to be based on absolute values
      * @return The Font to use for the supplied weight.
      */
     public Font getFont( float weight, int value );

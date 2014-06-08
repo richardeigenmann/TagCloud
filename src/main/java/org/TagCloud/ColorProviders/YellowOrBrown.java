@@ -35,7 +35,7 @@ public class YellowOrBrown extends ColorPicker {
     /**
      * Returns the colors to the ColorPicker
      *
-     * @return
+     * @return The 2 color array with yellow and brown
      */
     @Override
     public Color[] getColorPoints() {

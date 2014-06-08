@@ -53,7 +53,7 @@ public class SerifFontProvider implements FontProvider {
      * Returns the font for the specified weight
      *
      * @param weight the weight for which to return the font
-     * @paran value ignored
+     * @param value ignored
      * @return the font for the weight
      */
     @Override

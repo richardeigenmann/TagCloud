@@ -64,7 +64,7 @@ public class People extends ArrayList<WeightedWord> {
 
     /**
      * Returns the Body mass index for the supplied height in meters and weight in kg
-     * @see http://en.wikipedia.org/wiki/Body_mass_index
+     * @see <a href="http://en.wikipedia.org/wiki/Body_mass_index">http://en.wikipedia.org/wiki/Body_mass_index</a>
      * @param height Height in meters
      * @param weight Weight in kg
      * @return  the BMI
