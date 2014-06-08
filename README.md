@@ -1,7 +1,17 @@
 TagCloud
 ========
 
-Java Swing Component that shows words in different colors and font sizes based on weights
+Java Swing Component that shows words in different colors and font sizes based on weights.
+
+To create the component, create a List of WeightedWord objects, create a TagCloud and associate the List<WeighetdWord> with the TagCloud and add the TagCloud to your Swing tree:
+
+```Java
+List<WeightedWord> weightedWordList = new ArrayList<>();
+weightedWordList.add( new WeightedWord( "Word1", 10, 50 ) );
+weightedWordList.add( new WeightedWord( "Word2", 60, 20 ) );
+TagCloud tagCloud = new TagCloud();
+tagCloud.setWordsList( weightedWordList );
+```
 
 See the Project [website](http://richardeigenmann.github.io/TagCloud) for full information 
 
