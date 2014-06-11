@@ -59,7 +59,7 @@ test {
 // cp -r build/docs/javadoc/* javadoc/
 
 // Edit index.html page
-// in <header> add these two li entries, removing the 2 download enties:
+// in <header> add these two li entries, removing the 2 download entries:
 // <li class="download"><a class="buttons" href="TagCloud.jar">Download JAR</a></li>
 // <li><a class="buttons github" href="javadoc">Javadoc</a></li>
 
