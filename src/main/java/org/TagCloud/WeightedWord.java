@@ -25,7 +25,7 @@ package org.TagCloud;
  *
  * @author Richard Eigenmann
  */
-public class WeightedWord {
+public class WeightedWord implements WeightedWordInterface {
 
     /**
      * Remembers the word
@@ -80,6 +80,7 @@ public class WeightedWord {
      *
      * @return the word
      */
+    @Override
     public String getWord() {
         return word;
     }
@@ -89,6 +90,7 @@ public class WeightedWord {
      *
      * @return the value for the size
      */
+    @Override
     public int getSizeValue() {
         return sizeValue;
     }
@@ -98,6 +100,7 @@ public class WeightedWord {
      *
      * @return the value for the color
      */
+    @Override
     public int getColorValue() {
         return colorValue;
     }
@@ -107,6 +110,7 @@ public class WeightedWord {
      *
      * @param sizeWeight the new sizeWeight
      */
+    @Override
     public void setSizeWeight( float sizeWeight ) {
         this.sizeWeight = verifyWeight( sizeWeight );
     }
@@ -116,6 +120,7 @@ public class WeightedWord {
      *
      * @return the sizeWeight
      */
+    @Override
     public float getSizeWeight() {
         return sizeWeight;
     }
@@ -125,6 +130,7 @@ public class WeightedWord {
      *
      * @param colorWeight the new sizeWeight
      */
+    @Override
     public void setColorWeight( float colorWeight ) {
         this.colorWeight = verifyWeight( colorWeight );
     }
@@ -134,6 +140,7 @@ public class WeightedWord {
      *
      * @return the colorWeight
      */
+    @Override
     public float getColorWeight() {
         return colorWeight;
     }

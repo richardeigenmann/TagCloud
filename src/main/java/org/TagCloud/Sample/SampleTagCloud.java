@@ -39,10 +39,10 @@ import org.TagCloud.FontProviders.SerifFontProvider;
 import org.TagCloud.ColorProviders.ShadesOfLightBlue;
 import org.TagCloud.TagClickListener;
 import org.TagCloud.TagCloud;
-import org.TagCloud.WeightedWord;
 import org.TagCloud.ColorProviders.YellowBrownGradient;
 import org.TagCloud.ColorProviders.YellowOrBrown;
 import javax.swing.BoxLayout;
+import org.TagCloud.WeightedWordInterface;
 
 /**
  * Shows how to generate a sample tag cloud
@@ -88,7 +88,7 @@ public class SampleTagCloud extends JFrame {
         tagCloud.addTagClickListener( new TagClickListener() {
 
             @Override
-            public void tagClicked( WeightedWord weightedWord ) {
+            public void tagClicked( WeightedWordInterface weightedWord ) {
                 doTagClicked( weightedWord );
             }
         } );
@@ -222,7 +222,7 @@ public class SampleTagCloud extends JFrame {
      *
      * @param weightedWord The string that the user clicked on
      */
-    public void doTagClicked( WeightedWord weightedWord ) {
+    public void doTagClicked( WeightedWordInterface weightedWord ) {
         String comment;
         if ( wordListChooser.getSelectedIndex() != 4 ) {
             comment = String.format( "%s, Population: %d", weightedWord.getWord(),
@@ -257,7 +257,7 @@ public class SampleTagCloud extends JFrame {
             final int value = slider.getValue();
             double pct = (double) value / slider.getMaximum();
 
-            List<WeightedWord> weightedWords = tagCloud.getWordsList();
+            List<WeightedWordInterface> weightedWords = tagCloud.getWordsList();
             if ( weightedWords == null ) {
                 return;
             }

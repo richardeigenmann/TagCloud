@@ -85,22 +85,22 @@ public class TagCloud extends JScrollPane {
     /**
      * The list of weighted words being shown
      */
-    private List<WeightedWord> weightedWords = null;
+    private List<WeightedWordInterface> weightedWords = null;
 
     private WordAnalyser wordAnalyser;
 
     /**
-     * This method receives the WeightedWord list of the words to be shown in
+     * This method receives the WeightedWordInterface list of the words to be shown in
      * the TagCloud and puts them on the container removing any that might have
      * been there before.
      *
      * @param weightedWords The WeightedWord of the words to be shown.
      */
-    public void setWordsList( List<WeightedWord> weightedWords ) {
+    public void setWordsList( List<WeightedWordInterface> weightedWords ) {
         this.weightedWords = weightedWords;
         wordAnalyser = new WordAnalyser( this.weightedWords );
         // initialise the weights
-        for ( WeightedWord weightedWord : this.weightedWords ) {
+        for ( WeightedWordInterface weightedWord : this.weightedWords ) {
             weightedWord.setSizeWeight( wordAnalyser.getSizeWeight( weightedWord.getSizeValue() ) );
             weightedWord.setColorWeight( wordAnalyser.getColorWeight( weightedWord.getColorValue() ) );
         }
@@ -117,9 +117,9 @@ public class TagCloud extends JScrollPane {
         verticalGrowJPanel.removeAll();
         if ( weightedWords != null ) { // if no wordMap, leave panel empty
 
-            List<WeightedWord> topWords = wordAnalyser.getTopWordsSizeWeighted( wordsToShow );
+            List<WeightedWordInterface> topWords = wordAnalyser.getTopWordsSizeWeighted( wordsToShow );
 
-            for ( WeightedWord weightedWord : topWords ) {
+            for ( WeightedWordInterface weightedWord : topWords ) {
                 TagCloudJLabel tagCloudEntry = new TagCloudJLabel(
                         weightedWord,
                         fontProvider,
@@ -141,7 +141,7 @@ public class TagCloud extends JScrollPane {
      *
      * @return weightedWords The WeightedWord of the words to be shown.
      */
-    public List<WeightedWord> getWordsList() {
+    public List<WeightedWordInterface> getWordsList() {
         return weightedWords;
     }
 
@@ -208,7 +208,7 @@ public class TagCloud extends JScrollPane {
      *
      * @param weightedWord the tag that was clicked
      */
-    private void notifyTagClickListeners( WeightedWord weightedWord ) {
+    private void notifyTagClickListeners( WeightedWordInterface weightedWord ) {
         synchronized ( tagClickListeners ) {
             for ( TagClickListener tagClickListener : tagClickListeners ) {
                 tagClickListener.tagClicked( weightedWord );

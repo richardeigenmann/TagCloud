@@ -14,22 +14,22 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-
 package org.TagCloud.Sample;
 
 import java.util.ArrayList;
 import org.TagCloud.WeightedWord;
+import org.TagCloud.WeightedWordInterface;
 
 /**
- * This class creates a List of WeightedWords countries and their (out of date) population
- * taken form Wikipedia to illustrate the TagCloud.
+ * This class creates a List of WeightedWords countries and their (out of date)
+ * population taken form Wikipedia to illustrate the TagCloud.
  *
  * @see <a
  * href="http://en.wikipedia.org/wiki/List_of_countries_by_population">Wikipedia
  * List of countries by population</a>
  * @author Richard Eigenmann
  */
-public class Countries extends ArrayList<WeightedWord> {
+public class Countries extends ArrayList<WeightedWordInterface> {
 
     /**
      * List of countries and their population

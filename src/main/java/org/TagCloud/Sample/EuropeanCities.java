@@ -18,6 +18,7 @@ package org.TagCloud.Sample;
 
 import java.util.ArrayList;
 import org.TagCloud.WeightedWord;
+import org.TagCloud.WeightedWordInterface;
 
 /**
  * This class creates a List of WeightedWords for European cities and their (out
@@ -27,7 +28,7 @@ import org.TagCloud.WeightedWord;
  *
  * @author Richard Eigenmann
  */
-public class EuropeanCities extends ArrayList<WeightedWord> {
+public class EuropeanCities extends ArrayList<WeightedWordInterface> {
 
     /**
      * List of European Cities

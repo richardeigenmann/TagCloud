@@ -30,7 +30,7 @@ import org.junit.Test;
  */
 public class WordAnalyserTest {
 
-    private List<WeightedWord> weightedWords;
+    private List<WeightedWordInterface> weightedWords;
     private final WeightedWord word1 = new WeightedWord( "word1", 10, 100 );
     private final WeightedWord word2 = new WeightedWord( "word2", 20, 40 );
     private final WeightedWord word3 = new WeightedWord( "abcWord3", 30, 200 );
@@ -106,7 +106,7 @@ public class WordAnalyserTest {
     public void testGetSizeWeightZero() {
         WeightedWord zeroWord1 = new WeightedWord( "word1", 0, 100 );
         WeightedWord zeroWord2 = new WeightedWord( "word2", 0, 200 );
-        List<WeightedWord> zeroWeightedWords = new ArrayList<>();
+        List<WeightedWordInterface> zeroWeightedWords = new ArrayList<>();
         zeroWeightedWords.add( zeroWord1 );
         zeroWeightedWords.add( zeroWord2 );
         WordAnalyser zeroWordAnalyser = new WordAnalyser( zeroWeightedWords );
@@ -116,12 +116,12 @@ public class WordAnalyserTest {
     @Test
     public void testGetTopWordsSizeWeighted() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
-        List<WeightedWord> fourWords = wordAnalyser.getTopWordsSizeWeighted( 4 );
+        List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsSizeWeighted( 4 );
         assertEquals( "If we ask for the top 4 words we should get 4 words", 4, fourWords.size() );
         assertEquals( "Since the list should be alphabetical the first word should be abcWord3", "abcWord3", fourWords.get( 0 ).getWord() );
         assertEquals( "Since the list should be alphabetical the last word should be word4", "word4", fourWords.get( 3 ).getWord() );
 
-        List<WeightedWord> twoWords = wordAnalyser.getTopWordsSizeWeighted( 2 );
+        List<WeightedWordInterface> twoWords = wordAnalyser.getTopWordsSizeWeighted( 2 );
         assertEquals( "If we ask for the top 2 words we should get 2 words", 2, twoWords.size() );
         assertEquals( "Since the list should be alphabetical the first word of a truncated list should be abcWord3", "abcWord3", twoWords.get( 0 ).getWord() );
         assertEquals( "Since the list should be alphabetical the last word of a truncated list should be word2", "word2", twoWords.get( 1 ).getWord() );
@@ -129,9 +129,9 @@ public class WordAnalyserTest {
 
     @Test
     public void testGetTopWordsSizeWeightedEmpty() {
-        List<WeightedWord> emptyList = new ArrayList<>();
+        List<WeightedWordInterface> emptyList = new ArrayList<>();
         WordAnalyser wordAnalyser = new WordAnalyser( emptyList );
-        List<WeightedWord> fourWords = wordAnalyser.getTopWordsSizeWeighted( 4 );
+        List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsSizeWeighted( 4 );
         assertEquals( "If we ask for the top 4 words from an empty list we should get 1 word", 1, fourWords.size() );
         assertEquals( "The word should be an empty string", "", fourWords.get( 0 ).getWord() );
     }
@@ -139,11 +139,11 @@ public class WordAnalyserTest {
     @Test
     public void testGetTopWordsSizeWeightedSillyLimit() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
-        List<WeightedWord> fourWords = wordAnalyser.getTopWordsSizeWeighted( 0 );
+        List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsSizeWeighted( 0 );
         assertEquals( "If we ask for the 0 words list we should get 1 empty string word", 1, fourWords.size() );
         assertEquals( "The word should be an empty string", "", fourWords.get( 0 ).getWord() );
 
-        List<WeightedWord> minusFiveWords = wordAnalyser.getTopWordsSizeWeighted( -5 );
+        List<WeightedWordInterface> minusFiveWords = wordAnalyser.getTopWordsSizeWeighted( -5 );
         assertEquals( "If we ask for the -5 words list we should get 1 empty string word", 1, minusFiveWords.size() );
         assertEquals( "The word should be an empty string", "", minusFiveWords.get( 0 ).getWord() );
 
@@ -198,7 +198,7 @@ public class WordAnalyserTest {
     public void testGetColorWeightZero() {
         WeightedWord zeroWord1 = new WeightedWord( "word1", 10, 0 );
         WeightedWord zeroWord2 = new WeightedWord( "word2", 20, 0 );
-        List<WeightedWord> zeroWeightedWords = new ArrayList<>();
+        List<WeightedWordInterface> zeroWeightedWords = new ArrayList<>();
         zeroWeightedWords.add( zeroWord1 );
         zeroWeightedWords.add( zeroWord2 );
         WordAnalyser zeroWordAnalyser = new WordAnalyser( zeroWeightedWords );
@@ -208,12 +208,12 @@ public class WordAnalyserTest {
     @Test
     public void testGetTopWordsColorWeighted() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
-        List<WeightedWord> fourWords = wordAnalyser.getTopWordsColorWeighted( 4 );
+        List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsColorWeighted( 4 );
         assertEquals( "If we ask for the top 4 words we should get 4 words", 4, fourWords.size() );
         assertEquals( "Since the list should be alphabetical the first word should be abcWord3", "abcWord3", fourWords.get( 0 ).getWord() );
         assertEquals( "Since the list should be alphabetical the last word should be word4", "word4", fourWords.get( 3 ).getWord() );
 
-        List<WeightedWord> twoWords = wordAnalyser.getTopWordsColorWeighted( 2 );
+        List<WeightedWordInterface> twoWords = wordAnalyser.getTopWordsColorWeighted( 2 );
         assertEquals( "If we ask for the top 2 words we should get 2 words", 2, twoWords.size() );
         assertEquals( "Since the list should be alphabetical the first word of a truncated Color weighted list should be abcWord3", "abcWord3", twoWords.get( 0 ).getWord() );
         assertEquals( "Since the list should be alphabetical the last word of a truncated Color weighted list should be word4", "word4", twoWords.get( 1 ).getWord() );
@@ -221,9 +221,9 @@ public class WordAnalyserTest {
 
     @Test
     public void testGetTopWordsColorWeightedEmpty() {
-        List<WeightedWord> emptyList = new ArrayList<>();
+        List<WeightedWordInterface> emptyList = new ArrayList<>();
         WordAnalyser wordAnalyser = new WordAnalyser( emptyList );
-        List<WeightedWord> fourWords = wordAnalyser.getTopWordsColorWeighted( 4 );
+        List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsColorWeighted( 4 );
         assertEquals( "If we ask for the top 4 words from an empty list we should get 1 word", 1, fourWords.size() );
         assertEquals( "The word should be an empty string", "", fourWords.get( 0 ).getWord() );
     }
@@ -231,11 +231,11 @@ public class WordAnalyserTest {
     @Test
     public void testGetTopWordsColorWeightedSillyLimit() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
-        List<WeightedWord> fourWords = wordAnalyser.getTopWordsColorWeighted( 0 );
+        List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsColorWeighted( 0 );
         assertEquals( "If we ask for the 0 words list we should get 1 empty string word", 1, fourWords.size() );
         assertEquals( "The word should be an empty string", "", fourWords.get( 0 ).getWord() );
 
-        List<WeightedWord> minusFiveWords = wordAnalyser.getTopWordsColorWeighted( -5 );
+        List<WeightedWordInterface> minusFiveWords = wordAnalyser.getTopWordsColorWeighted( -5 );
         assertEquals( "If we ask for the -5 words list we should get 1 empty string word", 1, minusFiveWords.size() );
         assertEquals( "The word should be an empty string", "", minusFiveWords.get( 0 ).getWord() );
 

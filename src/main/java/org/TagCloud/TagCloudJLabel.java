@@ -43,7 +43,7 @@ public class TagCloudJLabel extends JLabel {
     /**
      * The weighted word for which we are building a label
      */
-    private WeightedWord weightedWord;
+    private WeightedWordInterface weightedWord;
     /**
      * The font provider for the label
      */
@@ -64,7 +64,7 @@ public class TagCloudJLabel extends JLabel {
      *
      * @param word The word to show
      */
-    public TagCloudJLabel( WeightedWord word ) {
+    public TagCloudJLabel( WeightedWordInterface word ) {
         this( word, new SansSerifFontProvider(), new ShadesOfLightBlue(), new Color( 0x421ed9 ) );
     }
 
@@ -76,7 +76,7 @@ public class TagCloudJLabel extends JLabel {
      * @param colorProvider the color provider that will return the color to use
      * @param mouseoverColor the color to use in the mouseover
      */
-    public TagCloudJLabel( WeightedWord word,  FontProvider fontProvider, ColorProvider colorProvider, Color mouseoverColor ) {
+    public TagCloudJLabel( WeightedWordInterface word,  FontProvider fontProvider, ColorProvider colorProvider, Color mouseoverColor ) {
         super( word.getWord() );
         this.weightedWord = word;
         setFontProvider( fontProvider );
@@ -160,7 +160,7 @@ public class TagCloudJLabel extends JLabel {
      * Returns the WeightedWord for the Label
      * @return the weighted word
      */
-    public WeightedWord getWeightedWord() {
+    public WeightedWordInterface getWeightedWord() {
         return weightedWord;
     }
 

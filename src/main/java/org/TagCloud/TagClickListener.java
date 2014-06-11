@@ -30,5 +30,5 @@ public interface TagClickListener {
      *
      * @param weightedWord The word that was clicked
      */
-    public void tagClicked( WeightedWord weightedWord );
+    public void tagClicked( WeightedWordInterface weightedWord );
 }

@@ -39,7 +39,7 @@ public class WordAnalyser {
     /**
      * The list of words with their weights
      */
-    private final List<WeightedWord> weightedWords;
+    private final List<WeightedWordInterface> weightedWords;
 
     /**
      * Creates a new WordAnalyzer with the supplied list of WeightedWords.
@@ -48,7 +48,7 @@ public class WordAnalyser {
      *
      * @param weightedWords The list of weightedWords
      */
-    public WordAnalyser( List<WeightedWord> weightedWords ) {
+    public WordAnalyser( List<WeightedWordInterface> weightedWords ) {
         this.weightedWords = weightedWords;
     }
 
@@ -58,7 +58,7 @@ public class WordAnalyser {
      * @param i the word index, 0 to size() - 1 
      * @return the weighted word
      */
-    public WeightedWord getWord( int i ) {
+    public WeightedWordInterface getWord( int i ) {
         return weightedWords.get( i );
     }
 
@@ -67,7 +67,7 @@ public class WordAnalyser {
      *
      * @return the weighted words
      */
-    public List<WeightedWord> getWeightedWords() {
+    public List<WeightedWordInterface> getWeightedWords() {
         return weightedWords;
     }
 
@@ -149,7 +149,7 @@ public class WordAnalyser {
      * @param limit The maximum words to return
      * @return an alphabetical set of the highest ranking n words
      */
-    public List<WeightedWord> getTopWordsSizeWeighted( int limit ) {
+    public List<WeightedWordInterface> getTopWordsSizeWeighted( int limit ) {
         return getTopWords( getSizeValueSortedTreeSet().iterator(), limit );
     }
 
@@ -230,7 +230,7 @@ public class WordAnalyser {
      * @param limit The maximum words to return
      * @return an alphabetical set of the highest ranking n words
      */
-    public List<WeightedWord> getTopWordsColorWeighted( int limit ) {
+    public List<WeightedWordInterface> getTopWordsColorWeighted( int limit ) {
         return getTopWords( getColorValueSortedTreeSet().iterator(), limit );
     }
 
@@ -242,8 +242,8 @@ public class WordAnalyser {
      * @param limit The maximum words to return
      * @return an alphabetical set of the highest ranking n words
      */
-    private List<WeightedWord> getTopWords( Iterator<Integer> indexIterator, int limit ) {
-        List<WeightedWord> resultList = new ArrayList<>();
+    private List<WeightedWordInterface> getTopWords( Iterator<Integer> indexIterator, int limit ) {
+        List<WeightedWordInterface> resultList = new ArrayList<>();
         if ( ( limit < 1 ) || ( weightedWords.isEmpty() ) ) {
             resultList.add( new WeightedWord( "", 0, 0 ) );
             return resultList;

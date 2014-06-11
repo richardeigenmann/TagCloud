@@ -14,21 +14,22 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-
 package org.TagCloud.Sample;
 
 import java.util.ArrayList;
 import org.TagCloud.WeightedWord;
+import org.TagCloud.WeightedWordInterface;
 
 /**
- * This class creates a list of WeightedWords with just 3 cities to illustrate the TagCloud on a short list.
+ * This class creates a list of WeightedWords with just 3 cities to illustrate
+ * the TagCloud on a short list.
  *
  * @see <a
  * href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia
  * Cities by Population</a>
  * @author Richard Eigenmann
  */
-public class ShortCitiesList extends ArrayList<WeightedWord> {
+public class ShortCitiesList extends ArrayList<WeightedWordInterface> {
 
     /**
      * Short list of cities
