@@ -20,8 +20,8 @@
         <p class="header">Java Swing Component that shows words in different colors and font sizes based on weights</p>
 
         <ul>
-          <li class="download"><a class="buttons" href="TagCloud.jar">Download JAR</a></li>
-          <li><a class="buttons github" href="javadoc">Javadoc</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/richardeigenmann/TagCloud/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/richardeigenmann/TagCloud/tarball/master">Download TAR</a></li>
           <li><a class="buttons github" href="https://github.com/richardeigenmann/TagCloud">View On GitHub</a></li>
         </ul>
 
@@ -54,31 +54,67 @@
 
 <p>To create the component, create a List of WeightedWord objects, create a TagCloud and associate the List with the TagCloud and add the TagCloud to your Swing tree:</p>
 
-<div class="highlight highlight-Java"><pre><span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedWord</span><span class="o">&gt;</span> <span class="n">weightedWordList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">weightedWordList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="k">new</span> <span class="n">WeightedWord</span><span class="o">(</span> <span class="s">"Word1"</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">50</span> <span class="o">)</span> <span class="o">);</span>
-<span class="n">weightedWordList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="k">new</span> <span class="n">WeightedWord</span><span class="o">(</span> <span class="s">"Word2"</span><span class="o">,</span> <span class="mi">60</span><span class="o">,</span> <span class="mi">20</span> <span class="o">)</span> <span class="o">);</span>
-<span class="n">TagCloud</span> <span class="n">tagCloud</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TagCloud</span><span class="o">();</span>
+<div class="highlight highlight-Java"><pre><span class="n">List</span><span class="o">&lt;</span><span class="n">WeightedWordInterface</span><span class="o">&gt;</span> <span class="n">weightedWordList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">weightedWordList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="k">new</span> <span class="nf">WeightedWord</span><span class="o">(</span> <span class="s">"Word1"</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">50</span> <span class="o">)</span> <span class="o">);</span>
+<span class="n">weightedWordList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="k">new</span> <span class="nf">WeightedWord</span><span class="o">(</span> <span class="s">"Word2"</span><span class="o">,</span> <span class="mi">60</span><span class="o">,</span> <span class="mi">20</span> <span class="o">)</span> <span class="o">);</span>
+<span class="n">TagCloud</span> <span class="n">tagCloud</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">TagCloud</span><span class="o">();</span>
 <span class="n">tagCloud</span><span class="o">.</span><span class="na">setWordsList</span><span class="o">(</span> <span class="n">weightedWordList</span> <span class="o">);</span>
 </pre></div>
 
 <p>To become more interactive you can add a TagClickListener to the TagCloud and will receive a WeighedWord if the user clicks on a word:</p>
 
-<div class="highlight highlight-Java"><pre><span class="n">tagCloud</span><span class="o">.</span><span class="na">addTagClickListener</span><span class="o">(</span> <span class="k">new</span> <span class="n">TagClickListener</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight highlight-Java"><pre><span class="n">tagCloud</span><span class="o">.</span><span class="na">addTagClickListener</span><span class="o">(</span> <span class="k">new</span> <span class="nf">TagClickListener</span><span class="o">()</span> <span class="o">{</span>
 
   <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tagClicked</span><span class="o">(</span> <span class="n">WeightedWord</span> <span class="n">weightedWord</span> <span class="o">)</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tagClicked</span><span class="o">(</span> <span class="n">WeightedWordInterface</span> <span class="n">weightedWord</span> <span class="o">)</span> <span class="o">{</span>
     <span class="n">doTagClicked</span><span class="o">(</span> <span class="n">weightedWord</span> <span class="o">);</span>
   <span class="o">}</span>
 <span class="o">}</span> <span class="o">);</span>
 
 <span class="o">...</span>
 
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">doTagClicked</span><span class="o">(</span> <span class="n">WeightedWord</span> <span class="n">weightedWord</span> <span class="o">)</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">doTagClicked</span><span class="o">(</span> <span class="n">WeightedWordInterface</span> <span class="n">weightedWord</span> <span class="o">)</span> <span class="o">{</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span> <span class="s">"The word: %s was clicked"</span><span class="o">,</span> <span class="n">weightedWord</span><span class="o">.</span><span class="na">getWord</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
 <span class="o">}</span>
 </pre></div>
 
 <p>See the included <a href="https://github.com/richardeigenmann/TagCloud/blob/master/src/main/java/org/TagCloud/Sample/SampleTagCloud.java">sample program</a> for a worked example.</p>
+
+<h2>
+<a name="customisation" class="anchor" href="#customisation"><span class="octicon octicon-link"></span></a>Customisation</h2>
+
+<p>The library is designed so that you can customise the fonts and the colors. Here is an example of famous people and their BMI index:</p>
+
+<p><img src="http://richardeigenmann.github.io/TagCloud/images/Screenshot2.png" alt="Screenshot of customised TagCloud showing famous people and their BMI"></p>
+
+<p>The data on the people came from some casual research on the Internet. See the source code <a href="https://github.com/richardeigenmann/TagCloud/blob/master/src/main/java/org/TagCloud/Sample/People.java">People.java</a></p>
+
+<p>To get the colors to change according to the BMI of the person you have to tell TagCloud to use a special <a href="http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorProvider.html">ColorProvider</a>. Some sample ColorProviders are bundled in the code. See the <a href="http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorProviders/package-summary.html">Javadoc</a>.</p>
+
+<div class="highlight highlight-Java"><pre><span class="n">tagCloud</span><span class="o">.</span><span class="na">setColorProvider</span><span class="o">(</span> <span class="k">new</span> <span class="nf">BMIColorProvider</span><span class="o">()</span> <span class="o">);</span>
+</pre></div>
+
+<p>If you dig into the code you will notice that some ColorProviders extend the <a href="http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorInterpolator.html">ColorInterpolator</a> which allows the extending class to supply an array of colors between which the ColorInterplator will interpolate an approfriate hue:</p>
+
+<div class="highlight highlight-Java"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleGradientColors</span> <span class="kd">extends</span> <span class="n">ColorInterpolator</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Color</span><span class="o">[]</span> <span class="n">SAMPLE_GRADIENT_COLORS</span> <span class="o">=</span> <span class="o">{</span> <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0x099716</span> <span class="o">),</span> <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0x18c928</span> <span class="o">),</span>
+        <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0x36e410</span> <span class="o">),</span> <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0x64e410</span> <span class="o">),</span> <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0xa1e70c</span> <span class="o">),</span>
+        <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0xc3d000</span> <span class="o">),</span> <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0xe8e410</span> <span class="o">),</span> <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0xdcaf1e</span> <span class="o">),</span>
+        <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0xe87514</span> <span class="o">),</span> <span class="k">new</span> <span class="nf">Color</span><span class="o">(</span> <span class="mh">0xed723b</span> <span class="o">)</span> <span class="o">};</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Color</span><span class="o">[]</span> <span class="nf">getColorPoints</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">SAMPLE_GRADIENT_COLORS</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>Similarly, to customise the fonts used to render the tags, supply a <a href="http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/FontProvider.html">FontProvider</a> to the TagCloud:</p>
+
+<div class="highlight highlight-Java"><pre><span class="n">tagCloud</span><span class="o">.</span><span class="na">setFontProvider</span><span class="o">(</span> <span class="k">new</span> <span class="nf">SansSerifFontProvider</span><span class="o">()</span> <span class="o">);</span>
+</pre></div>
+
+<p>Some FontProviders are supplied with the library. See the <a href="http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/FontProviders/package-summary.html">Javadoc</a></p>
 
 <h2>
 <a name="feedback" class="anchor" href="#feedback"><span class="octicon octicon-link"></span></a>Feedback</h2>
