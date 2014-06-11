@@ -84,7 +84,7 @@ public class SampleGradientColors extends ColorInterpolator {
 }
 ```
 
-Similarly to customise the fonts used to render the tags, supply a [FontProvider](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/FontProvider.html) to the TagCloud:
+Similarly, to customise the fonts used to render the tags, supply a [FontProvider](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/FontProvider.html) to the TagCloud:
 
 ```Java
 tagCloud.setFontProvider( new SansSerifFontProvider() );
