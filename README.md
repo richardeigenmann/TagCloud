@@ -59,7 +59,7 @@ Customisation
 
 The library is designed so that you can customise the fonts and the colors. Here is an example of famous people and their BMI index:
 
-![Screenshot of customised TagCloud showing famous people and their BMI](http://richardeigenmann.github.io/TagCloud/images/Screenshot1.png)
+![Screenshot of customised TagCloud showing famous people and their BMI](http://richardeigenmann.github.io/TagCloud/images/Screenshot2.png)
 
 The data on the people came from some casual research on the Internet. See the source code [People.java](https://github.com/richardeigenmann/TagCloud/blob/master/src/main/java/org/TagCloud/Sample/People.java)
 
