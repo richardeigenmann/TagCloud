@@ -45,10 +45,12 @@ test {
 
 // Reminder how to build the github webpage http://richardeigenmann.github.io/TagCloud/
 // Go to Github repository > Settings > Automatic Page Generator
-// Click Load Readme.md 
+// Click Load Readme.md
 // Click Continue to Layouts
 // Pick Dinky
 // Click publish
+
+// Copy the src/resources to a safe place
 
 // now add Javadoc & Jar file
 // git checkout master
@@ -62,15 +64,10 @@ test {
 // in <header> add these two li entries, removing the 2 download entries:
 // <li class="download"><a class="buttons" href="TagCloud.jar">Download JAR</a></li>
 // <li><a class="buttons github" href="javadoc">Javadoc</a></li>
+// create a Run as Java Web Start entry
 
-// git add TagCloud.jar javadoc index.html
+// copy the files in the saved src/resouces to the root directory
+
+// git add TagCloud.jar javadoc index.html Screenshot* TagCloud.jnlp
 // git commit -m "update website"
 // git push
-
-
-
-
-
-
-
-

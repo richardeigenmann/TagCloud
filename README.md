@@ -8,6 +8,8 @@ Java Swing Component that shows words in different colors and font sizes based o
 Quickstart
 ----------
 
+Run the Sample on [Java Web Start](http://richardeigenmann.github.io/TagCloud/TagCloud.jnlp)
+
 [Download the jar file](http://richardeigenmann.github.io/TagCloud/TagCloud.jar) and run the sample program:
 
 ```Bash
