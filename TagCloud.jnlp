@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="http://richardeigenmann.github.io/TagCloud/" href="TagCloud.jnlp">
+  <information>
+    <title>TagCloud by Richard Eigenmann</title>
+    <vendor>Richard Eigenmann</vendor>
+    <homepage href="http://richardeigenmann.github.io/TagCloud/" />
+    <description>A Swing Component that renders words in different colors and fonts based on weights.</description>
+  </information>
+  <security>
+  </security>
+  <resources>
+    <j2se version="1.7+" />
+    <jar href="TagCloud.jar" />
+  </resources>
+  <application-desc main-class="org.TagCloud.Sample.SampleTagCloud" />
+</jnlp>
