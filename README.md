@@ -3,6 +3,7 @@ TagCloud
 
 Java Swing Component that shows words in different colors and font sizes based on weights.
 
+[Presentation](http://richardeigenmann.github.io/TagCloud/presentation.html)
 [Project Page](http://richardeigenmann.github.io/TagCloud)
 
 Quickstart
@@ -94,6 +95,12 @@ tagCloud.setFontProvider( new SansSerifFontProvider() );
 ```
 
 Some FontProviders are supplied with the library. See the [Javadoc](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/FontProviders/package-summary.html)
+
+License
+--------
+
+TagCloud is an Open Source project by Richard Eigenmann.
+It is licensed under the <a href="https://github.com/richardeigenmann/TagCloud/blob/master/license.txt">LGPL v3</a> license.
 
 
 Feedback
