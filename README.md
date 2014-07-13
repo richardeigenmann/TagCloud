@@ -24,7 +24,8 @@ Usage
 
 [Javadoc](http://richardeigenmann.github.io/TagCloud/javadoc)
 
-To create the component, create a List of WeightedWord objects, create a TagCloud and associate the List<WeighetdWord> with the TagCloud and add the TagCloud to your Swing tree:
+To create the component, create a List of WeightedWord objects. Then create a TagCloud and associate the List<WeighetdWord> with the TagCloud.
+Then add the TagCloud to your Swing Container:
 
 ```Java
 List<WeightedWordInterface> weightedWordList = new ArrayList<>();
