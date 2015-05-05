@@ -51,10 +51,5 @@ public class ColorPickerTest {
             return twoColorArray;
         }
     }
-    
-    @Test
-    public void testFail() {
-    	    fail("no good");
-    }
-
+        
 }
