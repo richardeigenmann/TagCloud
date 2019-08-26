@@ -16,7 +16,8 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = '1.8'
+sourceCompatibility = '1.9'
+targetCompatibility = '1.9'
 
 compileJava {
     options.encoding = "UTF-8"
@@ -63,6 +64,15 @@ task run(type: JavaExec) {
     dependsOn jar
     classpath = files('build/libs/TagCloud.jar')
     main = 'org.tagcloud.sample.SampleTagCloud'
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.encoding = 'UTF-8'
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
 }
 
 // Reminder how to build the github webpage http://richardeigenmann.github.io/TagCloud/

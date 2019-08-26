@@ -83,7 +83,7 @@ public class SampleTagCloud extends JFrame {
         setVisible( true );
     }
 
-    private final JComboBox wordListChooser = new JComboBox( new String[]{ "Cities", "European Cities", "Countries", "Short Cities List", "People" } );
+    private final JComboBox<String> wordListChooser  = new JComboBox<>(new String[]{"Cities", "European Cities", "Countries", "Short Cities List", "People"});
 
     /**
      * Build the widgets to have some interaction on the screen
@@ -119,7 +119,7 @@ public class SampleTagCloud extends JFrame {
         firstLinePanel.add( wordListChooser );
         wordListChooser.setSelectedIndex( 0 );
 
-        final JComboBox colorSchemeChooser = new JComboBox( new String[]{ "Shades of Light Blue", "Sample Gradient Colors", "Black to White Gradient", "Yellow Brown Gradient", "Yellow or Brown", "Body Mass Index" } );
+        final JComboBox<String> colorSchemeChooser = new JComboBox<>( new String[]{ "Shades of Light Blue", "Sample Gradient Colors", "Black to White Gradient", "Yellow Brown Gradient", "Yellow or Brown", "Body Mass Index" } );
         colorSchemeChooser.addActionListener(e -> {
             int index = colorSchemeChooser.getSelectedIndex();
             switch ( index ) {
@@ -149,7 +149,7 @@ public class SampleTagCloud extends JFrame {
         firstLinePanel.add( colorSchemeChooser );
         colorSchemeChooser.setSelectedIndex( 0 );
 
-        final JComboBox fontProviderChooser = new JComboBox( new String[]{ "Sans Serif", "Serif", "Heavy Font" } );
+        final JComboBox<String> fontProviderChooser = new JComboBox<>( new String[]{ "Sans Serif", "Serif", "Heavy Font" } );
         fontProviderChooser.addActionListener(e -> {
             int index = fontProviderChooser.getSelectedIndex();
             switch ( index ) {
