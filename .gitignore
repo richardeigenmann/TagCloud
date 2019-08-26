@@ -12,4 +12,6 @@ gradle-app.setting
 Gemfile.lock
 
 .idea/
-
+TagCloud.iml
+local.properties
+gradle/wrapper/gradle-wrapper.jar
