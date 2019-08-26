@@ -1,5 +1,20 @@
-apply plugin: 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
 
+plugins {
+    id "com.github.ben-manes.versions" version "0.22.0" // dependency updates
+}
+
+apply plugin: 'java'
+apply plugin: "jacoco"
+
+repositories {
+    mavenCentral()
+}
 
 sourceCompatibility = '1.8'
 
@@ -27,33 +42,26 @@ jar {
 }
 
 
-repositories {
-    mavenCentral()
-    // You may define additional repositories, or even remove "mavenCentral()".
-    // Read more about repositories here:
-    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:repositories
-}
-
 dependencies {
     // TODO: Add dependencies here ...
     // You can read more about how to add dependency here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
-    testCompile group: 'junit', name: 'junit', version: '4.10'
+    testCompile group: 'junit', name: 'junit', version: '4.13-beta-3'
 }
 
 
 test {
-  // listen to standard out and standard error of the test JVM(s)
-  onOutput { descriptor, event ->
-     logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
-  }
+    // listen to standard out and standard error of the test JVM(s)
+    onOutput { descriptor, event ->
+        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message)
+    }
 }
 
 task run(type: JavaExec) {
     group 'build'
     description 'Runs the sample application'
     dependsOn jar
-    classpath = files( 'build/libs/TagCloud.jar' )
+    classpath = files('build/libs/TagCloud.jar')
     main = 'org.tagcloud.sample.SampleTagCloud'
 }
 
