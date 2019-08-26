@@ -11,4 +11,5 @@ gradle-app.setting
 .nb-gradle/
 Gemfile.lock
 
+.idea/
 

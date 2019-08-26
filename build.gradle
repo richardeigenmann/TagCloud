@@ -2,7 +2,14 @@ apply plugin: 'java'
 
 
 sourceCompatibility = '1.8'
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+compileJava {
+    options.encoding = "UTF-8"
+}
+compileTestJava {
+    options.encoding = "UTF-8"
+}
+
 
 // NetBeans will automatically add "run" and "debug" tasks relying on the
 // "mainClass" property. You may however define the property prior executing
@@ -12,11 +19,11 @@ sourceCompatibility = '1.8'
 // prefer. In this case NetBeans will not add these tasks but you may rely on
 // your own implementation.
 if (!hasProperty('mainClass')) {
-    ext.mainClass = 'org.TagCloud.sample.SampleTagCloud'
+    ext.mainClass = 'org.tagcloud.sample.SampleTagCloud'
 }
 
 jar {
-    manifest.attributes("Main-Class": "org.TagCloud.Sample.SampleTagCloud")
+    manifest.attributes("Main-Class": "org.tagcloud.sample.SampleTagCloud")
 }
 
 
@@ -42,6 +49,13 @@ test {
   }
 }
 
+task run(type: JavaExec) {
+    group 'build'
+    description 'Runs the sample application'
+    dependsOn jar
+    classpath = files( 'build/libs/TagCloud.jar' )
+    main = 'org.tagcloud.sample.SampleTagCloud'
+}
 
 // Reminder how to build the github webpage http://richardeigenmann.github.io/TagCloud/
 // Go to Github repository > Settings > Automatic Page Generator

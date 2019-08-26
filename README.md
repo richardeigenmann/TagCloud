@@ -1,5 +1,4 @@
-TagCloud
-========
+# TagCloud
 
 Java Swing Component that shows words in different colors and font sizes based on weights.
 
@@ -7,8 +6,7 @@ Java Swing Component that shows words in different colors and font sizes based o
 
 [Project Page](http://richardeigenmann.github.io/TagCloud)
 
-Quickstart
-----------
+## Quickstart
 
 Run the Sample on [Java Web Start](http://richardeigenmann.github.io/TagCloud/TagCloud.jnlp)
 
@@ -21,8 +19,7 @@ java  -jar ./TagCloud.jar
 ![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/images/Screenshot1.png)
 
 
-Usage
------
+## Usage
 
 [Javadoc](http://richardeigenmann.github.io/TagCloud/javadoc)
 
@@ -59,8 +56,7 @@ public void doTagClicked( WeightedWordInterface weightedWord ) {
 See the included [sample program](https://github.com/richardeigenmann/TagCloud/blob/master/src/main/java/org/TagCloud/Sample/SampleTagCloud.java) for a worked example.
 
 
-Customisation
--------------
+## Customisation
 
 The library is designed so that you can customise the fonts and the colors. Here is an example of famous people and their BMI index:
 
@@ -73,7 +69,7 @@ To get the colors to change according to the BMI of the person you have to tell 
 ```Java
 tagCloud.setColorProvider( new BMIColorProvider() );
 ```
-If you dig into the code you will notice that some ColorProviders extend the [ColorInterpolator](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorInterpolator.html) which allows the extending class to supply an array of colors between which the ColorInterplator will interpolate an approfriate hue:
+If you dig into the code you will notice that some ColorProviders extend the [ColorInterpolator](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorInterpolator.html) which allows the extending class to supply an array of colors between which the ColorInterpolator will interpolate an appropriate hue:
 
 ```Java
 public class SampleGradientColors extends ColorInterpolator {
@@ -97,28 +93,15 @@ tagCloud.setFontProvider( new SansSerifFontProvider() );
 
 Some FontProviders are supplied with the library. See the [Javadoc](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/FontProviders/package-summary.html)
 
-License
---------
+## License
 
 TagCloud is an Open Source project by Richard Eigenmann.
 It is licensed under the <a href="https://github.com/richardeigenmann/TagCloud/blob/master/license.txt">LGPL v3</a> license.
 
 
-Feedback
---------
+## Feedback
 
 Please feel free to contact the Author with comments, suggestions, improvements, pull requests or encouragement:
 Richard Eigenmann
+
 <mailto:richard.eigenmann@gmail.com>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-47341387-2', 'richardeigenmann.github.io');
-  ga('send', 'pageview');
-
-</script>
