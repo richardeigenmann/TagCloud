@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009, 2014 Richard Eigenmann, Zürich, Switzerland
+ Copyright (C) 2009, 2019 Richard Eigenmann, Zurich, Switzerland
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -59,7 +59,7 @@ public class SampleTagCloud extends JFrame {
      * @param args Command line arguments
      */
     public static void main( String[] args ) {
-        SwingUtilities.invokeLater(() -> new SampleTagCloud());
+        SwingUtilities.invokeLater(SampleTagCloud::new);
     }
 
     /**
@@ -76,7 +76,7 @@ public class SampleTagCloud extends JFrame {
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         this.getContentPane().add( getControlsPanel(), BorderLayout.PAGE_START );
 
-        tagCloud.addTagClickListener(weightedWord -> doTagClicked( weightedWord ));
+        tagCloud.addTagClickListener(this::doTagClicked);
         this.getContentPane().add( tagCloud );
 
         pack();

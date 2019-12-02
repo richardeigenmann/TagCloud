@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009, 2014 Richard Eigenmann, Zürich, Switzerland
+ Copyright (C) 2009, 2019 Richard Eigenmann, Zurich, Switzerland
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -37,6 +37,6 @@ public class ShortCitiesList extends ArrayList<WeightedWordInterface> {
     public ShortCitiesList() {
         add( new WeightedWord( "Shanghai", 13831900 ) );
         add( new WeightedWord( "Cape Town", 3497097 ) );
-        add( new WeightedWord( "Zürich", 366765 ) ); // Google, value from 2009
+        add( new WeightedWord( "Zurich", 366765 ) ); // Google, value from 2009
     }
 }

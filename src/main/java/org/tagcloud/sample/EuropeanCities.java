@@ -1,5 +1,5 @@
 /*
- Copyright (C)) 2009, 2014 Richard Eigenmann, Zürich, Switzerland
+ Copyright (C)) 2009, 2019 Richard Eigenmann, Zurich, Switzerland
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -55,7 +55,7 @@ public class EuropeanCities extends ArrayList<WeightedWordInterface> {
         add( new WeightedWord( "Nizhny Novgorod", 1358000 ) );
         add( new WeightedWord( "Milano (Milan))", 1306000 ) );
         add( new WeightedWord( "Ekaterinoburg", 1267000 ) );
-        add( new WeightedWord( "München", 1195000 ) );
+        add( new WeightedWord( "Muenchen", 1195000 ) );
         add( new WeightedWord( "Prague", 1193000 ) );
         add( new WeightedWord( "Samara", 1165000 ) );
         add( new WeightedWord( "Omsk", 1153000 ) );
@@ -71,21 +71,21 @@ public class EuropeanCities extends ArrayList<WeightedWordInterface> {
         add( new WeightedWord( "Rostov-na-Donu", 1003000 ) );
         add( new WeightedWord( "Odessa", 1002000 ) );
         add( new WeightedWord( "Volgograd", 992000 ) );
-        add( new WeightedWord( "Köln", 963000 ) );
+        add( new WeightedWord( "Koeln", 963000 ) );
         add( new WeightedWord( "Turin", 921000 ) );
         add( new WeightedWord( "Voronezh", 903000 ) );
         add( new WeightedWord( "Krasnoyarsk", 876000 ) );
         add( new WeightedWord( "Saratov", 875000 ) );
         add( new WeightedWord( "Zagreb", 868000 ) );
         add( new WeightedWord( "Zaporozhye", 850000 ) );
-        add( new WeightedWord( "Lódz", 803000 ) );
+        add( new WeightedWord( "Lodz", 803000 ) );
         add( new WeightedWord( "Marseille", 800000 ) );
         add( new WeightedWord( "Riga", 793000 ) );
         add( new WeightedWord( "Lvov", 786000 ) );
         add( new WeightedWord( "Athens", 772000 ) );
         add( new WeightedWord( "Salonika", 749000 ) );
         add( new WeightedWord( "Stockholm", 744000 ) );
-        add( new WeightedWord( "Kraków", 740000 ) );
+        add( new WeightedWord( "Krakow", 740000 ) );
         add( new WeightedWord( "Valencia", 736000 ) );
         add( new WeightedWord( "Amsterdam", 729000 ) );
         add( new WeightedWord( "Leeds", 727000 ) );
@@ -113,11 +113,11 @@ public class EuropeanCities extends ArrayList<WeightedWordInterface> {
         add( new WeightedWord( "Barnaul", 580000 ) );
         add( new WeightedWord( "Vilnius", 578000 ) );
         add( new WeightedWord( "Poznan", 578000 ) );
-        add( new WeightedWord( "Düsseldorf", 569000 ) );
+        add( new WeightedWord( "Duesseldorf", 569000 ) );
         add( new WeightedWord( "Novokuznetsk", 564000 ) );
         add( new WeightedWord( "Lisbon", 563000 ) );
         add( new WeightedWord( "Helsinki", 549000 ) );
-        add( new WeightedWord( "Málaga", 543000 ) );
+        add( new WeightedWord( "Malaga", 543000 ) );
         add( new WeightedWord( "Bremen", 540000 ) );
         add( new WeightedWord( "Sheffield", 530000 ) );
         add( new WeightedWord( "SARAJEVO", 529000 ) );

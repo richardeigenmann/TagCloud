@@ -85,22 +85,22 @@ public class WordAnalyser {
      */
     public TreeSet<Integer> getSizeValueSortedTreeSet() {
         if ( sizeValueSortedTreeSet == null ) {
-            sizeValueSortedTreeSet = new TreeSet<>( new Comparator<Integer>() {
+            sizeValueSortedTreeSet = new TreeSet<>(new Comparator<>() {
 
                 /**
                  * override the compare method so that we can have the TreeMap
                  * sorted by value instead of by word
                  */
                 @Override
-                public int compare( Integer index1, Integer index2 ) {
-                    int size1 = weightedWords.get( index1 ).getSizeValue();
-                    int size2 = weightedWords.get( index2 ).getSizeValue();
-                    if ( !( size1 == size2 ) ) {
+                public int compare(Integer index1, Integer index2) {
+                    int size1 = weightedWords.get(index1).getSizeValue();
+                    int size2 = weightedWords.get(index2).getSizeValue();
+                    if (!(size1 == size2)) {
                         return Integer.compare(size2, size1);
                     } else {
-                        String word1 = weightedWords.get( index1 ).getWord();
-                        String word2 = weightedWords.get( index2 ).getWord();
-                        return word1.compareTo( word2 );
+                        String word1 = weightedWords.get(index1).getWord();
+                        String word2 = weightedWords.get(index2).getWord();
+                        return word1.compareTo(word2);
                     }
                 }
             } );
@@ -166,22 +166,22 @@ public class WordAnalyser {
      */
     public TreeSet<Integer> getColorValueSortedTreeSet() {
         if ( colorValueSortedTreeSet == null ) {
-            colorValueSortedTreeSet = new TreeSet<>( new Comparator<Integer>() {
+            colorValueSortedTreeSet = new TreeSet<>(new Comparator<>() {
 
                 /**
                  * override the compare method so that we can have the TreeMap
                  * sorted by value instead of by word
                  */
                 @Override
-                public int compare( Integer index1, Integer index2 ) {
-                    int size1 = weightedWords.get( index1 ).getColorValue();
-                    int size2 = weightedWords.get( index2 ).getColorValue();
-                    if ( !( size1 == size2 ) ) {
+                public int compare(Integer index1, Integer index2) {
+                    int size1 = weightedWords.get(index1).getColorValue();
+                    int size2 = weightedWords.get(index2).getColorValue();
+                    if (!(size1 == size2)) {
                         return Integer.compare(size2, size1);
                     } else {
-                        String word1 = weightedWords.get( index1 ).getWord();
-                        String word2 = weightedWords.get( index2 ).getWord();
-                        return word1.compareTo( word2 );
+                        String word1 = weightedWords.get(index1).getWord();
+                        String word2 = weightedWords.get(index2).getWord();
+                        return word1.compareTo(word2);
                     }
                 }
             } );
@@ -249,17 +249,17 @@ public class WordAnalyser {
             return resultList;
         }
 
-        TreeSet<Integer> topWords = new TreeSet<>( new Comparator<Integer>() {
+        TreeSet<Integer> topWords = new TreeSet<>(new Comparator<>() {
 
             /**
              * override the compare method so that we can have the TreeSet
              * sorted by value instead of by word
              */
             @Override
-            public int compare( Integer index1, Integer index2 ) {
-                String word1 = weightedWords.get( index1 ).getWord();
-                String word2 = weightedWords.get( index2 ).getWord();
-                return word1.compareTo( word2 );
+            public int compare(Integer index1, Integer index2) {
+                String word1 = weightedWords.get(index1).getWord();
+                String word2 = weightedWords.get(index2).getWord();
+                return word1.compareTo(word2);
             }
         } );
 

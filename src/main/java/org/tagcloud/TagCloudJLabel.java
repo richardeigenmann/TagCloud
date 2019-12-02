@@ -43,7 +43,7 @@ public class TagCloudJLabel extends JLabel {
     /**
      * The weighted word for which we are building a label
      */
-    private WeightedWordInterface weightedWord;
+    private final WeightedWordInterface weightedWord;
     /**
      * The font provider for the label
      */

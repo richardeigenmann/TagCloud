@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009, 2014 Richard Eigenmann, Zürich, Switzerland
+ Copyright (C) 2009, 2019 Richard Eigenmann, Zurich, Switzerland
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -41,7 +41,7 @@ public class Cities extends ArrayList<WeightedWordInterface> {
         add( new WeightedWord( "Karachi", 12991000 ) );
         add( new WeightedWord( "Delhi", 12259230 ) );
         add( new WeightedWord( "Istanbul", 11372613 ) );
-        add( new WeightedWord( "São Paulo", 10990249 ) );
+        add( new WeightedWord( "Sao Paulo", 10990249 ) );
         add( new WeightedWord( "Moscow", 10452000 ) );
         add( new WeightedWord( "Seoul", 10421782 ) );
         add( new WeightedWord( "Beijing", 10123000 ) );
@@ -55,7 +55,7 @@ public class Cities extends ArrayList<WeightedWordInterface> {
         add( new WeightedWord( "Tehran", 7797520 ) );
         add( new WeightedWord( "Lima", 7605742 ) );
         add( new WeightedWord( "London", 7556900 ) );
-        add( new WeightedWord( "Bogotá", 7155052 ) );
+        add( new WeightedWord( "Bogota", 7155052 ) );
         add( new WeightedWord( "Hong Kong", 6985200 ) );
         add( new WeightedWord( "Bangkok", 6972000 ) );
         add( new WeightedWord( "Cairo", 6758581 ) );
