@@ -6,7 +6,7 @@ buildscript {
 }
 
 plugins {
-    id "com.github.ben-manes.versions" version "0.22.0" // dependency updates
+    id "com.github.ben-manes.versions" version "0.42.0" // dependency updates
 }
 
 apply plugin: 'java'
@@ -47,7 +47,7 @@ dependencies {
     // TODO: Add dependencies here ...
     // You can read more about how to add dependency here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
-    testCompile group: 'junit', name: 'junit', version: '4.13-beta-3'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
 
 
