@@ -96,9 +96,6 @@ public class SampleTagCloud extends JFrame {
         wordListChooser.addActionListener(e -> {
             int index = wordListChooser.getSelectedIndex();
             switch ( index ) {
-                case 0:
-                    tagCloud.setWordsList( new Cities() );
-                    break;
                 case 1:
                     tagCloud.setWordsList( new EuropeanCities() );
                     break;
@@ -111,6 +108,7 @@ public class SampleTagCloud extends JFrame {
                 case 4:
                     tagCloud.setWordsList( new People() );
                     break;
+                case 0:
                 default:
                     tagCloud.setWordsList( new Cities() );
 
@@ -123,9 +121,6 @@ public class SampleTagCloud extends JFrame {
         colorSchemeChooser.addActionListener(e -> {
             int index = colorSchemeChooser.getSelectedIndex();
             switch ( index ) {
-                case 0:
-                    tagCloud.setColorProvider( new ShadesOfLightBlue() );
-                    break;
                 case 1:
                     tagCloud.setColorProvider( new SampleGradientColors() );
                     break;
@@ -141,6 +136,7 @@ public class SampleTagCloud extends JFrame {
                 case 5:
                     tagCloud.setColorProvider( new BMIColorProvider() );
                     break;
+                case 0:
                 default:
                     tagCloud.setColorProvider( new ShadesOfLightBlue() );
 
@@ -153,15 +149,13 @@ public class SampleTagCloud extends JFrame {
         fontProviderChooser.addActionListener(e -> {
             int index = fontProviderChooser.getSelectedIndex();
             switch ( index ) {
-                case 0:
-                    tagCloud.setFontProvider( new SansSerifFontProvider() );
-                    break;
                 case 1:
                     tagCloud.setFontProvider( new SerifFontProvider() );
                     break;
                 case 2:
                     tagCloud.setFontProvider( new HeavyFontProvider() );
                     break;
+                case 0:
                 default:
                     tagCloud.setFontProvider( new SansSerifFontProvider() );
             }

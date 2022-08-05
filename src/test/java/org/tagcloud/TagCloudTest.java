@@ -30,7 +30,7 @@ public class TagCloudTest {
 
     @Test
     public void testConstructor() {
-        TagCloud tagCloud = new TagCloud();
+        final TagCloud tagCloud = new TagCloud();
         assertNotNull("TagCloud could not be constructed");
     }
 

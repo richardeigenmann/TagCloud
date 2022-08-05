@@ -37,7 +37,7 @@ import javax.swing.SwingConstants;
  * true;
  *
  * This is based on the article found here:
- * http://forums.sun.com/thread.jspa?forumID=57&threadID=5117549&start=7
+ * <a href="http://forums.sun.com/thread.jspa?forumID=57&threadID=5117549&start=7">...</a>
  *
  * @author Richard Eigenmann
  */
