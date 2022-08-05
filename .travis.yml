@@ -1,2 +1,4 @@
 language: java
 jdk: openjdk17
+before_install:
+  - export PATH=$GRADLE_HOME/bin:$PATH
