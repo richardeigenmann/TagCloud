@@ -152,7 +152,7 @@ public class WeightedWord implements WeightedWordInterface {
      * @param weight The weight to be validated
      * @return the weight or 0 or 1 whatever is nearer
      */
-    private static float verifyWeight( float weight ) {
+    private static float verifyWeight( final float weight ) {
         if ( weight > 1f ) {
             return 1;
         }

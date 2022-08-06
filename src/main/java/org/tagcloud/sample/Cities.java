@@ -21,7 +21,7 @@ import org.tagcloud.WeightedWord;
 import org.tagcloud.WeightedWordInterface;
 
 /**
- * This class creates an list of WeightedWords list of cities and their (out of
+ * This class creates a list of WeightedWords list of cities and their (out of
  * date) population taken form Wikipedia to illustrate the TagCloud.
  *
  * @see <a

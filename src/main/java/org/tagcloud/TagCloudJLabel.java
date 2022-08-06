@@ -76,7 +76,7 @@ public class TagCloudJLabel extends JLabel {
      * @param colorProvider the color provider that will return the color to use
      * @param mouseoverColor the color to use in the mouseover
      */
-    public TagCloudJLabel( WeightedWordInterface word,  FontProvider fontProvider, ColorProvider colorProvider, Color mouseoverColor ) {
+    public TagCloudJLabel( final WeightedWordInterface word, final FontProvider fontProvider, final ColorProvider colorProvider, final Color mouseoverColor ) {
         super( word.getWord() );
         this.weightedWord = word;
         setFontProvider( fontProvider );
@@ -86,14 +86,14 @@ public class TagCloudJLabel extends JLabel {
         addMouseListener( new MouseAdapter() {
 
             @Override
-            public void mouseEntered( MouseEvent e ) {
+            public void mouseEntered( final MouseEvent e ) {
                 super.mouseEntered( e );
                 setForeground( getMouseoverColor() );
 
             }
 
             @Override
-            public void mouseExited( MouseEvent e ) {
+            public void mouseExited( final MouseEvent e ) {
                 super.mouseExited( e );
                 setForegroundColor();
 
@@ -106,7 +106,7 @@ public class TagCloudJLabel extends JLabel {
      *
      * @param fontProvider the new font provider.
      */
-    public final void setFontProvider( FontProvider fontProvider ) {
+    public final void setFontProvider( final FontProvider fontProvider ) {
         this.fontProvider = fontProvider;
         setFont();
     }

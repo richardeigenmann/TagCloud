@@ -21,8 +21,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import static org.junit.Assert.*;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 /**
  * Unit tests for TagCloudJLabel
@@ -37,10 +38,8 @@ public class TagCloudJLabelTest {
         weightedWord.setSizeWeight( 0.5f );
         weightedWord.setColorWeight( 0.6f );
         TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
-        assertEquals( "After creating a TagCloudJLabel with a sizeWeight of 0.5 and colorWeight of 0.6 we expect the correct sizeWeight to be returned.",
-                0.5f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
-        assertEquals( "After creating a TagCloudJLabel with a sizeWeight of 0.5 and colorWeight of 0.6 we expect the correct colorWeight to be returned.",
-                0.6f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
+        Assertions.assertEquals(0.5f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f, "After creating a TagCloudJLabel with a sizeWeight of 0.5 and colorWeight of 0.6 we expect the correct sizeWeight to be returned.");
+        Assertions.assertEquals(0.6f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f, "After creating a TagCloudJLabel with a sizeWeight of 0.5 and colorWeight of 0.6 we expect the correct colorWeight to be returned.");
     }
 
     @Test
@@ -49,10 +48,8 @@ public class TagCloudJLabelTest {
         weightedWord.setSizeWeight( 0.4f );
         weightedWord.setColorWeight( 0.4f );
         TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
-        assertEquals( "After creating a TagCloudJLabel with a single weight of 0.4 we expect the correct sizeWeight to be returned.",
-                0.4f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
-        assertEquals( "After creating a TagCloudJLabel with a single weight of 0.4 we expect the correct colorWeight to be returned.",
-                0.4f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
+        Assertions.assertEquals(0.4f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f, "After creating a TagCloudJLabel with a single weight of 0.4 we expect the correct sizeWeight to be returned.");
+        Assertions.assertEquals(0.4f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f, "After creating a TagCloudJLabel with a single weight of 0.4 we expect the correct colorWeight to be returned.");
     }
 
     @Test
@@ -61,10 +58,8 @@ public class TagCloudJLabelTest {
         weightedWord.setSizeWeight( 0 );
         weightedWord.setColorWeight( 0 );
         TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
-        assertEquals( "After creating a TagCloudJLabel with a single weight of 0 we expect the correct sizeWeight to be returned.",
-                0f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
-        assertEquals( "After creating a TagCloudJLabel with a single weight of 0 we expect the correct colorWeight to be returned.",
-                0f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
+        Assertions.assertEquals(0f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f, "After creating a TagCloudJLabel with a single weight of 0 we expect the correct sizeWeight to be returned.");
+        Assertions.assertEquals(0f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f, "After creating a TagCloudJLabel with a single weight of 0 we expect the correct colorWeight to be returned.");
     }
 
     @Test
@@ -73,10 +68,8 @@ public class TagCloudJLabelTest {
         weightedWord.setSizeWeight( 1 );
         weightedWord.setColorWeight( 1 );
         TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
-        assertEquals( "After creating a TagCloudJLabel with a single weight of 1 we expect the correct sizeWeight to be returned.",
-                1f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
-        assertEquals( "After creating a TagCloudJLabel with a single weight of 1 we expect the correct colorWeight to be returned.",
-                1f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
+        Assertions.assertEquals(1f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f, "After creating a TagCloudJLabel with a single weight of 1 we expect the correct sizeWeight to be returned.");
+        Assertions.assertEquals(1f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f, "After creating a TagCloudJLabel with a single weight of 1 we expect the correct colorWeight to be returned.");
     }
 
     @Test
@@ -85,10 +78,8 @@ public class TagCloudJLabelTest {
         weightedWord.setSizeWeight( 1.5f );
         weightedWord.setColorWeight( 2000 );
         TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
-        assertEquals( "After creating a TagCloudJLabel with a sizeWeight of 1.5f and colorWeight of 2000  we expect the sizeWeight to be clipped at 1",
-                1f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
-        assertEquals( "After creating a TagCloudJLabel with a sizeWeight of 1.5f and colorWeight of 2000  we expect the colorWeight to be clipped at 1",
-                1f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
+        Assertions.assertEquals(1f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f, "After creating a TagCloudJLabel with a sizeWeight of 1.5f and colorWeight of 2000  we expect the sizeWeight to be clipped at 1");
+        Assertions.assertEquals(1f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f, "After creating a TagCloudJLabel with a sizeWeight of 1.5f and colorWeight of 2000  we expect the colorWeight to be clipped at 1");
     }
 
     @Test
@@ -97,10 +88,8 @@ public class TagCloudJLabelTest {
         weightedWord.setSizeWeight( -0.5f );
         weightedWord.setColorWeight( -2000 );
         TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
-        assertEquals( "After creating a TagCloudJLabel with a sizeWeight of -0.5f and colorWeight of -2000  we expect the sizeWeight to be floored at 0",
-                0f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f );
-        assertEquals( "After creating a TagCloudJLabel with a sizeWeight of -0.5f and colorWeight of -2000  we expect the colorWeight to be floored at 0",
-                0f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f );
+        Assertions.assertEquals(0f, tagCloudJLabel.getWeightedWord().getSizeWeight(), 0.01f, "After creating a TagCloudJLabel with a sizeWeight of -0.5f and colorWeight of -2000  we expect the sizeWeight to be floored at 0");
+        Assertions.assertEquals(0f, tagCloudJLabel.getWeightedWord().getColorWeight(), 0.01f, "After creating a TagCloudJLabel with a sizeWeight of -0.5f and colorWeight of -2000  we expect the colorWeight to be floored at 0");
     }
 
     @Test
@@ -110,10 +99,8 @@ public class TagCloudJLabelTest {
         weightedWord.setColorWeight( 0.6f );
         TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
         Font font = tagCloudJLabel.getFont();
-        assertEquals( "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have a SansSerif font",
-                "SansSerif.plain", font.getFontName() );
-        assertEquals( "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have the size 18",
-                18, font.getSize() );
+        Assertions.assertEquals("SansSerif.plain", font.getFontName(), "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have a SansSerif font");
+        Assertions.assertEquals(18, font.getSize(), "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have the size 18");
 
     }
 
@@ -128,16 +115,14 @@ public class TagCloudJLabelTest {
         for ( MouseListener ml : tagCloudJLabel.getMouseListeners() ) {
             ml.mouseEntered( e1 );
         }
-        assertEquals( "Check default mouseover color",
-                new Color( 0x421ed9 ), tagCloudJLabel.getForeground() );
+        Assertions.assertEquals(new Color( 0x421ed9 ), tagCloudJLabel.getForeground(), "Check default mouseover color");
 
         // send a mouseExited event to the tagCloudJLabel
         MouseEvent e2 = new MouseEvent( tagCloudJLabel, 0, 0, 0, 100, 100, 0, false );
         for ( MouseListener ml : tagCloudJLabel.getMouseListeners() ) {
             ml.mouseExited( e2 );
         }
-        assertNotSame( "Check we are out of the default mouseover color",
-                new Color( 0x421ed9 ), tagCloudJLabel.getForeground() );
+        Assertions.assertNotSame(new Color( 0x421ed9 ), tagCloudJLabel.getForeground(), "Check we are out of the default mouseover color");
     }
 
     @Test
@@ -154,16 +139,14 @@ public class TagCloudJLabelTest {
         for ( MouseListener ml : tagCloudJLabel.getMouseListeners() ) {
             ml.mouseEntered( e1 );
         }
-        assertEquals( "Check mouseover color is YELLOW",
-                Color.YELLOW, tagCloudJLabel.getForeground() );
+        Assertions.assertEquals(Color.YELLOW, tagCloudJLabel.getForeground(), "Check mouseover color is YELLOW");
 
         // send a mouseExited event to the tagCloudJLabel
         MouseEvent e2 = new MouseEvent( tagCloudJLabel, 0, 0, 0, 100, 100, 0, false );
         for ( MouseListener ml : tagCloudJLabel.getMouseListeners() ) {
             ml.mouseExited( e2 );
         }
-        assertNotSame( "Check we are back on the previous colore after the mouseExited",
-                colorBeforeTest, tagCloudJLabel.getForeground() );
+        Assertions.assertNotSame(colorBeforeTest, tagCloudJLabel.getForeground(), "Check we are back on the previous colore after the mouseExited");
     }
 
 }

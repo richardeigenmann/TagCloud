@@ -17,9 +17,9 @@
  */
 package org.tagcloud;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Assertions;
 
 /**
  * Unit tests for TagCloudJLabel
@@ -31,7 +31,7 @@ public class TagCloudTest {
     @Test
     public void testConstructor() {
         final TagCloud tagCloud = new TagCloud();
-        assertNotNull("TagCloud could not be constructed");
+        Assertions.assertNotNull("TagCloud could not be constructed");
     }
 
 
