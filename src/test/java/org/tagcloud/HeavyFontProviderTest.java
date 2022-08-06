@@ -28,16 +28,13 @@ import java.awt.*;
  *
  * @author Richard Eigenmann
  */
-public class HeavyFontProviderTest {
-
-    public HeavyFontProviderTest() {
-    }
+class HeavyFontProviderTest {
 
     /**
      * Test of getFont method, of class SansSerifFontList.
      */
     @Test
-    public void testGetFont() {
+    void testGetFont() {
         HeavyFontProvider heavyFontProvider = new HeavyFontProvider();
         Font font = heavyFontProvider.getFont( 0, 0 );
         Assertions.assertEquals("SansSerif.bold", font.getFontName(), "Expecting font for weight 0 to be SansSerif");
@@ -46,7 +43,6 @@ public class HeavyFontProviderTest {
         font = heavyFontProvider.getFont( 1, 0 );
         Assertions.assertEquals("SansSerif.bold", font.getFontName(), "Expecting font for weight 1 to be SansSerif");
         Assertions.assertEquals(28, font.getSize(), "Expecting font size for weight 1 to be 28");
-
     }
 
 }

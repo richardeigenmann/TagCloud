@@ -27,16 +27,13 @@ import org.junit.jupiter.api.Test;
  *
  * @author Richard Eigenmann
  */
-public class SansSerifFontProviderTest {
-
-    public SansSerifFontProviderTest() {
-    }
+class SansSerifFontProviderTest {
 
     /**
      * Test of getFont method, of class SansSerifFontList.
      */
     @Test
-    public void testGetFont() {
+    void testGetFont() {
         SansSerifFontProvider sansSerifFontProvider = new SansSerifFontProvider();
         Font font = sansSerifFontProvider.getFont( 0, 0 );
         Assertions.assertEquals("SansSerif.plain", font.getFontName(), "Expecting font for weight 0 to be SansSerif");
@@ -45,7 +42,6 @@ public class SansSerifFontProviderTest {
         font = sansSerifFontProvider.getFont( 1, 0 );
         Assertions.assertEquals("SansSerif.plain", font.getFontName(), "Expecting font for weight 1 to be SansSerif");
         Assertions.assertEquals(25, font.getSize(), "Expecting font size for weight 1 to be 25");
-
     }
 
 }

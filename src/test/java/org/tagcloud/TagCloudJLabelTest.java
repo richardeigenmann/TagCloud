@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Assertions;
  *
  * @author Richard Eigenmann
  */
-public class TagCloudJLabelTest {
+class TagCloudJLabelTest {
 
     @Test
-    public void testVerifyWeightVanilla() {
+    void testVerifyWeightVanilla() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0.5f );
         weightedWord.setColorWeight( 0.6f );
@@ -43,7 +43,7 @@ public class TagCloudJLabelTest {
     }
 
     @Test
-    public void testVerifyWeightSingleArg() {
+    void testVerifyWeightSingleArg() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0.4f );
         weightedWord.setColorWeight( 0.4f );
@@ -53,7 +53,7 @@ public class TagCloudJLabelTest {
     }
 
     @Test
-    public void testVerifyWeightZero() {
+    void testVerifyWeightZero() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0 );
         weightedWord.setColorWeight( 0 );
@@ -63,7 +63,7 @@ public class TagCloudJLabelTest {
     }
 
     @Test
-    public void testVerifyWeight1() {
+    void testVerifyWeight1() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 1 );
         weightedWord.setColorWeight( 1 );
@@ -73,7 +73,7 @@ public class TagCloudJLabelTest {
     }
 
     @Test
-    public void testVerifyWeightTooLarge() {
+    void testVerifyWeightTooLarge() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 1.5f );
         weightedWord.setColorWeight( 2000 );
@@ -83,7 +83,7 @@ public class TagCloudJLabelTest {
     }
 
     @Test
-    public void testVerifyWeightTooSmall() {
+    void testVerifyWeightTooSmall() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( -0.5f );
         weightedWord.setColorWeight( -2000 );
@@ -93,7 +93,7 @@ public class TagCloudJLabelTest {
     }
 
     @Test
-    public void testFont() {
+    void testFont() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0.5f );
         weightedWord.setColorWeight( 0.6f );
@@ -105,7 +105,7 @@ public class TagCloudJLabelTest {
     }
 
     @Test
-    public void testMousoverColor() {
+    void testMousoverColor() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0.5f );
         weightedWord.setColorWeight( 0.6f );
@@ -126,7 +126,7 @@ public class TagCloudJLabelTest {
     }
 
     @Test
-    public void testSetMousoverColor() {
+    void testSetMousoverColor() {
         WeightedWord weightedWord = new WeightedWord( "Word", 10 );
         weightedWord.setSizeWeight( 0.5f );
         weightedWord.setColorWeight( 0.6f );

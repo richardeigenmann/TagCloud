@@ -26,13 +26,13 @@ import org.junit.jupiter.api.Assertions;
  *
  * @author Richard Eigenmann
  */
-public class ColorPickerTest {
+class ColorPickerTest {
 
     /**
      * Test of getColor method, of class ColorPicker.
      */
     @Test
-    public void testGetColor() {
+    void testGetColor() {
         ColorPicker twoColorPicket = new ColorPickerImpl();
         Assertions.assertEquals(twoColorArray[0], twoColorPicket.getColor( 0f, 0 ), "For weight 0 we expect the first color");
         Assertions.assertEquals(twoColorArray[1], twoColorPicket.getColor( 1f, 0 ), "For weight 1 we expect the second color");
@@ -44,7 +44,7 @@ public class ColorPickerTest {
 
     private static final Color[] twoColorArray = { Color.black, Color.white };
 
-    public static class ColorPickerImpl extends ColorPicker {
+    private static class ColorPickerImpl extends ColorPicker {
 
         @Override
         public Color[] getColorPoints() {

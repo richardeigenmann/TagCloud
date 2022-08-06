@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Assertions;
  *
  * @author Richard Eigenmann
  */
-public class TagCloudTest {
+class TagCloudTest {
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         final TagCloud tagCloud = new TagCloud();
         Assertions.assertNotNull("TagCloud could not be constructed");
     }

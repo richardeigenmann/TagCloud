@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Assertions;
  *
  * @author Richard Eigenmann
  */
-public class WordAnalyserTest {
+class WordAnalyserTest {
 
     private List<WeightedWordInterface> weightedWords;
     private final WeightedWord word1 = new WeightedWord( "word1", 10, 100 );
@@ -37,7 +37,7 @@ public class WordAnalyserTest {
     private final WeightedWord word4 = new WeightedWord( "word4", 4, 300 );
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         weightedWords = new ArrayList<>();
         weightedWords.add( word1 );
         weightedWords.add( word2 );
@@ -49,7 +49,7 @@ public class WordAnalyserTest {
      * Test of toString method, of class WordAnalyser.
      */
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals(word1, wordAnalyser.getWord( 0 ), "Check retrieval for index 0");
         Assertions.assertEquals(10, wordAnalyser.getWord( 0 ).getSizeValue(), "Check weights for index 0");
@@ -62,7 +62,7 @@ public class WordAnalyserTest {
      * Test the getSizeValueSortedTreeSet method
      */
     @Test
-    public void testGetSizeValueSortedTreeSet() {
+    void testGetSizeValueSortedTreeSet() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals((Integer) 2, wordAnalyser.getSizeValueSortedTreeSet().first(), "Checks the sizeValueSortedTreeSet: first value should be the index of the largest value i.e. word3");
         Assertions.assertEquals((Integer) 3, wordAnalyser.getSizeValueSortedTreeSet().last(), "Checks the sizeValueSortedTreeSet: last value should be the index of the smallest value i.e. word4");
@@ -73,7 +73,7 @@ public class WordAnalyserTest {
      * Test the getMinSizeValue method
      */
     @Test
-    public void testGetMinSizeValue() {
+    void testGetMinSizeValue() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals(4, wordAnalyser.getMinSizeValue(), "Checks that we get back the smallest sizeValue");
     }
@@ -82,7 +82,7 @@ public class WordAnalyserTest {
      * Test the getMaxSizeValue method
      */
     @Test
-    public void testGetMaxSizeValue() {
+    void testGetMaxSizeValue() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals(30, wordAnalyser.getMaxSizeValue(), "Checks that we get back the largest sizeValue");
     }
@@ -91,7 +91,7 @@ public class WordAnalyserTest {
      * Test the getSizeWeight method
      */
     @Test
-    public void testGetSizeWeight() {
+    void testGetSizeWeight() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals(0f, wordAnalyser.getSizeWeight( 4 ), 0.000001, "If we come with value 4 we should get a weight of 0");
         Assertions.assertEquals(1f, wordAnalyser.getSizeWeight( 30 ), 0.000001, "If we come with value 30 we should get a weight of 1");
@@ -103,7 +103,7 @@ public class WordAnalyserTest {
      *
      */
     @Test
-    public void testGetSizeWeightZero() {
+    void testGetSizeWeightZero() {
         WeightedWord zeroWord1 = new WeightedWord( "word1", 0, 100 );
         WeightedWord zeroWord2 = new WeightedWord( "word2", 0, 200 );
         List<WeightedWordInterface> zeroWeightedWords = new ArrayList<>();
@@ -114,7 +114,7 @@ public class WordAnalyserTest {
     }
 
     @Test
-    public void testGetTopWordsSizeWeighted() {
+    void testGetTopWordsSizeWeighted() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsSizeWeighted( 4 );
         Assertions.assertEquals(4, fourWords.size(), "If we ask for the top 4 words we should get 4 words");
@@ -128,7 +128,7 @@ public class WordAnalyserTest {
     }
 
     @Test
-    public void testGetTopWordsSizeWeightedEmpty() {
+    void testGetTopWordsSizeWeightedEmpty() {
         List<WeightedWordInterface> emptyList = new ArrayList<>();
         WordAnalyser wordAnalyser = new WordAnalyser( emptyList );
         List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsSizeWeighted( 4 );
@@ -137,7 +137,7 @@ public class WordAnalyserTest {
     }
 
     @Test
-    public void testGetTopWordsSizeWeightedSillyLimit() {
+    void testGetTopWordsSizeWeightedSillyLimit() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsSizeWeighted( 0 );
         Assertions.assertEquals(1, fourWords.size(), "If we ask for the 0 words list we should get 1 empty string word");
@@ -153,7 +153,7 @@ public class WordAnalyserTest {
      * Test the getSizeValueSortedTreeSet method
      */
     @Test
-    public void testGetColorValueSortedTreeSet() {
+    void testGetColorValueSortedTreeSet() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals((Integer) 3, wordAnalyser.getColorValueSortedTreeSet().first(), "Checks the colorValueSortedTreeSet: first value should be the index of the largest value i.e. word4");
         Assertions.assertEquals((Integer) 1, wordAnalyser.getColorValueSortedTreeSet().last(), "Checks the colorValueSortedTreeSet: last value should be the index of the smallest value i.e. word2");
@@ -164,7 +164,7 @@ public class WordAnalyserTest {
      * Test the getMinSizeValue method
      */
     @Test
-    public void testGetMinColorValue() {
+    void testGetMinColorValue() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals(40, wordAnalyser.getMinColorValue(), "Checks that we get back the smallest sizeValue");
     }
@@ -173,7 +173,7 @@ public class WordAnalyserTest {
      * Test the getMaxSizeValue method
      */
     @Test
-    public void testGetMaxColorValue() {
+    void testGetMaxColorValue() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals(300, wordAnalyser.getMaxColorValue(), "Checks that we get back the largest sizeValue");
     }
@@ -183,7 +183,7 @@ public class WordAnalyserTest {
      *
      */
     @Test
-    public void testGetColorWeight() {
+    void testGetColorWeight() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         Assertions.assertEquals(0f, wordAnalyser.getColorWeight( 40 ), 0.000001, "If we come with value 40 we should get a weight of 0");
         Assertions.assertEquals(1f, wordAnalyser.getColorWeight( 300 ), 0.000001, "If we come with value 300 we should get a weight of 1");
@@ -195,7 +195,7 @@ public class WordAnalyserTest {
      *
      */
     @Test
-    public void testGetColorWeightZero() {
+    void testGetColorWeightZero() {
         WeightedWord zeroWord1 = new WeightedWord( "word1", 10, 0 );
         WeightedWord zeroWord2 = new WeightedWord( "word2", 20, 0 );
         List<WeightedWordInterface> zeroWeightedWords = new ArrayList<>();
@@ -206,7 +206,7 @@ public class WordAnalyserTest {
     }
 
     @Test
-    public void testGetTopWordsColorWeighted() {
+    void testGetTopWordsColorWeighted() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsColorWeighted( 4 );
         Assertions.assertEquals(4, fourWords.size(), "If we ask for the top 4 words we should get 4 words");
@@ -220,7 +220,7 @@ public class WordAnalyserTest {
     }
 
     @Test
-    public void testGetTopWordsColorWeightedEmpty() {
+    void testGetTopWordsColorWeightedEmpty() {
         List<WeightedWordInterface> emptyList = new ArrayList<>();
         WordAnalyser wordAnalyser = new WordAnalyser( emptyList );
         List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsColorWeighted( 4 );
@@ -229,7 +229,7 @@ public class WordAnalyserTest {
     }
 
     @Test
-    public void testGetTopWordsColorWeightedSillyLimit() {
+    void testGetTopWordsColorWeightedSillyLimit() {
         WordAnalyser wordAnalyser = new WordAnalyser( weightedWords );
         List<WeightedWordInterface> fourWords = wordAnalyser.getTopWordsColorWeighted( 0 );
         Assertions.assertEquals(1, fourWords.size(), "If we ask for the 0 words list we should get 1 empty string word");
@@ -238,7 +238,6 @@ public class WordAnalyserTest {
         List<WeightedWordInterface> minusFiveWords = wordAnalyser.getTopWordsColorWeighted( -5 );
         Assertions.assertEquals(1, minusFiveWords.size(), "If we ask for the -5 words list we should get 1 empty string word");
         Assertions.assertEquals("", minusFiveWords.get( 0 ).getWord(), "The word should be an empty string");
-
     }
 
 }
