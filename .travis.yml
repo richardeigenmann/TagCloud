@@ -1,4 +1,5 @@
 language: java
+dist: focal
 jdk: openjdk17
 before_install:
   - export PATH=$GRADLE_HOME/bin:$PATH
@@ -6,6 +7,6 @@ before_install:
 os: linux
 script:
   - pwd
-  - find .
   - env
-  - ./gradlew build
+  - find .
+  - ./gradlew --info check
