@@ -1,12 +1,12 @@
 language: java
-dist: focal
+#dist: focal
 jdk: openjdk17
 before_install:
   - export PATH=$GRADLE_HOME/bin:$PATH
 #install: skip
-os: linux
-script:
-  - pwd
-  - env
-  - find .
-  - ./gradlew --info check
+#os: linux
+#script:
+#  - pwd
+#  - env
+#  - find .
+#  - ./gradlew --info check
