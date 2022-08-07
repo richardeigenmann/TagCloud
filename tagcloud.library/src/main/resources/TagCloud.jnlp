@@ -12,5 +12,5 @@
     <j2se version="1.7+" />
     <jar href="TagCloud.jar" />
   </resources>
-  <application-desc main-class="org.tagcloud.sample.SampleTagCloud" />
+  <application-desc main-class="SampleTagCloud" />
 </jnlp>

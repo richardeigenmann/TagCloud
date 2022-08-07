@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "com.github.ben-manes.versions" version "0.42.0" // dependency updates
+    id 'idea' // optional (to generate IntelliJ IDEA project files)
+}
+
+mainClassName = 'my.samplegui.SampleTagCloud'
+
+application {
+    mainModule = 'my.samplegui' // name defined in module-info.java
+    mainClass = 'my.samplegui.SampleTagCloud'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+    testImplementation(platform('org.junit:junit-bom:5.9.0'))
+    implementation(project(':tagcloud.library'))
+}
+
+jar {
+    manifest.attributes("Main-Class": "my.samplegui.SampleTagCloud")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.named('compileJava') {
+    // use the project's version or define one directly
+    options.javaModuleVersion = provider { project.version }
+}

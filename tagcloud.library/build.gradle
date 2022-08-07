@@ -1,10 +1,9 @@
 plugins {
     id "com.github.ben-manes.versions" version "0.42.0" // dependency updates
     id 'idea' // optional (to generate IntelliJ IDEA project files)
+    id 'java-library'
+    id 'jacoco'
 }
-
-apply plugin: 'java'
-apply plugin: "jacoco"
 
 repositories {
     mavenCentral()
@@ -48,6 +47,20 @@ allprojects {
     }
 }
 
+
+
+//project.version = '0.1'
+
+//task printProjectVersion() {
+//    println(project.version)
+//}
+
+//tasks.named('compileJava') {
+    // use the project's version or define one directly
+    //options.javaModuleVersion = provider { project.version }
+    //options.javaModuleVersion = '0.1'
+//}
+
 // Reminder how to build the github webpage http://richardeigenmann.github.io/TagCloud/
 // Go to Github repository > Settings > Automatic Page Generator
 // Click Load Readme.md
@@ -76,3 +89,6 @@ allprojects {
 // git add TagCloud.jar javadoc index.html Screenshot* TagCloud.jnlp
 // git commit -m "update website"
 // git push
+
+
+// java --module-path build/libs --module org.tagcloud/org.tagcloud.sample.SampleTagCloud
