@@ -105,3 +105,40 @@ Please feel free to contact the Author with comments, suggestions, improvements,
 Richard Eigenmann
 
 <mailto:richard.eigenmann@gmail.com>
+
+
+## Jlink
+
+```Bash
+/usr/java/zulu17.32.13-ca-jdk17.0.2-linux_x64/bin/jlink \
+--module-path tagcloud.samplegui/build/libs:tagcloud.library/build/libs \
+--add-modules my.samplegui \
+--output build/jlink/
+
+build/jlink/bin/java --list-modules
+
+build/jlink/bin/java --module my.samplegui
+
+/usr/java/zulu17.32.13-ca-jdk17.0.2-linux_x64/bin/jlink \
+--module-path tagcloud.samplegui/build/libs:tagcloud.library/build/libs \
+--add-modules my.samplegui \
+--output build/jlink/ \
+--launcher run-samplegui=my.samplegui
+
+/usr/java/zulu17.32.13-ca-jdk17.0.2-linux_x64/bin/jlink \
+--module-path tagcloud.samplegui/build/libs:tagcloud.library/build/libs \
+--add-modules my.samplegui \
+--output build/jlink/ \
+--launcher run-samplegui=my.samplegui
+
+/usr/java/zulu17.32.13-ca-jdk17.0.2-linux_x64/bin/jlink --list-plugins
+
+rm -rf build/jlink
+
+/usr/java/zulu17.32.13-ca-jdk17.0.2-linux_x64/bin/jlink \
+--module-path tagcloud.samplegui/build/libs:tagcloud.library/build/libs \
+--add-modules my.samplegui \
+--output build/jlink/ \
+--launcher run-samplegui=my.samplegui \
+--compress 2
+```
