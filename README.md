@@ -142,3 +142,37 @@ rm -rf build/jlink
 --launcher run-samplegui=my.samplegui \
 --compress 2
 ```
+
+```ps
+"c:\Program Files (x86)\jdk-17.0.1\bin\jpackage" ^
+--type exe ^
+--input . ^
+--name JPO ^
+--description "Java Picture Organizer" ^
+--vendor "Richard Eigenmann" ^
+--app-version 0.17 ^
+--main-jar Jpo-all.jar ^
+--icon favicon.ico ^
+--java-options '--enable-preview' ^
+--win-shortcut ^
+--win-menu ^
+--verbose ^
+--dest c:\Users\richa\Desktop
+```
+
+
+```bash
+/usr/java/zulu17.32.13-ca-jdk17.0.2-linux_x64/bin/jpackage \
+--module-path tagcloud.samplegui/build/libs:tagcloud.library/build/libs \
+--module my.samplegui \
+--type rpm \
+--name TagCloud \
+--description "Tag Cloud" \
+--vendor "Richard Eigenmann" \
+--app-version 0.0.6 \
+--verbose \
+--dest build/rpm/ \
+--linux-menu-group "Richi's Apps" \
+--linux-shortcut \
+--install-dir /usr
+```
