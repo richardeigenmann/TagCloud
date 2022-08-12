@@ -16,30 +16,19 @@
  */
 package my.samplegui;
 
-import org.tagcloud.colorproviders.BMIColorProvider;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.util.List;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import org.tagcloud.colorproviders.BlackToWhiteGradient;
+import org.tagcloud.TagCloud;
+import org.tagcloud.WeightedWordInterface;
+import org.tagcloud.colorproviders.*;
 import org.tagcloud.fontproviders.HeavyFontProvider;
-import org.tagcloud.colorproviders.SampleGradientColors;
 import org.tagcloud.fontproviders.SansSerifFontProvider;
 import org.tagcloud.fontproviders.SerifFontProvider;
-import org.tagcloud.colorproviders.ShadesOfLightBlue;
-import org.tagcloud.TagCloud;
-import org.tagcloud.colorproviders.YellowBrownGradient;
-import org.tagcloud.colorproviders.YellowOrBrown;
-import javax.swing.BoxLayout;
-import org.tagcloud.WeightedWordInterface;
+
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Shows how to generate a sample tag cloud

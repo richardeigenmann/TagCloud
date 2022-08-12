@@ -30,13 +30,13 @@ jar {
 }
 
 
-task run(type: JavaExec) {
+/*task run(type: JavaExec) {
     group 'build'
     description 'Runs the sample application'
     dependsOn jar
     classpath = files('build/libs/TagCloud.jar')
     mainClass = 'org.tagcloud.sample.SampleTagCloud'
-}
+}*/
 
 allprojects {
     gradle.projectsEvaluated {
@@ -92,3 +92,4 @@ allprojects {
 
 
 // java --module-path build/libs --module org.tagcloud/org.tagcloud.sample.SampleTagCloud
+
