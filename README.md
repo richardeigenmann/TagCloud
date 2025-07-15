@@ -176,3 +176,4 @@ rm -rf build/jlink
 
 - Update Gradle for 2025
 - Package this as a proper library
+- Change the first example to be population vs per capita income
