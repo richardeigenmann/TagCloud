@@ -1,29 +1,26 @@
 # TagCloud
 
-Java Swing Component that shows words in different colors and font sizes based on weights.
+![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/images/Screenshot1.png)
 
-[Presentation](http://richardeigenmann.github.io/TagCloud/presentation.html)
+This project creates a Java Swing Component that shows a set of words in a Component. Each word is given a color and size based on a weighting. You can use this in a Swing UI to visualise a collection of words by importance in 2 dimensions.
 
-[Project Page](http://richardeigenmann.github.io/TagCloud)
+See also the [Presentation](http://richardeigenmann.github.io/TagCloud/presentation.html) and the [Project Page](http://richardeigenmann.github.io/TagCloud)
 
-## Quickstart
+## Try it out
 
-Run the Sample on [Java Web Start](http://richardeigenmann.github.io/TagCloud/TagCloud.jnlp)
+If you can still run Java Web Start, click on the  [link](http://richardeigenmann.github.io/TagCloud/TagCloud.jnlp)
 
-[Download the jar file](http://richardeigenmann.github.io/TagCloud/TagCloud.jar) and run the sample program:
+Otherwise Download the [JAR](https://github.com/richardeigenmann/TagCloud/raw/refs/heads/gh-pages/TagCloud.jar) and run the sample program as follows:
 
 ```Bash
 java  -jar ./TagCloud.jar
 ```
 
-![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/images/Screenshot1.png)
+## How to use it
 
+See the Javadoc for the classes and methods: [Javadoc](http://richardeigenmann.github.io/TagCloud/javadoc)
 
-## Usage
-
-[Javadoc](http://richardeigenmann.github.io/TagCloud/javadoc)
-
-To create the component, create a List of WeightedWord objects. Then create a TagCloud and associate the List<WeighetdWord> with the TagCloud.
+To create the component, create a List of WeightedWord objects. Each WeightedWord has a String and two weights, one for the size and the other for the color. The weights can be the same if you want or one can be constant. Then create a TagCloud object and associate the List<WeighetdWord> with the TagCloud.
 Then add the TagCloud to your Swing Container:
 
 ```Java
@@ -34,7 +31,7 @@ TagCloud tagCloud = new TagCloud();
 tagCloud.setWordsList( weightedWordList );
 ```
 
-To become more interactive you can add a TagClickListener to the TagCloud and will receive a WeighedWord if the user clicks on a word:
+To become more interactive you can add a TagClickListener to the TagCloud and will receive a WeighedWord in the tagClicked callback if the user clicks on a word:
 
 ```Java
 tagCloud.addTagClickListener( new TagClickListener() {
@@ -45,16 +42,12 @@ tagCloud.addTagClickListener( new TagClickListener() {
   }
 } );
 
-...
-
 public void doTagClicked( WeightedWordInterface weightedWord ) {
   System.out.println( String.format( "The word: %s was clicked", weightedWord.getWord() ) );
 }
 ```
 
-
 See the included [sample program](https://github.com/richardeigenmann/TagCloud/blob/master/src/main/java/org/TagCloud/Sample/SampleTagCloud.java) for a worked example.
-
 
 ## Customisation
 
@@ -69,13 +62,16 @@ To get the colors to change according to the BMI of the person you have to tell 
 ```Java
 tagCloud.setColorProvider( new BMIColorProvider() );
 ```
+
 If you dig into the code you will notice that some ColorProviders extend the [ColorInterpolator](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorInterpolator.html) which allows the extending class to supply an array of colors between which the ColorInterpolator will interpolate an appropriate hue:
 
 ```Java
 public class SampleGradientColors extends ColorInterpolator {
-    public final static Color[] SAMPLE_GRADIENT_COLORS = { new Color( 0x099716 ), new Color( 0x18c928 ),
-        new Color( 0x36e410 ), new Color( 0x64e410 ), new Color( 0xa1e70c ),
-        new Color( 0xc3d000 ), new Color( 0xe8e410 ), new Color( 0xdcaf1e ),
+    public final static Color[] SAMPLE_GRADIENT_COLORS = { 
+        new Color( 0x099716 ), new Color( 0x18c928 ),
+        new Color( 0x36e410 ), new Color( 0x64e410 ), 
+        new Color( 0xa1e70c ), new Color( 0xc3d000 ), 
+        new Color( 0xe8e410 ), new Color( 0xdcaf1e ),
         new Color( 0xe87514 ), new Color( 0xed723b ) };
 
     @Override
@@ -98,7 +94,6 @@ Some FontProviders are supplied with the library. See the [Javadoc](http://richa
 TagCloud is an Open Source project by Richard Eigenmann.
 It is licensed under the <a href="https://github.com/richardeigenmann/TagCloud/blob/master/license.txt">LGPL v3</a> license.
 
-
 ## Feedback
 
 Please feel free to contact the Author with comments, suggestions, improvements, pull requests or encouragement:
@@ -106,8 +101,9 @@ Richard Eigenmann
 
 <mailto:richard.eigenmann@gmail.com>
 
+## ToDo: Jlink Section
 
-## Jlink
+The project was one of my first to use Modularity. It probably needs a bit of cleaning up here.
 
 ```Bash
 /usr/java/zulu17.32.13-ca-jdk17.0.2-linux_x64/bin/jlink \
@@ -160,7 +156,6 @@ rm -rf build/jlink
 --dest c:\Users\richa\Desktop
 ```
 
-
 ```bash
 /usr/java/zulu17.32.13-ca-jdk17.0.2-linux_x64/bin/jpackage \
 --module-path tagcloud.samplegui/build/libs:tagcloud.library/build/libs \
@@ -176,3 +171,8 @@ rm -rf build/jlink
 --linux-shortcut \
 --install-dir /usr
 ```
+
+## ToDo
+
+- Update Gradle for 2025
+- Package this as a proper library
