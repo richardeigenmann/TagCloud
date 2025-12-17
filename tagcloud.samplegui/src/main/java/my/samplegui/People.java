@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009, 2019 Richard Eigenmann, Zurich, Switzerland
+ Copyright (C) 2009, 2025 Richard Eigenmann, Zürich, Switzerland
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -14,66 +14,81 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
+
 package my.samplegui;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.tagcloud.WeightedWord;
 import org.tagcloud.WeightedWordInterface;
 
 /**
- * This class creates a list of People with their height and BMI.
+ * A factory class to create a list of famous People for the tag cloud sample.
  *
  * @author Richard Eigenmann
  */
-public class People extends ArrayList<WeightedWordInterface> {
+public final class People {
+
+    // Private constructor to prevent instantiation of this utility class.
+    private People() {}
 
     /**
-     * Short list of cities
+     * A record to model a person's data clearly.
      */
-    public People() {
-        // http://europeanhistory.about.com/od/bonapartenapoleon/a/napoleonheight.htm
-        // http://deadliestwarrior.wikia.com/wiki/Napoleon_Bonaparte
-        add( new WeightedWord( "Napolen Bonaparte", 170, bmi( 1.70f, 63.5f ) ) );
-        // http://rogerjnorton.com/Lincoln92.html
-        add( new WeightedWord( "Abraham Lincoln", 193, bmi( 1.93f, 81.6f ) ) );
-        // https://answers.yahoo.com/question/index?qid=20060805203846AAa41YB 
-        add( new WeightedWord( "Michael Moore", 182, bmi( 1.82f, 154.2f ) ) );
-        // http://en.wikipedia.org/wiki/Claudia_Schiffer
-        add( new WeightedWord( "Claudia Schiffer", 181, bmi( 1.81f, 58.7f ) ) );
-        // http://en.wikipedia.org/wiki/Vladimir_Putin
-        // http://hollywoodmeasurements.com/vladimir-putin-height-weight-body-fat-percentage/
-        add( new WeightedWord( "Vladimir Putin", 170, bmi( 1.70f, 75f ) ) );
-        // http://hollywoodmeasurements.com/michael-jackson-height-weight-body-fat-percentage/
-        add( new WeightedWord( "Michael Jackson", 175, bmi( 1.75f, 64f ) ) );
-        // http://hollywoodmeasurements.com/snoop-dogg-height-weight-age-body-fat-percentage/
-        add( new WeightedWord( "Snoop Dogg", 193, bmi( 1.93f, 80f ) ) );
-        // http://hollywoodmeasurements.com/miley-cyrus-height-weight-bra-size-age-measurements/
-        add( new WeightedWord( "Miley Cyrus", 165, bmi( 1.65f, 52f ) ) );
-        // http://hollywoodmeasurements.com/keanu-reeves-height-weight-body-fat-percentage/
-        add( new WeightedWord( "Keanu Reeves", 185, bmi( 1.85f, 79f ) ) );
-        // http://hollywoodmeasurements.com/larry-page-height-weight-body-fat-percentage/
-        add( new WeightedWord( "Larry Page", 180, bmi( 1.80f, 81f ) ) );
-        // http://hollywoodmeasurements.com/quentin-tarantino-height-weight-body-fat-percentage/
-        add( new WeightedWord( "Quentin Tarantino", 185, bmi( 1.85f, 92f ) ) );
-        // http://hollywoodmeasurements.com/steve-jobs-height-weight-body-fat-percentage/
-        add( new WeightedWord( "Steve Jobs", 188, bmi( 1.88f, 70f ) ) );
-        // http://hollywoodmeasurements.com/warren-buffett-height-weight-body-fat-percentage/
-        add( new WeightedWord( "Warren Buffet", 178, bmi( 1.78f, 86f ) ) );
-        // http://hollywoodmeasurements.com/donald-trump-height-weight-body-fat-percentage/
-        add( new WeightedWord( "Donald Trump", 188, bmi( 1.88f, 95f ) ) );
+    private record Person(String name, int heightInCm, double weightInKg) {
+        /**
+         * Calculates the Body Mass Index (BMI).
+         * @see <a href="https://en.wikipedia.org/wiki/Body_mass_index">https://en.wikipedia.org/wiki/Body_mass_index</a>
+         * @return the BMI value.
+         */
+        public double getBmi() {
+            // Avoid division by zero if height is 0
+            if (heightInCm <= 0) {
+                return 0;
+            }
+            // BMI formula: weight (kg) / [height (m)]^2
+            return weightInKg / Math.pow((double) heightInCm / 100, 2);
+        }
+
+        /**
+         * Converts this Person object into a WeightedWord for the tag cloud.
+         * The tag's "weight" is based on the person's height.
+         * @return A {@link WeightedWordInterface} instance.
+         */
+        public WeightedWordInterface toWeightedWord() {
+            return new WeightedWord(name, heightInCm, (int) getBmi());
+        }
     }
 
+    private static final List<Person> FAMOUS_PEOPLE = Arrays.asList(
+            new Person("Napoleon Bonaparte", 170, 63.5),
+            new Person("Abraham Lincoln", 193, 81.6),
+            new Person("Michael Moore", 182, 154.2),
+            new Person("Claudia Schiffer", 181, 58.7),
+            new Person("Vladimir Putin", 170, 75),
+            new Person("Michael Jackson", 175, 64),
+            new Person("Snoop Dogg", 193, 80),
+            new Person("Miley Cyrus", 165, 52),
+            new Person("Keanu Reeves", 185, 79),
+            new Person("Larry Page", 180, 81),
+            new Person("Quentin Tarantino", 185, 92),
+            new Person("Steve Jobs", 183, 70),
+            new Person("Warren Buffet", 178, 86),
+            new Person("Donald Trump", 190, 110)
+    );
+
     /**
-     * Returns the Body mass index for the supplied height in meters and weight
-     * in kg
+     * Returns an unmodifiable list of famous people as {@link WeightedWordInterface} objects.
      *
-     * @see <a
-     * href="http://en.wikipedia.org/wiki/Body_mass_index">http://en.wikipedia.org/wiki/Body_mass_index</a>
-     * @param height Height in meters
-     * @param weight Weight in kg
-     * @return the BMI
+     * @return A list of people for the tag cloud.
      */
-    private int bmi( float height, float weight ) {
-        return (int) ( weight / ( Math.pow( height, 2 ) ) );
+    public static List<WeightedWordInterface> getPeopleAsWeightedWords() {
+        return Collections.unmodifiableList(
+                FAMOUS_PEOPLE.stream()
+                        .map(Person::toWeightedWord)
+                        .toList()
+        );
     }
 }

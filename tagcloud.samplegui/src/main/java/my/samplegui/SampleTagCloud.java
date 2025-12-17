@@ -47,7 +47,7 @@ public class SampleTagCloud extends JFrame {
      *
      * @param args Command line arguments
      */
-    public static void main( String[] args ) {
+    static void main( String[] args ) {
         SwingUtilities.invokeLater(SampleTagCloud::new);
     }
 
@@ -95,7 +95,7 @@ public class SampleTagCloud extends JFrame {
                     tagCloud.setWordsList( new ShortCitiesList() );
                     break;
                 case 4:
-                    tagCloud.setWordsList( new People() );
+                    tagCloud.setWordsList( People.getPeopleAsWeightedWords() );
                     break;
                 case 0:
                 default:
@@ -199,7 +199,7 @@ public class SampleTagCloud extends JFrame {
     private class MySliderChangeListener
             implements ChangeListener {
 
-        final int minimumWords = 10;
+        static final int MINIMUM_WORDS = 10;
 
         /**
          * Receive slider moves and using an exponential formula to adjust the
@@ -218,7 +218,7 @@ public class SampleTagCloud extends JFrame {
                 return;
             }
             int availableWords = tagCloud.getWordsList().size();
-            int numberOfWords = (int) ( pct * ( availableWords - minimumWords ) ) + minimumWords;
+            int numberOfWords = (int) ( pct * ( availableWords - MINIMUM_WORDS) ) + MINIMUM_WORDS;
             commentLabel.setText( String.format( "Slider is %d%%; showing %d words", (int) ( pct * 100f ), numberOfWords ) );
             tagCloud.setMaxWordsToShow( numberOfWords );
         }
