@@ -179,3 +179,4 @@ rm -rf build/jlink
 - Improve documentation (zulu 17 to zulu25, forget applets, build instructions)
 - Describe more clearly what numbers are being weighted in the GUI
 - Improve color scheme (yellow on gray doesn't work well)
+- Fix screenshots
