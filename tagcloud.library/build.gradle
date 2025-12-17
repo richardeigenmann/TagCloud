@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.ben-manes.versions" version "0.42.0" // dependency updates
+    id "com.github.ben-manes.versions" version "0.53.0" // dependency updates
     id 'idea' // optional (to generate IntelliJ IDEA project files)
     id 'java-library'
     id 'jacoco'
@@ -10,8 +10,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
-    testImplementation(platform('org.junit:junit-bom:5.9.0'))
+    // API for writing tests
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:6.1.0-M1'
+    testImplementation(platform('org.junit:junit-bom:6.1.0-M1'))
+    // Engine for running tests
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    // Launcher for the JUnit Platform
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 test {
@@ -25,7 +30,9 @@ test {
     }
 }
 
+
 jar {
+    archiveBaseName = 'org.tagcloud'
     manifest.attributes("Main-Class": "org.tagcloud.sample.SampleTagCloud")
 }
 
@@ -92,4 +99,3 @@ allprojects {
 
 
 // java --module-path build/libs --module org.tagcloud/org.tagcloud.sample.SampleTagCloud
-
