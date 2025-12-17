@@ -174,6 +174,8 @@ rm -rf build/jlink
 
 ## ToDo
 
-- Update Gradle for 2025
 - Package this as a proper library
 - Change the first example to be population vs per capita income
+- Improve documentation (zulu 17 to zulu25, forget applets, build instructions)
+- Describe more clearly what numbers are being weighted in the GUI
+- Improve color scheme (yellow on gray doesn't work well)
