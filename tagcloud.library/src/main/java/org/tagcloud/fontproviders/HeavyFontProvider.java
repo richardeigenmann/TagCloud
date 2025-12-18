@@ -1,7 +1,7 @@
 /*
  SansSerifFontProvider.java:  An implementation of the FontList interface with large fat Sans Serif fonts
 
- Copyright (C) 2014  Richard Eigenmann.
+ Copyright (C) 2014-2025  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -18,7 +18,6 @@
 package org.tagcloud.fontproviders;
 
 import java.awt.Font;
-import org.tagcloud.FontProvider;
 
 /**
  * An implementation of the FontList interface with large fat Sans Serif fonts
@@ -40,12 +39,11 @@ public class HeavyFontProvider implements FontProvider {
      * Returns the font for the specified weight
      *
      * @param weight the weight for which to return the font
-     * @param value ignored
      * @return the font for the weight
      */
     @Override
-    public Font getFont( float weight, int value ) {
-        final int index = Math.round( ( weight * ( fonts.length - 1 ) ) );
+    public Font getFont( double weight ) {
+        final int index = (int) Math.round( ( weight * ( fonts.length - 1 ) ) );
         return fonts[index];
     }
 

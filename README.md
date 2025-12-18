@@ -2,7 +2,9 @@
 
 ![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/images/Screenshot1.png)
 
-This project creates a Java Swing Component that shows a set of words in a Component. Each word is given a color and size based on a weighting. You can use this in a Swing UI to visualise a collection of words by importance in 2 dimensions.
+TagCloud is an Open Source library that creates a Java SWING Component that renders a 
+list of words. Each word is given a font color and font size based on two weights.
+The order of the words is preserved. But you can limit the number of words being shown.
 
 See also the [Presentation](http://richardeigenmann.github.io/TagCloud/presentation.html) and the [Project Page](http://richardeigenmann.github.io/TagCloud)
 
@@ -12,7 +14,7 @@ If you can still run Java Web Start, click on the  [link](http://richardeigenman
 
 Otherwise Download the [JAR](https://github.com/richardeigenmann/TagCloud/raw/refs/heads/gh-pages/TagCloud.jar) and run the sample program as follows:
 
-```Bash
+```bash
 java  -jar ./TagCloud.jar
 ```
 
@@ -23,7 +25,7 @@ See the Javadoc for the classes and methods: [Javadoc](http://richardeigenmann.g
 To create the component, create a List of WeightedWord objects. Each WeightedWord has a String and two weights, one for the size and the other for the color. The weights can be the same if you want or one can be constant. Then create a TagCloud object and associate the List<WeighetdWord> with the TagCloud.
 Then add the TagCloud to your Swing Container:
 
-```Java
+```java
 List<WeightedWordInterface> weightedWordList = new ArrayList<>();
 weightedWordList.add( new WeightedWord( "Word1", 10, 50 ) );
 weightedWordList.add( new WeightedWord( "Word2", 60, 20 ) );
@@ -33,7 +35,7 @@ tagCloud.setWordsList( weightedWordList );
 
 To become more interactive you can add a TagClickListener to the TagCloud and will receive a WeighedWord in the tagClicked callback if the user clicks on a word:
 
-```Java
+```java
 tagCloud.addTagClickListener( new TagClickListener() {
 
   @Override
@@ -42,7 +44,7 @@ tagCloud.addTagClickListener( new TagClickListener() {
   }
 } );
 
-public void doTagClicked( WeightedWordInterface weightedWord ) {
+public void doTagClicked( final WeightedWordInterface weightedWord ) {
   System.out.println( String.format( "The word: %s was clicked", weightedWord.getWord() ) );
 }
 ```

@@ -18,7 +18,6 @@
 package org.tagcloud.fontproviders;
 
 import java.awt.Font;
-import org.tagcloud.FontProvider;
 
 /**
  * An implementation of the FontList interface with Sans Serif fonts
@@ -52,12 +51,11 @@ public class SansSerifFontProvider implements FontProvider {
      * Returns the font for the specified weight
      *
      * @param weight the weight for which to return the font
-     * @param value ignored
      * @return the font for the weight
      */
     @Override
-    public Font getFont( float weight, int value ) {
-        final int index = Math.round( ( weight * ( fonts.length - 1 ) ) );
+    public Font getFont( double weight ) {
+        final int index = (int) Math.round( ( weight * ( fonts.length - 1 ) ) );
         return fonts[index];
     }
 

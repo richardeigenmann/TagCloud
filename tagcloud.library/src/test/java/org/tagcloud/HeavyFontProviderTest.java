@@ -36,11 +36,11 @@ class HeavyFontProviderTest {
     @Test
     void testGetFont() {
         HeavyFontProvider heavyFontProvider = new HeavyFontProvider();
-        Font font = heavyFontProvider.getFont( 0, 0 );
+        Font font = heavyFontProvider.getFont( 0 );
         Assertions.assertEquals("SansSerif.bold", font.getFontName(), "Expecting font for weight 0 to be SansSerif");
         Assertions.assertEquals(18, font.getSize(), "Expecting font size for weight 0 to be 18");
 
-        font = heavyFontProvider.getFont( 1, 0 );
+        font = heavyFontProvider.getFont( 1 );
         Assertions.assertEquals("SansSerif.bold", font.getFontName(), "Expecting font for weight 1 to be SansSerif");
         Assertions.assertEquals(28, font.getSize(), "Expecting font size for weight 1 to be 28");
     }

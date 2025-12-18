@@ -20,6 +20,7 @@ package org.tagcloud;
 import java.awt.Color;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.tagcloud.colorproviders.ColorPicker;
 
 /**
  * Unit tests for the ColorPicker class
@@ -33,13 +34,13 @@ class ColorPickerTest {
      */
     @Test
     void testGetColor() {
-        ColorPicker twoColorPicket = new ColorPickerImpl();
-        Assertions.assertEquals(twoColorArray[0], twoColorPicket.getColor( 0f, 0 ), "For weight 0 we expect the first color");
-        Assertions.assertEquals(twoColorArray[1], twoColorPicket.getColor( 1f, 0 ), "For weight 1 we expect the second color");
-        Assertions.assertEquals(twoColorArray[0], twoColorPicket.getColor( 0.3f, 0 ), "For weight 0.3 we expect the first color");
-        Assertions.assertEquals(twoColorArray[0], twoColorPicket.getColor( 0.48f, 0 ), "For weight 0.48 we expect the first color");
-        Assertions.assertEquals(twoColorArray[1], twoColorPicket.getColor( 0.5f, 0 ), "For weight 0.5 we expect the second color");
-        Assertions.assertEquals(twoColorArray[1], twoColorPicket.getColor( 0.7f, 0 ), "For weight 0.7 we expect the second color");
+        final var twoColorPicker = new ColorPickerImpl();
+        Assertions.assertEquals(twoColorArray[0], twoColorPicker.getColor( 0 ), "For weight 0 we expect the first color");
+        Assertions.assertEquals(twoColorArray[1], twoColorPicker.getColor( 1 ), "For weight 1 we expect the second color");
+        Assertions.assertEquals(twoColorArray[0], twoColorPicker.getColor( 0.3 ), "For weight 0.3 we expect the first color");
+        Assertions.assertEquals(twoColorArray[0], twoColorPicker.getColor( 0.48 ), "For weight 0.48 we expect the first color");
+        Assertions.assertEquals(twoColorArray[1], twoColorPicker.getColor( 0.5 ), "For weight 0.5 we expect the second color");
+        Assertions.assertEquals(twoColorArray[1], twoColorPicker.getColor( 0.7 ), "For weight 0.7 we expect the second color");
     }
 
     private static final Color[] twoColorArray = { Color.black, Color.white };

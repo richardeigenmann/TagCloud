@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009, 2019 Richard Eigenmann, Zurich, Switzerland
+ Copyright (C) 2009, 2025 Richard Eigenmann, Zurich, Switzerland
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -16,8 +16,7 @@
  */
 package my.samplegui;
 
-import org.tagcloud.TagCloud;
-import org.tagcloud.WeightedWordInterface;
+import org.tagcloud.*;
 import org.tagcloud.colorproviders.*;
 import org.tagcloud.fontproviders.HeavyFontProvider;
 import org.tagcloud.fontproviders.SansSerifFontProvider;
@@ -28,26 +27,18 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
- * Shows how to generate a sample tag cloud
+ * Sample GUI to demonstrate the use of the tag cloud
  *
  * @author Richard Eigenmann
  */
 public class SampleTagCloud extends JFrame {
 
     /**
-     * Let's have a logger
+     * Main entry point of this Swing GUI application
      */
-    private static final Logger LOGGER = Logger.getLogger( SampleTagCloud.class.getName() );
-
-    /**
-     * Make this class directly executable.
-     *
-     * @param args Command line arguments
-     */
-    static void main( String[] args ) {
+    static void main() {
         SwingUtilities.invokeLater(SampleTagCloud::new);
     }
 
@@ -57,22 +48,31 @@ public class SampleTagCloud extends JFrame {
     private final TagCloud tagCloud = new TagCloud();
 
     /**
-     * Creates the JFrame, control widgets and TagCloud
+     * Creates a JFrame, control widgets and TagCloud
      */
     public SampleTagCloud() {
-        setPreferredSize( new Dimension( 600, 400 ) );
-        setTitle( "Sample Tag Cloud" );
-        setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        this.setPreferredSize( new Dimension( 600, 400 ) );
+        this.setTitle( "Sample Tag Cloud" );
+        this.setDefaultCloseOperation( EXIT_ON_CLOSE );
         this.getContentPane().add( getControlsPanel(), BorderLayout.PAGE_START );
 
-        tagCloud.addTagClickListener(this::doTagClicked);
+        this.tagCloud.addTagClickListener(this::doTagClicked);
         this.getContentPane().add( tagCloud );
 
         pack();
         setVisible( true );
     }
 
-    private final JComboBox<String> wordListChooser  = new JComboBox<>(new String[]{"Cities", "European Cities", "Countries", "Short Cities List", "People"});
+    private final JComboBox<String> wordListChooser  =
+        new JComboBox<>(
+            new String[]{
+                "Cities by population",
+                "European Cities by population",
+                "Countries by population",
+                "Short Cities List by population",
+                "Famous People by height and BMI"
+            }
+        );
 
     /**
      * Build the widgets to have some interaction on the screen
@@ -80,54 +80,54 @@ public class SampleTagCloud extends JFrame {
      * @return Returns a panel with stuff
      */
     private JPanel getControlsPanel() {
-        JPanel firstLinePanel = new JPanel();
+        final var firstLinePanel = new JPanel();
 
         wordListChooser.addActionListener(e -> {
             int index = wordListChooser.getSelectedIndex();
             switch ( index ) {
                 case 1:
-                    tagCloud.setWordsList( new EuropeanCities() );
+                    tagCloud.setWordsList( EuropeanCities.getCitiesAsWeightedWords() );
                     break;
                 case 2:
-                    tagCloud.setWordsList( new Countries() );
+                    tagCloud.setWordsList( Countries.getCountriesAsWeightedWords() );
                     break;
                 case 3:
-                    tagCloud.setWordsList( new ShortCitiesList() );
+                    tagCloud.setWordsList( ShortCitiesList.getCitiesAsWeightedWords() );
                     break;
                 case 4:
-                    tagCloud.setWordsList( People.getPeopleAsWeightedWords() );
+                    tagCloud.setWordsList( FamousPeople.getPeopleAsWeightedWords() );
                     break;
                 case 0:
                 default:
-                    tagCloud.setWordsList( new Cities() );
+                    tagCloud.setWordsList( LargeCities.getCitiesAsWeightedWords() );
 
             }
         });
         firstLinePanel.add( wordListChooser );
-        wordListChooser.setSelectedIndex( 0 );
+
 
         final JComboBox<String> colorSchemeChooser = new JComboBox<>( new String[]{ "Shades of Light Blue", "Sample Gradient Colors", "Black to White Gradient", "Yellow Brown Gradient", "Yellow or Brown", "Body Mass Index" } );
         colorSchemeChooser.addActionListener(e -> {
             int index = colorSchemeChooser.getSelectedIndex();
             switch ( index ) {
                 case 1:
-                    tagCloud.setColorProvider( new SampleGradientColors() );
+                    tagCloud.setColorMapper( new ColorValueMapper( new SampleGradientColors()) );
                     break;
                 case 2:
-                    tagCloud.setColorProvider( new BlackToWhiteGradient() );
+                    tagCloud.setColorMapper( new ColorValueMapper( new BlackToWhiteGradient()) );
                     break;
                 case 3:
-                    tagCloud.setColorProvider( new YellowBrownGradient() );
+                    tagCloud.setColorMapper( new ColorValueMapper( new YellowBrownGradient()) );
                     break;
                 case 4:
-                    tagCloud.setColorProvider( new YellowOrBrown() );
+                    tagCloud.setColorMapper( new ColorValueMapper( new YellowOrBrown() ) );
                     break;
                 case 5:
-                    tagCloud.setColorProvider( new BMIColorProvider() );
+                    tagCloud.setColorMapper( new BMIValueMapper() );
                     break;
                 case 0:
                 default:
-                    tagCloud.setColorProvider( new ShadesOfLightBlue() );
+                    tagCloud.setColorMapper( new ColorValueMapper( new ShadesOfLightBlue() ) );
 
             }
         });
@@ -139,27 +139,29 @@ public class SampleTagCloud extends JFrame {
             int index = fontProviderChooser.getSelectedIndex();
             switch ( index ) {
                 case 1:
-                    tagCloud.setFontProvider( new SerifFontProvider() );
+                    tagCloud.setFontMapper( new FontMapper(new SerifFontProvider() ));
                     break;
                 case 2:
-                    tagCloud.setFontProvider( new HeavyFontProvider() );
+                    tagCloud.setFontMapper( new FontMapper(new HeavyFontProvider() ));
                     break;
                 case 0:
                 default:
-                    tagCloud.setFontProvider( new SansSerifFontProvider() );
+                    tagCloud.setFontMapper( new FontMapper(new SansSerifFontProvider() ));
             }
         });
         firstLinePanel.add( fontProviderChooser );
         fontProviderChooser.setSelectedIndex( 0 );
+        wordListChooser.setSelectedIndex( 0 );
 
-        JSlider slider = new JSlider( 0, 100 ); // we will only use the slider for the percentage of total
+        final var slider = new JSlider( 0, 100 ); // we will only use the slider for the percentage of total
         slider.setPreferredSize( new Dimension( 150, 20 ) );
         slider.addChangeListener( new MySliderChangeListener() );
-        JPanel secondLinePanel = new JPanel();
+
+        final var secondLinePanel = new JPanel();
         secondLinePanel.add( slider );
         secondLinePanel.add( commentLabel );
 
-        JPanel controlsPanel = new JPanel();
+        final var controlsPanel = new JPanel();
         BoxLayout boxLayout = new BoxLayout( controlsPanel, BoxLayout.Y_AXIS );
         controlsPanel.setLayout( boxLayout );
         controlsPanel.add( firstLinePanel );
@@ -181,12 +183,12 @@ public class SampleTagCloud extends JFrame {
     public void doTagClicked( WeightedWordInterface weightedWord ) {
         String comment;
         if ( wordListChooser.getSelectedIndex() != 4 ) {
-            comment = String.format( "%s, Population: %d", weightedWord.getWord(),
-                    weightedWord.getSizeValue() );
+            comment = String.format( "%s, Population: %f", weightedWord.getWord(),
+                    weightedWord.getFontSizeValue() );
         } else {
-            comment = String.format( "%s; Height: %d, BMI: %d",
+            comment = String.format( "%s; Height: %f, BMI: %f",
                     weightedWord.getWord(),
-                    weightedWord.getSizeValue(),
+                    weightedWord.getFontSizeValue(),
                     weightedWord.getColorValue()
             );
         }
@@ -213,7 +215,7 @@ public class SampleTagCloud extends JFrame {
             final int value = slider.getValue();
             double pct = (double) value / slider.getMaximum();
 
-            List<WeightedWordInterface> weightedWords = tagCloud.getWordsList();
+            List<? extends WeightedWordInterface> weightedWords = tagCloud.getWordsList();
             if ( weightedWords == null ) {
                 return;
             }

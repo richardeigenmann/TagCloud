@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 /*
  TagCloudJLabel.java:  A widget that shows a word in a Tag Cloud
 
- Copyright (C) 2009-2014  Richard Eigenmann.
+ Copyright (C) 2009-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -47,11 +47,11 @@ public class TagCloudJLabel extends JLabel {
     /**
      * The font provider for the label
      */
-    private FontProvider fontProvider;
+    private FontMapper fontMapper;
     /**
      * The color provider for the label
      */
-    private ColorProvider colorProvider;
+    private ColorMapper colorMapper;
     /**
      * The color to highlight the label in when moving the mouse over the label.
      */
@@ -65,22 +65,22 @@ public class TagCloudJLabel extends JLabel {
      * @param word The word to show
      */
     public TagCloudJLabel( WeightedWordInterface word ) {
-        this( word, new SansSerifFontProvider(), new ShadesOfLightBlue(), new Color( 0x421ed9 ) );
+        this( word, new FontMapper(new SansSerifFontProvider()), new ColorValueMapper(new ShadesOfLightBlue()), new Color( 0x421ed9 ) );
     }
 
     /**
      * Constructs a Word Label
      *
      * @param word The word to show
-     * @param fontProvider The font provider that will return the font to use
-     * @param colorProvider the color provider that will return the color to use
+     * @param fontMapper The font provider that will return the font to use
+     * @param colorMapper the color provider that will return the color to use
      * @param mouseoverColor the color to use in the mouseover
      */
-    public TagCloudJLabel( final WeightedWordInterface word, final FontProvider fontProvider, final ColorProvider colorProvider, final Color mouseoverColor ) {
+    public TagCloudJLabel( final WeightedWordInterface word, final FontMapper fontMapper, final ColorMapper colorMapper, final Color mouseoverColor ) {
         super( word.getWord() );
         this.weightedWord = word;
-        setFontProvider( fontProvider );
-        setColorProvider( colorProvider );
+        setFontMapper( fontMapper );
+        setColorMapper( colorMapper );
         setMouseoverColor( mouseoverColor );
 
         addMouseListener( new MouseAdapter() {
@@ -104,18 +104,11 @@ public class TagCloudJLabel extends JLabel {
     /**
      * Allows the Font provider to be set. Call validate after changing.
      *
-     * @param fontProvider the new font provider.
+     * @param fontMapper the new font provider.
      */
-    public final void setFontProvider( final FontProvider fontProvider ) {
-        this.fontProvider = fontProvider;
-        setFont();
-    }
-
-    /**
-     * Sets the font based on the sizeWeight by querying the font provider.
-     */
-    private void setFont() {
-        setFont( fontProvider.getFont( weightedWord.getSizeWeight(), weightedWord.getSizeValue() ) );
+    public final void setFontMapper(final FontMapper fontMapper ) {
+        this.fontMapper = fontMapper;
+        setFont( fontMapper.getFont( weightedWord ) );
     }
 
 
@@ -124,7 +117,7 @@ public class TagCloudJLabel extends JLabel {
      *
      * @param mouseoverColor the color for the mouseover
      */
-    public final void setMouseoverColor( Color mouseoverColor ) {
+    public final void setMouseoverColor( final Color mouseoverColor ) {
         this.mouseoverColor = mouseoverColor;
     }
 
@@ -141,10 +134,10 @@ public class TagCloudJLabel extends JLabel {
      * Sets the color provider for the label. Call validate() after changing.
      * Internally calls setForegroundColor().
      *
-     * @param colorProvider the new color provider
+     * @param colorMapper the new color mapper
      */
-    public final void setColorProvider( ColorProvider colorProvider ) {
-        this.colorProvider = colorProvider;
+    public final void setColorMapper( final ColorMapper colorMapper ) {
+        this.colorMapper = colorMapper;
         setForegroundColor();
     }
 
@@ -153,7 +146,7 @@ public class TagCloudJLabel extends JLabel {
      * color provider's getColor method
      */
     private void setForegroundColor() {
-        setForeground( colorProvider.getColor( weightedWord.getColorWeight(), weightedWord.getColorValue() ) );
+        setForeground( colorMapper.getColor( weightedWord ) );
     }
     
     /**

@@ -1,7 +1,7 @@
 /*
  WordAnalyser.java:  A class that does the analytics for the tag cloud
 
- Copyright (C) 2009-2014  Richard Eigenmann.
+ Copyright (C) 2009-2025  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -39,7 +39,7 @@ public class WordAnalyser {
     /**
      * The list of words with their weights
      */
-    private final List<WeightedWordInterface> weightedWords;
+    private final List<? extends WeightedWordInterface> weightedWords;
 
     /**
      * Creates a new WordAnalyzer with the supplied list of WeightedWords.
@@ -48,7 +48,7 @@ public class WordAnalyser {
      *
      * @param weightedWords The list of weightedWords
      */
-    public WordAnalyser( List<WeightedWordInterface> weightedWords ) {
+    public WordAnalyser( final List<? extends WeightedWordInterface> weightedWords ) {
         this.weightedWords = weightedWords;
     }
 
@@ -67,7 +67,7 @@ public class WordAnalyser {
      *
      * @return the weighted words
      */
-    public List<WeightedWordInterface> getWeightedWords() {
+    public List<? extends WeightedWordInterface> getWeightedWords() {
         return weightedWords;
     }
 
@@ -92,11 +92,11 @@ public class WordAnalyser {
                  * sorted by value instead of by word
                  */
                 @Override
-                public int compare(Integer index1, Integer index2) {
-                    int size1 = weightedWords.get(index1).getSizeValue();
-                    int size2 = weightedWords.get(index2).getSizeValue();
+                public int compare(final Integer index1, final Integer index2) {
+                    final var size1 = weightedWords.get(index1).getFontSizeValue();
+                    final var size2 = weightedWords.get(index2).getFontSizeValue();
                     if (!(size1 == size2)) {
-                        return Integer.compare(size2, size1);
+                        return Double.compare(size2, size1);
                     } else {
                         String word1 = weightedWords.get(index1).getWord();
                         String word2 = weightedWords.get(index2).getWord();
@@ -112,19 +112,19 @@ public class WordAnalyser {
     }
 
     /**
-     * Returns the highest value of the size values
-     * @return the highest value of the size weights
+     * Returns the highest value of the fontSize values
+     * @return the highest value of the fontSize weights
      */
-    public int getMaxSizeValue() {
-        return weightedWords.get( getSizeValueSortedTreeSet().first() ).getSizeValue();
+    public double getMaxFontSizeValue() {
+        return weightedWords.get( getSizeValueSortedTreeSet().first() ).getFontSizeValue();
     }
 
     /**
      * Returns the lowest value of the size values
      * @return the lowest value of the size weights
      */
-    public int getMinSizeValue() {
-        return weightedWords.get( getSizeValueSortedTreeSet().last() ).getSizeValue();
+    public double getMinFontSizeValue() {
+        return weightedWords.get( getSizeValueSortedTreeSet().last() ).getFontSizeValue();
     }
 
     /**
@@ -132,13 +132,13 @@ public class WordAnalyser {
      * @param value the value for which to figure out the weight
      * @return the weight in the range 0..1
      */
-    public float getSizeWeight( int value ) {
-        int adjustedValue = value - getMinSizeValue();
-        int adjustedMax = getMaxSizeValue() - getMinSizeValue();
-        if ( adjustedMax == 0 ) {
+    public static double getSizeWeight( double value, double min, double max ) {
+        final var deltaToMin = value - min; //getMinFontSizeValue()
+        var range = max - min; // getMaxFontSizeValue()
+        if ( range == 0 ) {
             return 0; //prevent division by zero
         } else {
-            return (float) adjustedValue / (float) adjustedMax;
+            return (double) deltaToMin / (double) range;
         }
     }
 
@@ -174,10 +174,10 @@ public class WordAnalyser {
                  */
                 @Override
                 public int compare(Integer index1, Integer index2) {
-                    int size1 = weightedWords.get(index1).getColorValue();
-                    int size2 = weightedWords.get(index2).getColorValue();
+                    final var size1 = weightedWords.get(index1).getColorValue();
+                    final var size2 = weightedWords.get(index2).getColorValue();
                     if (!(size1 == size2)) {
-                        return Integer.compare(size2, size1);
+                        return Double.compare(size2, size1);
                     } else {
                         String word1 = weightedWords.get(index1).getWord();
                         String word2 = weightedWords.get(index2).getWord();
@@ -196,7 +196,7 @@ public class WordAnalyser {
      * Returns the highest value of the color value
      * @return the highest color value
      */
-    public int getMaxColorValue() {
+    public double getMaxColorValue() {
         return weightedWords.get( getColorValueSortedTreeSet().first() ).getColorValue();
     }
 
@@ -204,7 +204,7 @@ public class WordAnalyser {
      * Returns the lowest value of the color value
      * @return the lowest color value
      */
-    public int getMinColorValue() {
+    public double getMinColorValue() {
         return weightedWords.get( getColorValueSortedTreeSet().last() ).getColorValue();
     }
 
@@ -213,13 +213,13 @@ public class WordAnalyser {
      * @param value the value for which to figure out the weight
      * @return the weight
      */
-    public float getColorWeight( int value ) {
-        int adjustedValue = value - getMinColorValue();
-        int adjustedMax = getMaxColorValue() - getMinColorValue();
-        if ( adjustedMax == 0 ) {
+    public double getColorWeight( double value ) {
+        final var deltaToMin = value - getMinColorValue();
+        final var valueRange = getMaxColorValue() - getMinColorValue();
+        if ( valueRange == 0 ) {
             return 0; //prevent division by zero
         } else {
-            return (float) adjustedValue / (float) adjustedMax;
+            return (double) deltaToMin / (float) valueRange;
         }
     }
 

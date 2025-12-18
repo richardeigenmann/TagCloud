@@ -25,13 +25,6 @@ package org.tagcloud;
 public interface WeightedWordInterface {
 
     /**
-     * Returns the value for the size
-     *
-     * @return the value for the size
-     */
-    int getSizeValue();
-
-    /**
      * Returns the String of the word
      *
      * @return the word
@@ -39,38 +32,17 @@ public interface WeightedWordInterface {
     String getWord();
 
     /**
+     * Returns the value for the size
+     *
+     * @return the value for the size
+     */
+    double getFontSizeValue();
+
+    /**
      * Returns the value for the color
      *
      * @return the value for the color
      */
-    int getColorValue();
-
-    /**
-     * Sets the sizeWeight
-     *
-     * @param sizeWeight the new sizeWeight
-     */
-    void setSizeWeight(float sizeWeight);
-
-    /**
-     * Returns the sizeWeight
-     *
-     * @return the sizeWeight
-     */
-    float getSizeWeight();
-
-    /**
-     * Sets the colorWeight
-     *
-     * @param colorWeight the new sizeWeight
-     */
-    void setColorWeight(float colorWeight);
-
-    /**
-     * Returns the colorWeight
-     *
-     * @return the colorWeight
-     */
-    float getColorWeight();
+    double getColorValue();
 
 }

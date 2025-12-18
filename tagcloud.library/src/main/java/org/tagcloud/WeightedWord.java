@@ -1,7 +1,7 @@
 /*
  WeightedWord.java:  Stores the attributes of a word for the Tag Cloud
 
- Copyright (C) 2014  Richard Eigenmann.
+ Copyright (C) 2014-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -33,24 +33,14 @@ public class WeightedWord implements WeightedWordInterface {
     private final String word;
 
     /**
-     * Remembers the value for the size. Should be any positive integer
+     * Remembers the value for the font size. Should be any positive integer
      */
-    private final int sizeValue;
-
-    /**
-     * The sizeWeight
-     */
-    private float sizeWeight;
+    private final double fontSizeValue;
 
     /**
      * Remembers the value for the color. Should be any positive integer
      */
-    private final int colorValue;
-
-    /**
-     * The colorWeight
-     */
-    private float colorWeight;
+    private double colorValue;
 
     /**
      * Constructs a word with the same value for the size and color
@@ -58,7 +48,7 @@ public class WeightedWord implements WeightedWordInterface {
      * @param word the word
      * @param value the value, any positive integer
      */
-    public WeightedWord( String word, int value ) {
+    public WeightedWord( final String word, final double value ) {
         this( word, value, value );
     }
 
@@ -66,12 +56,12 @@ public class WeightedWord implements WeightedWordInterface {
      * Constructs the word
      *
      * @param word the word
-     * @param sizeValue the value for the size weighting, any positive integer
+     * @param fontSizeValue the value for the size weighting, any positive integer
      * @param colorValue the value for the color weighting, any positive integer
      */
-    public WeightedWord( String word, int sizeValue, int colorValue ) {
+    public WeightedWord( final String word, final double fontSizeValue, final double colorValue ) {
         this.word = word;
-        this.sizeValue = sizeValue;
+        this.fontSizeValue = fontSizeValue;
         this.colorValue = colorValue;
     }
 
@@ -91,8 +81,8 @@ public class WeightedWord implements WeightedWordInterface {
      * @return the value for the size
      */
     @Override
-    public int getSizeValue() {
-        return sizeValue;
+    public double getFontSizeValue() {
+        return fontSizeValue;
     }
 
     /**
@@ -101,65 +91,8 @@ public class WeightedWord implements WeightedWordInterface {
      * @return the value for the color
      */
     @Override
-    public int getColorValue() {
+    public double getColorValue() {
         return colorValue;
-    }
-
-    /**
-     * Sets the sizeWeight
-     *
-     * @param sizeWeight the new sizeWeight
-     */
-    @Override
-    public void setSizeWeight( float sizeWeight ) {
-        this.sizeWeight = verifyWeight( sizeWeight );
-    }
-
-    /**
-     * Returns the sizeWeight
-     *
-     * @return the sizeWeight
-     */
-    @Override
-    public float getSizeWeight() {
-        return sizeWeight;
-    }
-
-    /**
-     * Sets the colorWeight
-     *
-     * @param colorWeight the new sizeWeight
-     */
-    @Override
-    public void setColorWeight( float colorWeight ) {
-        this.colorWeight = verifyWeight( colorWeight );
-    }
-
-    /**
-     * Returns the colorWeight
-     *
-     * @return the colorWeight
-     */
-    @Override
-    public float getColorWeight() {
-        return colorWeight;
-    }
-
-    /**
-     * Ensures that a weight value is between 0 and 1. Lower values are set to
-     * 0, higher values are set to 1
-     *
-     * @param weight The weight to be validated
-     * @return the weight or 0 or 1 whatever is nearer
-     */
-    private static float verifyWeight( final float weight ) {
-        if ( weight > 1f ) {
-            return 1;
-        }
-        if ( weight < 0f ) {
-            return 0;
-        }
-        return weight;
     }
 
 }

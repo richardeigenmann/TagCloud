@@ -17,6 +17,9 @@
 package my.samplegui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.tagcloud.WeightedWord;
 import org.tagcloud.WeightedWordInterface;
 
@@ -31,12 +34,18 @@ import org.tagcloud.WeightedWordInterface;
  */
 public class ShortCitiesList extends ArrayList<WeightedWordInterface> {
 
+    private ShortCitiesList() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      * Short list of cities
      */
-    public ShortCitiesList() {
-        add( new WeightedWord( "Shanghai", 13831900 ) );
-        add( new WeightedWord( "Cape Town", 3497097 ) );
-        add( new WeightedWord( "Zurich", 366765 ) ); // Google, value from 2009
+    public static List<WeightedWordInterface> getCitiesAsWeightedWords() {
+        List<WeightedWordInterface> cities = new ArrayList<>();
+        cities.add( new WeightedWord( "Shanghai", 13831900 ) );
+        cities.add( new WeightedWord( "Cape Town", 3497097 ) );
+        cities.add( new WeightedWord( "Zurich", 366765 ) );
+        return Collections.unmodifiableList(cities);
     }
 }

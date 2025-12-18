@@ -1,7 +1,7 @@
 /*
  YellowOrBrown.java:  A ColorProvider that returns either yellow or brown
 
- Copyright (C) 2009-2014  Richard Eigenmann.
+ Copyright (C) 2009-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -18,7 +18,6 @@
 package org.tagcloud.colorproviders;
 
 import java.awt.Color;
-import org.tagcloud.ColorPicker;
 
 /**
  * A ColorProvider that returns either yellow or brown
@@ -30,7 +29,10 @@ public class YellowOrBrown extends ColorPicker {
     /**
      * The colors, yellow and chocolate brown
      */
-    private final static Color[] YELLOW_BROWN = { Color.YELLOW, new Color( 123, 63, 0 ) };
+    private static final Color[] YELLOW_BROWN = {
+        Color.YELLOW,
+        new Color( 123, 63, 0 )
+    };
 
     /**
      * Returns the colors to the ColorPicker

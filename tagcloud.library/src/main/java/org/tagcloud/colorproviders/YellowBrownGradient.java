@@ -1,7 +1,7 @@
 /*
  YellowBrownGradient.java:  A ColorProvider that returns a color from Yellow to Brown
 
- Copyright (C) 2009-2014  Richard Eigenmann.
+ Copyright (C) 2009-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -18,7 +18,6 @@
 package org.tagcloud.colorproviders;
 
 import java.awt.Color;
-import org.tagcloud.ColorInterpolator;
 
 /**
  * A ColorProvider that returns a color from Yellow to Brown
@@ -30,7 +29,10 @@ public class YellowBrownGradient extends ColorInterpolator {
     /**
      * Predefined color gradient points for a yellow to chocolate brown
      */
-    private final static Color[] YELLOW_BROWN = { Color.YELLOW, new Color( 123, 63, 0 ) };
+    private static final Color[] YELLOW_BROWN = {
+        Color.YELLOW,
+        new Color( 123, 63, 0 )
+    };
 
     /**
      * Provides the color points to the ColorInterpolator

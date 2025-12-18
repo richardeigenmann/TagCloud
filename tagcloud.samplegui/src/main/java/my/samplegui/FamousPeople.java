@@ -29,10 +29,11 @@ import org.tagcloud.WeightedWordInterface;
  *
  * @author Richard Eigenmann
  */
-public final class People {
+public final class FamousPeople {
 
-    // Private constructor to prevent instantiation of this utility class.
-    private People() {}
+    private FamousPeople() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * A record to model a person's data clearly.

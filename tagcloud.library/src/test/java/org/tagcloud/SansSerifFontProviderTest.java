@@ -19,7 +19,6 @@ package org.tagcloud;
 
 import org.junit.jupiter.api.Assertions;
 import org.tagcloud.fontproviders.SansSerifFontProvider;
-import java.awt.Font;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -34,14 +33,14 @@ class SansSerifFontProviderTest {
      */
     @Test
     void testGetFont() {
-        SansSerifFontProvider sansSerifFontProvider = new SansSerifFontProvider();
-        Font font = sansSerifFontProvider.getFont( 0, 0 );
-        Assertions.assertEquals("SansSerif.plain", font.getFontName(), "Expecting font for weight 0 to be SansSerif");
-        Assertions.assertEquals(10, font.getSize(), "Expecting font size for weight 0 to be 10");
+        final var sansSerifFontProvider = new SansSerifFontProvider();
+        final var font0 = sansSerifFontProvider.getFont( 0 );
+        Assertions.assertEquals("SansSerif.plain", font0.getFontName(), "Expecting font for weight 0 to be SansSerif");
+        Assertions.assertEquals(10, font0.getSize(), "Expecting font size for weight 0 to be 10");
 
-        font = sansSerifFontProvider.getFont( 1, 0 );
-        Assertions.assertEquals("SansSerif.plain", font.getFontName(), "Expecting font for weight 1 to be SansSerif");
-        Assertions.assertEquals(25, font.getSize(), "Expecting font size for weight 1 to be 25");
+        final var font1 = sansSerifFontProvider.getFont( 1 );
+        Assertions.assertEquals("SansSerif.plain", font1.getFontName(), "Expecting font for weight 1 to be SansSerif");
+        Assertions.assertEquals(25, font1.getSize(), "Expecting font size for weight 1 to be 25");
     }
 
 }

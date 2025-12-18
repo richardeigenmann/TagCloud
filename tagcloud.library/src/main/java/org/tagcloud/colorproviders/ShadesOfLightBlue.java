@@ -1,7 +1,7 @@
 /*
  ShadesOfLightBlue.java:  A ColorProvider that returns a shade of light blue based on the supplied weight
 
- Copyright (C) 2009-2014  Richard Eigenmann.
+ Copyright (C) 2009-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -18,7 +18,6 @@
 package org.tagcloud.colorproviders;
 
 import java.awt.Color;
-import org.tagcloud.ColorInterpolator;
 
 /**
  * A ColorProvider that returns a shade of light blue based on the supplied
@@ -31,7 +30,10 @@ public class ShadesOfLightBlue extends ColorInterpolator {
     /**
      * Predefined color gradient points for a blue gradient
      */
-    private final static Color[] SHADES_OF_LIGHT_BLUE = { new Color( 0x355ddb ), new Color( 0x7aa5f4 ) };
+    private static final Color[] SHADES_OF_LIGHT_BLUE = {
+        new Color( 0x355ddb ),
+        new Color( 0x7aa5f4 )
+    };
 
     /**
      * Returns two blue colors to the ColorInterpolator

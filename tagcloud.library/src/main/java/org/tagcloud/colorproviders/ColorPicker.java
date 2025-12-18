@@ -1,7 +1,7 @@
 /*
  ColorPicker.java:  Picks the nearest color
 
- Copyright (C) 2009-2014  Richard Eigenmann.
+ Copyright (C) 2009-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -15,7 +15,7 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.tagcloud;
+package org.tagcloud.colorproviders;
 
 import java.awt.Color;
 
@@ -35,15 +35,15 @@ public abstract class ColorPicker implements ColorProvider {
     public abstract Color[] getColorPoints();
 
     /**
-     * This method returns the nearest color from a set and ignores the value parameter
+     * This method returns the nearest color from a list. The value should be in the range [0,1]
      *
-     * @param weight between 0 and 1
-     * @param value ignored
+     * @param value the value for which the nearest color is to be chosen. Must be between 0 and 1
      * @return The Color picked
      */
     @Override
-    public Color getColor( float weight, int value ) {
-        int index = Math.round( weight * ( getColorPoints().length - 1 ) );
+    public Color getColor( final double value ) {
+        final var interpolationPoint = Math.clamp(value, 0, 1);
+        final var index = (int) Math.round( interpolationPoint * ( getColorPoints().length - 1 ) );
         return getColorPoints()[index];
     }
 }

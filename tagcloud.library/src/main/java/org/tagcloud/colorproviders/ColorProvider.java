@@ -1,7 +1,7 @@
 /*
- FontProvider.java:  Interface that defines the method that returns the font
+ ColorProvider.java:  Interface that defines the method to call to receive a color for a weight
 
- Copyright (C) 2014  Richard Eigenmann.
+ Copyright (C) 2014-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -15,26 +15,28 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.tagcloud;
+package org.tagcloud.colorproviders;
 
-import java.awt.Font;
+import java.awt.Color;
 
 /**
- * Defines the method called to retrieve the font for a given weight
+ * Defines the method signature of a call to retrieve the color for a given
+ * weight
  *
  * @author Richard Eigenmann
  */
-public interface FontProvider {
+@FunctionalInterface
+public interface ColorProvider {
 
     /**
-     * The implementing class must return an appropriate font for the supplied
-     * weight
+     * The implementing class must return an appropriate color for the supplied
+     * value. The value must be in the range [0,1] which will either become
+     * an interpolated color on a gradient between points or the nearest color in the
+     * color points depending on the overriding class.
      *
-     * @param weight The weight for which the font should be returned range is 0
-     * to 1 for choices based on relative weight
-     * @param value the value for the weight if the choice is to be based on absolute values
-     * @return The Font to use for the supplied weight.
+     * @param value the value in the range [0,1] for which a color should be provided
+     * @return The color to use for the supplied weight.
      */
-    Font getFont(float weight, int value);
+    Color getColor( final double value );
 
 }

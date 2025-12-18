@@ -1,7 +1,7 @@
 /*
  BlackToWhiteGradient.java:  A ColorProvider that returns a color on the gradient from Black to White based on the supplied weight
 
- Copyright (C) 2009-2014  Richard Eigenmann.
+ Copyright (C) 2009-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -18,7 +18,6 @@
 package org.tagcloud.colorproviders;
 
 import java.awt.Color;
-import org.tagcloud.ColorInterpolator;
 
 /**
  * A ColorProvider that returns a color on the gradient from Black to White
@@ -31,7 +30,7 @@ public class BlackToWhiteGradient extends ColorInterpolator {
     /**
      * Predefined colors for a Black to White gradient
      */
-    private final static Color[] BLACK_WHITE_COLORS = { Color.BLACK, Color.WHITE };
+    private static final Color[] BLACK_WHITE_COLORS = { Color.BLACK, Color.WHITE };
 
     /**
      * Returns the two colors to the ColorInterpolator

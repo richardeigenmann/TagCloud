@@ -4,5 +4,4 @@ module org.tagcloud {
     exports org.tagcloud;
     exports org.tagcloud.colorproviders;
     exports org.tagcloud.fontproviders;
-    //requires net.miginfocom.swing;
 }
