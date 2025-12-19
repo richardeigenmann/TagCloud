@@ -1,7 +1,7 @@
 /*
  WordAnalyser.java:  A class that does the analytics for the tag cloud
 
- Copyright (C) 2009-2025  Richard Eigenmann.
+ Copyright (C) 2009-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -22,7 +22,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
-import java.util.logging.Logger;
 
 /**
  * This class does the processing and filtering of the words
@@ -30,11 +29,6 @@ import java.util.logging.Logger;
  * @author Richard Eigenmann
  */
 public class WordAnalyser {
-
-    /**
-     * Defines the logger for this class
-     */
-    private static final Logger LOGGER = Logger.getLogger( WordAnalyser.class.getName() );
 
     /**
      * The list of words with their weights
@@ -95,7 +89,7 @@ public class WordAnalyser {
                 public int compare(final Integer index1, final Integer index2) {
                     final var size1 = weightedWords.get(index1).getFontSizeValue();
                     final var size2 = weightedWords.get(index2).getFontSizeValue();
-                    if (!(size1 == size2)) {
+                    if (size1 != size2) {
                         return Double.compare(size2, size1);
                     } else {
                         String word1 = weightedWords.get(index1).getWord();
@@ -104,7 +98,7 @@ public class WordAnalyser {
                     }
                 }
             } );
-            for ( int i = 0; i < weightedWords.size(); i++ ) {
+            for ( var i = 0; i < weightedWords.size(); i++ ) {
                 sizeValueSortedTreeSet.add( i );
             }
         }
@@ -138,7 +132,7 @@ public class WordAnalyser {
         if ( range == 0 ) {
             return 0; //prevent division by zero
         } else {
-            return (double) deltaToMin / (double) range;
+            return deltaToMin / range;
         }
     }
 
@@ -176,7 +170,7 @@ public class WordAnalyser {
                 public int compare(Integer index1, Integer index2) {
                     final var size1 = weightedWords.get(index1).getColorValue();
                     final var size2 = weightedWords.get(index2).getColorValue();
-                    if (!(size1 == size2)) {
+                    if ( size1 != size2 ) {
                         return Double.compare(size2, size1);
                     } else {
                         String word1 = weightedWords.get(index1).getWord();
@@ -219,7 +213,7 @@ public class WordAnalyser {
         if ( valueRange == 0 ) {
             return 0; //prevent division by zero
         } else {
-            return (double) deltaToMin / (float) valueRange;
+            return deltaToMin / valueRange;
         }
     }
 

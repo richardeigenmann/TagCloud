@@ -1,7 +1,7 @@
 /*
  TagCloud.java:  A Swing Component that shows a TagCloud
 
- Copyright (C) 2009-2014  Richard Eigenmann.
+ Copyright (C) 2009-2025  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -24,6 +24,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.logging.Logger;
 import javax.swing.JScrollPane;
 
@@ -55,8 +56,8 @@ public class TagCloud extends JScrollPane {
     public TagCloud() {
         verticalGrowJPanel = new VerticalGrowJPanel();
         setViewportView( verticalGrowJPanel );
-        setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
-        setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED );
+        setHorizontalScrollBarPolicy( HORIZONTAL_SCROLLBAR_AS_NEEDED );
+        setVerticalScrollBarPolicy( VERTICAL_SCROLLBAR_AS_NEEDED );
     }
 
     /**
@@ -182,8 +183,8 @@ public class TagCloud extends JScrollPane {
     public void setColorMapper( final ColorMapper colorMapper ) {
         this.colorMapper = colorMapper;
         for ( Component component : verticalGrowJPanel.getComponents() ) {
-            if ( component instanceof TagCloudJLabel ) {
-                ( (TagCloudJLabel) component ).setColorMapper( colorMapper );
+            if ( component instanceof TagCloudJLabel tagCloudJLabel) {
+                tagCloudJLabel.setColorMapper( colorMapper );
             }
         }
     }
@@ -196,8 +197,8 @@ public class TagCloud extends JScrollPane {
     public void setFontMapper(final FontMapper fontMapper) {
         this.fontMapper = fontMapper;
         for ( Component component : verticalGrowJPanel.getComponents() ) {
-            if ( component instanceof TagCloudJLabel ) {
-                ( (TagCloudJLabel) component ).setFontMapper(fontMapper);
+            if ( component instanceof TagCloudJLabel tagCloudJLabel ) {
+                tagCloudJLabel.setFontMapper(fontMapper);
             }
         }
         verticalGrowJPanel.validate();
@@ -211,29 +212,19 @@ public class TagCloud extends JScrollPane {
 
         @Override
         public void mouseClicked( MouseEvent e ) {
-            TagCloudJLabel tagCloudJLabel = (TagCloudJLabel) e.getComponent();
-            notifyTagClickListeners( tagCloudJLabel.getWeightedWord() );
-        }
-    };
-
-    /**
-     * Notifies the listeners that a tag was clicked
-     *
-     * @param weightedWord the tag that was clicked
-     */
-    private void notifyTagClickListeners( WeightedWordInterface weightedWord ) {
-        synchronized ( tagClickListeners ) {
-            for ( TagClickListener tagClickListener : tagClickListeners ) {
-                tagClickListener.tagClicked( weightedWord );
+            final var tagCloudJLabel = (TagCloudJLabel) e.getComponent();
+            final var weightedWord = tagCloudJLabel.getWeightedWord();
+            for ( final var tagClickListener : tagClickListeners ) {
+                tagClickListener.tagClicked(weightedWord);
             }
         }
-    }
+    };
 
     /**
      * The TagClickListeners that want to be notified when the user clicks on a
      * Tag.
      */
-    private final Set<TagClickListener> tagClickListeners = Collections.synchronizedSet(new HashSet<>() );
+    private final Set<TagClickListener> tagClickListeners = new CopyOnWriteArraySet<>();
 
     /**
      * Register a TagClickListener to receive the word a user clicked on.

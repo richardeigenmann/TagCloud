@@ -1,7 +1,7 @@
 /*
  SansSerifFontListTest.java:  Unit tests for SansSerifFontList
 
- Copyright (C) 2014  Richard Eigenmann.
+ Copyright (C) 2014-2025  Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -15,17 +15,12 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.tagcloud;
+package org.tagcloud.colorprovider;
 
 import org.junit.jupiter.api.Assertions;
 import org.tagcloud.fontproviders.SansSerifFontProvider;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for SansSerifFontList
- *
- * @author Richard Eigenmann
- */
 class SansSerifFontProviderTest {
 
     /**

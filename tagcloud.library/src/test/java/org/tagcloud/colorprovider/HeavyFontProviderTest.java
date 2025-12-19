@@ -1,7 +1,7 @@
 /*
  SansSerifFontListTest.java:  Unit tests for SansSerifFontList
 
- Copyright (C) 2014  Richard Eigenmann.
+ Copyright (C) 2014-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -15,19 +15,12 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.tagcloud;
+package org.tagcloud.colorprovider;
 
 import org.junit.jupiter.api.Assertions;
 import org.tagcloud.fontproviders.HeavyFontProvider;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-
-/**
- * Unit tests for SansSerifFontList
- *
- * @author Richard Eigenmann
- */
 class HeavyFontProviderTest {
 
     /**
@@ -35,14 +28,14 @@ class HeavyFontProviderTest {
      */
     @Test
     void testGetFont() {
-        HeavyFontProvider heavyFontProvider = new HeavyFontProvider();
-        Font font = heavyFontProvider.getFont( 0 );
+        final var heavyFontProvider = new HeavyFontProvider();
+        final var font = heavyFontProvider.getFont( 0 );
         Assertions.assertEquals("SansSerif.bold", font.getFontName(), "Expecting font for weight 0 to be SansSerif");
         Assertions.assertEquals(18, font.getSize(), "Expecting font size for weight 0 to be 18");
 
-        font = heavyFontProvider.getFont( 1 );
-        Assertions.assertEquals("SansSerif.bold", font.getFontName(), "Expecting font for weight 1 to be SansSerif");
-        Assertions.assertEquals(28, font.getSize(), "Expecting font size for weight 1 to be 28");
+        final var font2 = heavyFontProvider.getFont( 1 );
+        Assertions.assertEquals("SansSerif.bold", font2.getFontName(), "Expecting font for weight 1 to be SansSerif");
+        Assertions.assertEquals(28, font2.getSize(), "Expecting font size for weight 1 to be 28");
     }
 
 }

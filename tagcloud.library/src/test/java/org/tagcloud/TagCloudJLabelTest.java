@@ -1,7 +1,7 @@
 /*
  TagCloudJLabelTest.java:  Unit tests for TagCloudJLabel
 
- Copyright (C) 2014  Richard Eigenmann.
+ Copyright (C) 2014-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -18,12 +18,18 @@
 package org.tagcloud;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.tagcloud.colorproviders.ShadesOfLightBlue;
 import org.tagcloud.fontproviders.SansSerifFontProvider;
+
+import javax.swing.*;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Unit tests for TagCloudJLabel
@@ -33,10 +39,11 @@ import org.tagcloud.fontproviders.SansSerifFontProvider;
 class TagCloudJLabelTest {
 
     @Test
-    void testVerifyWeightVanilla() {
+    void testFontScalingAndColorInterpolation() {
         final var weightedWord1 = new WeightedWord( "Word", 10, 100 );
         final var weightedWord2 = new WeightedWord( "Word", 15, 150 );
         final var weightedWord3 = new WeightedWord( "Word", 20, 200 );
+
         final var wordList = List.of(weightedWord1, weightedWord2, weightedWord3);
         final var fontValueMapper = new FontMapper(new SansSerifFontProvider() );
         final var colorValueMapper = new ColorValueMapper( new ShadesOfLightBlue() );
@@ -143,30 +150,34 @@ class TagCloudJLabelTest {
             ml.mouseExited( e2 );
         }
         Assertions.assertNotSame(new Color( 0x421ed9 ), tagCloudJLabel.getForeground(), "Check we are out of the default mouseover color");
-    }
+    }*/
 
     @Test
     void testSetMousoverColor() {
-        WeightedWord weightedWord = new WeightedWord( "Word", 10 );
-        weightedWord.setFontSizeWeight( 0.5f );
-        weightedWord.setColorWeight( 0.6f );
-        TagCloudJLabel tagCloudJLabel = new TagCloudJLabel( weightedWord );
-        Color colorBeforeTest = tagCloudJLabel.getForeground();
-        tagCloudJLabel.setMouseoverColor( Color.YELLOW );
+        final var weightedWord = new WeightedWord( "Word", 10, 10 );
+        try {
+            SwingUtilities.invokeAndWait(() -> {
+                final var tagCloudJLabel = new TagCloudJLabel(weightedWord);
+                final var colorBeforeTest = tagCloudJLabel.getForeground();
+                tagCloudJLabel.setMouseoverColor(Color.YELLOW);
 
-        // send a mouseEntered event to the tagCloudJLabel
-        MouseEvent e1 = new MouseEvent( tagCloudJLabel, 0, 0, 0, 100, 100, 0, false );
-        for ( MouseListener ml : tagCloudJLabel.getMouseListeners() ) {
-            ml.mouseEntered( e1 );
-        }
-        Assertions.assertEquals(Color.YELLOW, tagCloudJLabel.getForeground(), "Check mouseover color is YELLOW");
+                // send a mouseEntered event to the tagCloudJLabel
+                final var e1 = new MouseEvent(tagCloudJLabel, 0, 0, 0, 100, 100, 0, false);
+                for (final var ml : tagCloudJLabel.getMouseListeners()) {
+                    ml.mouseEntered(e1);
+                }
+                Assertions.assertEquals(Color.YELLOW, tagCloudJLabel.getForeground(), "Check mouseover color is YELLOW");
 
-        // send a mouseExited event to the tagCloudJLabel
-        MouseEvent e2 = new MouseEvent( tagCloudJLabel, 0, 0, 0, 100, 100, 0, false );
-        for ( MouseListener ml : tagCloudJLabel.getMouseListeners() ) {
-            ml.mouseExited( e2 );
+                // send a mouseExited event to the tagCloudJLabel
+                final var e2 = new MouseEvent(tagCloudJLabel, 0, 0, 0, 100, 100, 0, false);
+                for (final var ml : tagCloudJLabel.getMouseListeners()) {
+                    ml.mouseExited(e2);
+                }
+                Assertions.assertNotSame(colorBeforeTest, tagCloudJLabel.getForeground(), "Check we are back on the previous color after the mouseExited");
+            });
+        } catch (InterruptedException | InvocationTargetException e) {
+            fail("Exception thrown during test: " + e.getMessage());
         }
-        Assertions.assertNotSame(colorBeforeTest, tagCloudJLabel.getForeground(), "Check we are back on the previous colore after the mouseExited");
-    }*/
+    }
 
 }

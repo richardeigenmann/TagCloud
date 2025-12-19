@@ -1,7 +1,7 @@
 /*
  VerticalGrowJPanel.java:  A JPanel that grows vertically while maintaining the with of it's parent JScrollpane
 
- Copyright (C) 2009-2025  Richard Eigenmann.
+ Copyright (C) 2009-2025 Richard Eigenmann.
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -17,17 +17,15 @@
  */
 package org.tagcloud;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Rectangle;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
 
 /**
- * A JPanel that grows vertically while maintaining the with of it's parent
+ * A JPanel that grows vertically while maintaining the width of it's parent
  * JScrollpane. This class was created to work in conjunction with a JScrollPane
  * and FlowLayout. When adding components FlowLayout adds them to the right of
  * each other until the width is filled up. Then FlowLayout adds a line. This
@@ -35,9 +33,6 @@ import javax.swing.SwingConstants;
  * and grow the JPanel vertically to show the components. FlowLayout stops
  * horizontally because getScrollableTracksViewportWidth is defined to return
  * true;
- *
- * This is based on the article found here:
- * <a href="http://forums.sun.com/thread.jspa?forumID=57&threadID=5117549&start=7">...</a>
  *
  * @author Richard Eigenmann
  */
