@@ -137,7 +137,7 @@ public class WordAnalyser {
     }
 
     /**
-     * Returns an alphabetical List of the the first n words as per the
+     * Returns an alphabetical List of the first n words as per the
      * SizeValue order
      *
      * @param limit The maximum words to return
@@ -218,7 +218,7 @@ public class WordAnalyser {
     }
 
     /**
-     * Returns an alphabetical List of the the first n words as per the
+     * Returns an alphabetical List of the first n words as per the
      * ColorValue order
      *
      * @param limit The maximum words to return
@@ -229,7 +229,7 @@ public class WordAnalyser {
     }
 
     /**
-     * Returns an alphabetical List of the the first n words as per the
+     * Returns an alphabetical List of the first n words as per the
      * ColorValue order
      *
      * @param indexIterator The iterator to use to step through the words
