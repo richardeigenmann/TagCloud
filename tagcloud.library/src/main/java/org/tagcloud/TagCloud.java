@@ -25,7 +25,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.logging.Logger;
 import javax.swing.JScrollPane;
 
 import static java.util.stream.Collectors.summarizingDouble;
@@ -39,10 +38,6 @@ import static java.util.stream.Collectors.teeing;
  */
 public class TagCloud extends JScrollPane {
 
-    /**
-     * Defines a logger for this class
-     */
-    private static final Logger LOGGER = Logger.getLogger( TagCloud.class.getName() );
 
     /**
      * This special panel holds the words (TagCloudJLabel).
@@ -61,34 +56,10 @@ public class TagCloud extends JScrollPane {
     }
 
     /**
-     * The number of words to show. The default is 30 words.
-     */
-    private int wordsToShow = 30;
-
-    /**
-     * Sets the maximum number of words to show. The number is validated and set
-     * to be 1 or higher. Call showWords afterwards to update the tags being
-     * shown.
-     *
-     * @param wordsToShow the number of words to show in the range
-     * 1..Integer.MAX_VALUE.
-     */
-    public void setMaxWordsToShow( int wordsToShow ) {
-        // never trust inputs
-        if ( wordsToShow < 1 ) {
-            LOGGER.finest( String.format( "wordsToShow was %d which is less than 1; setting to 1.", wordsToShow ) );
-            wordsToShow = 1;
-        }
-        this.wordsToShow = wordsToShow;
-        showWords();
-    }
-
-    /**
      * The list of weighted words being shown
      */
     private List<? extends WeightedWordInterface> weightedWords = null;
 
-    private WordAnalyser wordAnalyser;
 
     /**
      * This method receives the WeightedWordInterface list of the words to be shown in
@@ -99,7 +70,6 @@ public class TagCloud extends JScrollPane {
      */
     public void setWordsList( final List<? extends WeightedWordInterface> weightedWords ) {
         this.weightedWords = weightedWords;
-        wordAnalyser = new WordAnalyser( this.weightedWords );
         identifyValueRanges(weightedWords, fontMapper, colorMapper);
         showWords();
     }
@@ -132,10 +102,10 @@ public class TagCloud extends JScrollPane {
      * Removes all previous labels and adds the labels for the supplied map.
      * Adds the MouseListener to the labels.
      */
-    private void showWords() {
+    public void showWords() {
         verticalGrowJPanel.removeAll();
         if ( weightedWords != null ) { // if no wordMap, leave panel empty
-            for ( final var weightedWord : wordAnalyser.getTopWordsSizeWeighted( wordsToShow ) ) {
+            for ( final var weightedWord: weightedWords ) {
                 final var tagCloudEntry = new TagCloudJLabel(
                         weightedWord,
                         fontMapper,
@@ -149,15 +119,6 @@ public class TagCloud extends JScrollPane {
         verticalGrowJPanel.validate();
         validate();
         repaint();
-    }
-
-    /**
-     * This method returns the WeightedWords List shown in the TagCloud.
-     *
-     * @return weightedWords The WeightedWord of the words to be shown.
-     */
-    public List<? extends WeightedWordInterface> getWordsList() {
-        return weightedWords;
     }
 
     private ColorMapper colorMapper = new ColorValueMapper( new ShadesOfLightBlue() );

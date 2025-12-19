@@ -106,32 +106,6 @@ class TagCloudTest {
     }
 
     @Test
-    void testSetWordsListAndMaxWords() throws InvocationTargetException, InterruptedException {
-        // 1. Arrange
-        List<WeightedWord> wordList = IntStream.range(0, 50)
-                .mapToObj(i -> new WeightedWord("Word" + i, i, i))
-                .toList();
-
-        SwingUtilities.invokeAndWait(() -> {
-            TagCloud tagCloud = new TagCloud();
-
-            // 2. Act & Assert - Initial state
-            tagCloud.setWordsList(wordList);
-            Container viewportContent = (Container) tagCloud.getViewport().getComponent(0);
-            // The default wordsToShow is 30
-            Assertions.assertEquals(30, viewportContent.getComponentCount(), "Default number of words not shown correctly");
-
-            // 3. Act & Assert - Change max words
-            tagCloud.setMaxWordsToShow(15);
-            Assertions.assertEquals(15, viewportContent.getComponentCount(), "Number of words not updated correctly after setMaxWordsToShow");
-
-            // 4. Act & Assert - Test invalid (negative) max words
-            tagCloud.setMaxWordsToShow(-5);
-            Assertions.assertEquals(1, viewportContent.getComponentCount(), "Negative max words should default to 1");
-        });
-    }
-
-    @Test
     void testTagClickListener() throws InvocationTargetException, InterruptedException {
         // 1. Arrange
         final var wordToClick = new WeightedWord("ClickMe", 10, 10);

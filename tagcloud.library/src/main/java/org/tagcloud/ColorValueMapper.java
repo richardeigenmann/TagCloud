@@ -14,7 +14,7 @@ public class ColorValueMapper extends ColorMapper {
 
     @Override
     public Color getColor(final WeightedWordInterface weightedWord) {
-        final var weight = WordAnalyser.getSizeWeight(weightedWord.getColorValue(), getMinimumValue(), getMaximumValue());
+        final var weight = MathUtils.getSizeWeight(weightedWord.getColorValue(), getMinimumValue(), getMaximumValue());
         return colorProvider.getColor(weight);
     }
 }

@@ -27,6 +27,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Sample GUI to demonstrate the use of the tag cloud
@@ -34,6 +35,11 @@ import java.util.List;
  * @author Richard Eigenmann
  */
 public class SampleTagCloud extends JFrame {
+
+    /**
+     * Defines a logger for this class
+     */
+    private static final Logger LOGGER = Logger.getLogger( SampleTagCloud.class.getName() );
 
     /**
      * Main entry point of this Swing GUI application
@@ -86,20 +92,20 @@ public class SampleTagCloud extends JFrame {
             int index = wordListChooser.getSelectedIndex();
             switch ( index ) {
                 case 1:
-                    tagCloud.setWordsList( EuropeanCities.getCitiesAsWeightedWords() );
+                    setWordsList( EuropeanCities.getCitiesAsWeightedWords() );
                     break;
                 case 2:
-                    tagCloud.setWordsList( Countries.getCountriesAsWeightedWords() );
+                    setWordsList( Countries.getCountriesAsWeightedWords() );
                     break;
                 case 3:
-                    tagCloud.setWordsList( ShortCitiesList.getCitiesAsWeightedWords() );
+                    setWordsList( ShortCitiesList.getCitiesAsWeightedWords() );
                     break;
                 case 4:
-                    tagCloud.setWordsList( FamousPeople.getPeopleAsWeightedWords() );
+                    setWordsList( FamousPeople.getPeopleAsWeightedWords() );
                     break;
                 case 0:
                 default:
-                    tagCloud.setWordsList( LargeCities.getCitiesAsWeightedWords() );
+                    setWordsList( LargeCities.getCitiesAsWeightedWords() );
 
             }
         });
@@ -170,6 +176,7 @@ public class SampleTagCloud extends JFrame {
         return controlsPanel;
     }
 
+
     /**
      * A label that we can use to show what is happening.
      */
@@ -210,20 +217,53 @@ public class SampleTagCloud extends JFrame {
          * @param changeEvent The event
          */
         @Override
-        public void stateChanged( ChangeEvent changeEvent ) {
-            final JSlider slider = (JSlider) changeEvent.getSource();
-            final int value = slider.getValue();
+        public void stateChanged( final ChangeEvent changeEvent ) {
+            final var slider = (JSlider) changeEvent.getSource();
+            final var value = slider.getValue();
             double pct = (double) value / slider.getMaximum();
-
-            List<? extends WeightedWordInterface> weightedWords = tagCloud.getWordsList();
             if ( weightedWords == null ) {
                 return;
             }
-            int availableWords = tagCloud.getWordsList().size();
+            int availableWords = weightedWords.size();
             int numberOfWords = (int) ( pct * ( availableWords - MINIMUM_WORDS) ) + MINIMUM_WORDS;
             commentLabel.setText( String.format( "Slider is %d%%; showing %d words", (int) ( pct * 100f ), numberOfWords ) );
-            tagCloud.setMaxWordsToShow( numberOfWords );
+            setMaxWordsToShow( numberOfWords );
         }
+    }
+
+
+    private List<? extends WeightedWordInterface> weightedWords;
+
+    private void setWordsList(List<? extends WeightedWordInterface> weightedWords) {
+        this.weightedWords = weightedWords;
+        wordAnalyser = new WordAnalyser( weightedWords );
+        setMaxWordsToShow(wordsToShow);
+    }
+
+    /**
+     * The number of words to show. The default is 30 words.
+     */
+    private int wordsToShow = 30;
+    private WordAnalyser wordAnalyser;
+
+
+    /**
+     * Sets the maximum number of words to show. The number is validated and set
+     * to be 1 or higher. Call showWords afterwards to update the tags being
+     * shown.
+     *
+     * @param wordsToShow the number of words to show in the range
+     * 1..Integer.MAX_VALUE.
+     */
+    public void setMaxWordsToShow( int wordsToShow ) {
+        // never trust inputs
+        if ( wordsToShow < 1 ) {
+            LOGGER.finest( String.format( "wordsToShow was %d which is less than 1; setting to 1.", wordsToShow ) );
+            wordsToShow = 1;
+        }
+        this.wordsToShow = wordsToShow;
+        tagCloud.setWordsList( wordAnalyser.getTopWordsSizeWeighted( wordsToShow ) );
+        tagCloud.showWords();
     }
 
 }

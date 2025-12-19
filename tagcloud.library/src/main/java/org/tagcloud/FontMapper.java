@@ -13,7 +13,7 @@ public class FontMapper {
     }
 
     public  Font getFont(final WeightedWordInterface weightedWord) {
-        return fontProvider.getFont( WordAnalyser.getSizeWeight(weightedWord.getFontSizeValue(), getMinimumValue(), getMaximumValue() ));
+        return fontProvider.getFont( MathUtils.getSizeWeight(weightedWord.getFontSizeValue(), getMinimumValue(), getMaximumValue() ));
     }
 
     private double minValue = Double.MIN_VALUE;

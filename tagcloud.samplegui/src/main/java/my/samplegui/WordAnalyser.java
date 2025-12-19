@@ -15,13 +15,12 @@
  The license is in gpl.txt.
  See http://www.gnu.org/copyleft/gpl.html for the details.
  */
-package org.tagcloud;
+package my.samplegui;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.TreeSet;
+import org.tagcloud.WeightedWord;
+import org.tagcloud.WeightedWordInterface;
+
+import java.util.*;
 
 /**
  * This class does the processing and filtering of the words
@@ -77,7 +76,7 @@ public class WordAnalyser {
      *
      * @return The TreeSet of index values
      */
-    public TreeSet<Integer> getSizeValueSortedTreeSet() {
+    public SortedSet<Integer> getSizeValueSortedTreeSet() {
         if ( sizeValueSortedTreeSet == null ) {
             sizeValueSortedTreeSet = new TreeSet<>(new Comparator<>() {
 
@@ -119,21 +118,6 @@ public class WordAnalyser {
      */
     public double getMinFontSizeValue() {
         return weightedWords.get( getSizeValueSortedTreeSet().last() ).getFontSizeValue();
-    }
-
-    /**
-     * Returns the weight from 0 to 1 for a given size value
-     * @param value the value for which to figure out the weight
-     * @return the weight in the range 0..1
-     */
-    public static double getSizeWeight( double value, double min, double max ) {
-        final var deltaToMin = value - min; //getMinFontSizeValue()
-        var range = max - min; // getMaxFontSizeValue()
-        if ( range == 0 ) {
-            return 0; //prevent division by zero
-        } else {
-            return deltaToMin / range;
-        }
     }
 
     /**
