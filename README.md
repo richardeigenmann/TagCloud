@@ -60,7 +60,7 @@ The library is designed so that you can customise the fonts and the colors. Here
 
 ![Screenshot of customised TagCloud showing famous people and their BMI](http://richardeigenmann.github.io/TagCloud/images/Screenshot2.png)
 
-The data on the people came from some casual research on the Internet. See the source code [People.java](https://github.com/richardeigenmann/TagCloud/blob/master/tagcloud.samplegui/src/main/java/my/samplegui/FamousPeople.java)
+The data on the people came from some casual research on the Internet. See the source code [FamousPeople.java](https://github.com/richardeigenmann/TagCloud/blob/master/tagcloud.samplegui/src/main/java/my/samplegui/FamousPeople.java)
 
 To get the colors to change according to the BMI of the person you have to tell TagCloud to use a special [ColorProvider](https://github.com/richardeigenmann/TagCloud/blob/master/tagcloud.library/src/main/java/org/tagcloud/colorproviders/ColorProvider.java). Some sample ColorProviders are bundled in the code. See the [Javadoc](https://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorProviders/package-summary.html).
 
@@ -180,9 +180,10 @@ rm -rf build/jlink
 ## ToDo
 
 - Change the first example to be population vs per capita income
-- Improve documentation (forget applets, build instructions)
+- Improve documentation (build instructions)
 - Describe more clearly what numbers are being weighted in the GUI
 - Improve color scheme (yellow on gray doesn't work well)
 - Fix screenshots
 - Fix jlink
 - publish to maven central
+- Fix Bug: Change Font -> we get a uniform tiny font. This reverts if you change the data. Probably the min and max getting confused when the fonst selector is picked.
