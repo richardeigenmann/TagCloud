@@ -27,6 +27,13 @@ import java.awt.Color;
 public class YellowOrBrown extends ColorPicker {
 
     /**
+     * Constructs a new YellowOrBrown ColorPicker.
+     */
+    public YellowOrBrown() {
+        // constructor present for JavaDoc purposes
+    }
+
+    /**
      * The colors, yellow and chocolate brown
      */
     private static final Color[] YELLOW_BROWN = {

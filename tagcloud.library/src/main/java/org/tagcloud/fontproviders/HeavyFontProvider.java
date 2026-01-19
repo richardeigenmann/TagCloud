@@ -27,6 +27,13 @@ import java.awt.Font;
 public class HeavyFontProvider implements FontProvider {
 
     /**
+     * Constructs a new HeavyFontProvider.
+     */
+    public HeavyFontProvider() {
+        // for javadoc purposes
+    }
+
+    /**
      * An array of fonts in increasing size
      */
     private static final Font[] fonts = {

@@ -1,0 +1,81 @@
+plugins {
+    // Only the 'ben-manes' plugin stays here to check the whole project
+    id "com.github.ben-manes.versions" version "0.53.0"
+    id 'jacoco'
+    id 'idea'
+}
+
+subprojects {
+    // Apply common settings to both Library and GUI
+    apply plugin: 'java'
+
+    group = 'org.tagcloud'
+    version = '1.0.0'
+
+    repositories {
+        mavenCentral()
+    }
+
+    // This ensures every subproject is treated as a Java Module
+    java {
+        modularity.inferModulePath = true
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(25)
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
+
+    dependencies {
+        // All subprojects now share the same JUnit version automatically
+        testImplementation(platform('org.junit:junit-bom:6.1.0-M1'))
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
+    }
+
+}
+
+
+
+// Reminder how to build the github webpage http://richardeigenmann.github.io/TagCloud/
+// Go to Github repository > Settings > Automatic Page Generator
+// Click Load Readme.md
+// Click Continue to Layouts
+// Pick Dinky
+// Click publish
+
+// Copy the src/resources to a safe place
+
+// now add Javadoc & Jar file
+// git checkout master
+// /home/richi/gradle-1.12/bin/gradle javadoc java
+// git checkout gh-pages
+// cp build/libs/TagCloud.jar .
+// mkdir -p javadoc
+// cp -r build/docs/javadoc/* javadoc/
+
+// Edit index.html page
+// in <header> add these two li entries, removing the 2 download entries:
+// <li class="download"><a class="buttons" href="TagCloud.jar">Download JAR</a></li>
+// <li><a class="buttons github" href="javadoc">Javadoc</a></li>
+// create a Run as Java Web Start entry
+
+// copy the files in the saved src/resources to the root directory
+
+// git add TagCloud.jar javadoc index.html Screenshot* TagCloud.jnlp
+// git commit -m "update website"
+// git push
+
+// java --module-path build/libs --module org.tagcloud/org.tagcloud.sample.SampleTagCloud

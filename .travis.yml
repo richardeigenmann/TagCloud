@@ -1,10 +1,21 @@
 language: java
-#dist: focal
-jdk: openjdk17
+os: linux
+dist: focal
+jdk: openjdk25
+
+services:
+  - xvfb
+
 before_install:
   - export PATH=$GRADLE_HOME/bin:$PATH
-#install: skip
-#os: linux
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+
+script:
+  - ./gradlew --info check
+
 #script:
 #  - pwd
 #  - env

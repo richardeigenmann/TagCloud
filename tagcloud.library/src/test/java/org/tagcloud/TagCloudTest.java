@@ -29,7 +29,6 @@ import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 class TagCloudTest {
 

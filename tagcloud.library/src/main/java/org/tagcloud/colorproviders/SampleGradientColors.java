@@ -27,6 +27,13 @@ import java.awt.Color;
 public class SampleGradientColors extends ColorInterpolator {
 
     /**
+     * Constructs a new SampleGradientColors ColorProvider.
+     */
+    public SampleGradientColors() {
+        // for javadoc purposes
+    }
+
+    /**
      * Sample gradient color points
      */
     private static final Color[] SAMPLE_GRADIENT_COLORS = {

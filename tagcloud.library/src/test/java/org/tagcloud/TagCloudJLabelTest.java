@@ -126,8 +126,8 @@ class TagCloudJLabelTest {
         final var tagCloudJLabel = new TagCloudJLabel( weightedWord );
         tagCloudJLabel.setFontMapper(new FontMapper(new SansSerifFontProvider()));
         final var font = tagCloudJLabel.getFont();
-        Assertions.assertEquals("SansSerif.plain", font.getFontName(), "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have a SansSerif font");
-        Assertions.assertEquals(18, font.getSize(), "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 sould have the size 18");
+        Assertions.assertEquals("SansSerif.plain", font.getFontName(), "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 should have a SansSerif font");
+        Assertions.assertEquals(18, font.getSize(), "A default TagCloudJLabel with a sizeWeight of 0.5 and a colorWeight of 0.6 should have the size 18");
 
     }
 
@@ -153,7 +153,7 @@ class TagCloudJLabelTest {
     }*/
 
     @Test
-    void testSetMousoverColor() {
+    void testSetMouseOverColor() {
         final var weightedWord = new WeightedWord( "Word", 10, 10 );
         try {
             SwingUtilities.invokeAndWait(() -> {

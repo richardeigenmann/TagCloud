@@ -20,12 +20,21 @@ package org.tagcloud.colorproviders;
 import java.awt.Color;
 
 /**
- * A ColorProvider that returns a color on the gradient from Black to White
+ * A ColorInterpolator that returns a color on the gradient from Black to White
  * based on the supplied weight
+ *
+ * @see ColorInterpolator
  *
  * @author Richard Eigenmann
  */
 public class BlackToWhiteGradient extends ColorInterpolator {
+
+    /**
+     * Constructs a new BlackToWhiteGradient provider.
+     */
+    public BlackToWhiteGradient() {
+        super();
+    }
 
     /**
      * Predefined colors for a Black to White gradient

@@ -32,6 +32,7 @@ public interface FontProvider {
      *
      * @param weight The weight for which the font should be returned range is 0
      * to 1 for choices based on relative weight
+     * @return the Java Font object appropriate for the weight
      */
     Font getFont(double weight);
 

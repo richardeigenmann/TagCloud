@@ -27,6 +27,13 @@ import java.awt.Color;
 public class YellowBrownGradient extends ColorInterpolator {
 
     /**
+     * Constructs a new YellowBrownGradient ColorProvider.
+     */
+    public YellowBrownGradient() {
+        // for javadoc purposes
+    }
+
+    /**
      * Predefined color gradient points for a yellow to chocolate brown
      */
     private static final Color[] YELLOW_BROWN = {

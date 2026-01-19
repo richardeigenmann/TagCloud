@@ -27,6 +27,11 @@ import java.awt.Color;
 public abstract class ColorPicker implements ColorProvider {
 
     /**
+     * Creates a ColorPicker object
+     */
+    protected ColorPicker() {}
+
+    /**
      * The extending class must implement this method and provide an array of
      * colors
      *

@@ -1,11 +1,5 @@
 plugins {
-    id 'java'
     id 'application'
-    id "com.github.ben-manes.versions" version "0.53.0"
-    id 'idea'
-    id 'org.beryx.jlink' version '3.1.5'
-    // MUST use 2.0.0 to fix the "getDependencyProject" error
-    id "org.javamodularity.moduleplugin" version "2.0.0"
 }
 
 application {
@@ -18,45 +12,16 @@ repositories {
 }
 
 dependencies {
-    // 1. Use STABLE JUnit versions via BOM
-    testImplementation(platform('org.junit:junit-bom:5.10.2'))
-    testImplementation 'org.junit.jupiter:junit-jupiter-api'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params'
-
     implementation(project(':tagcloud.library'))
-
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 jar {
     manifest.attributes("Main-Class": "my.samplegui.SampleTagCloud")
 }
 
-// ---------------------------------------------------------
-// CRITICAL FIX: Disable Module System for Tests
-// ---------------------------------------------------------
-
-tasks.named('compileTestJava') {
-    // This stops the compiler crash (NPE) by treating tests as standard Java
-    modularity.inferModulePath = false
-}
-
-test {
-    useJUnitPlatform()
-    // This ensures tests run on the Classpath, ignoring module-info.java
-    modularity.inferModulePath = false
-}
-
-// ---------------------------------------------------------
-
-tasks.named('compileJava') {
-    options.javaModuleVersion = provider { project.version }
-}
-
-jlink {
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
-        name = 'TagCloud'
-    }
-}
+//jlink {
+//    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+//    launcher {
+//        name = 'TagCloud'
+//    }
+//}

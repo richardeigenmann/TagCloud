@@ -10,6 +10,13 @@ import java.awt.*;
  */
 public class BMIValueMapper extends ColorMapper{
 
+    /**
+     * Constructs a new BMIValueMapper provider.
+     */
+    public BMIValueMapper() {
+        // for javadoc purposes
+    }
+
     private static final BMIColorProvider bmiColorProvider = new BMIColorProvider();
 
     @Override

@@ -12,7 +12,7 @@ See also the [Presentation](http://richardeigenmann.github.io/TagCloud/presentat
 
 If you can still run Java Web Start, click on the  [link](http://richardeigenmann.github.io/TagCloud/TagCloud.jnlp)
 
-Otherwise Download the [JAR](https://github.com/richardeigenmann/TagCloud/raw/refs/heads/gh-pages/TagCloud.jar) and run the sample program as follows:
+Otherwise, Download the [JAR](https://github.com/richardeigenmann/TagCloud/raw/refs/heads/gh-pages/TagCloud.jar) and run the sample program as follows:
 
 ```bash
 java  -jar ./TagCloud.jar

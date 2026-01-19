@@ -1,7 +1,3 @@
 rootProject.name = 'TagCloud'
 include 'tagcloud.library'
 include 'tagcloud.samplegui'
-
-//dependencyResolutionManagement {
-//    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
-//}

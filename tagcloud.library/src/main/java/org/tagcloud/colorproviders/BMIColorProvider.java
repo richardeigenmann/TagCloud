@@ -31,56 +31,66 @@ import java.awt.Color;
 public class BMIColorProvider  {
 
     /**
-     * Color for underweight
+     * Constructs a new BMIColorProvider provider.
      */
-    private static final Color UNDERWEIGHT = Color.CYAN;
+    public BMIColorProvider() {
+        // for javadoc purposes
+    }
 
     /**
-     * Color for normal
+     * Color for underweight
      */
-    private static final Color NORMAL = Color.GREEN;
+    private static final Color COLOR_UNDERWEIGHT = Color.CYAN;
+
+    /**
+     * Color for normal weight
+     */
+    private static final Color COLOR_NORMAL_WEIGHT = Color.GREEN;
 
     /**
      * Color for overweight
      */
-    private static final Color OVERWEIGHT = Color.decode("#f3843d");
+    private static final Color COLOR_OVERWEIGHT = Color.decode("#f3843d");
 
     /**
      * Color for obese
      */
-    private static final Color OBESE = Color.RED;
+    private static final Color COLOR_OBESE = Color.RED;
 
     /**
-     * Magic number for BMI logic
+     * Official threshold for BMI that is underweight
+     * @see <a href="https://en.wikipedia.org/wiki/Body_mass_index">Body mass index (Wikipedia)</a>
      */
-    public static final double UNDERWEIGHT_THESHOLD = 18.5;
+    public static final double UNDERWEIGHT_BMI_THRESHOLD = 18.5;
 
     /**
-     * Magic number for BMI logic
+     * Official threshold for BMI that is normal weight
+     * @see <a href="https://en.wikipedia.org/wiki/Body_mass_index">Body mass index (Wikipedia)</a>
      */
-    public static final int NORMAL_THRESHOLD = 26;
+    public static final int NORMAL_BMI_THRESHOLD = 25;
 
     /**
-     * Magic number for BMI logic
+     * Official threshold for BMI that is overweight
+     * @see <a href="https://en.wikipedia.org/wiki/Body_mass_index">Body mass index (Wikipedia)</a>
      */
-    public static final int OVERWEIGHT_THRESHOLD = 31;
+    public static final int OVERWEIGHT_BMI_THRESHOLD = 31;
 
     /**
      * Returns the color for the supplied BMI value
      *
-     * @see <a href="http://en.wikipedia.org/wiki/Body_mass_index">http://en.wikipedia.org/wiki/Body_mass_index</a>
+     * @see <a href="https://en.wikipedia.org/wiki/Body_mass_index">Body mass index (Wikipedia)</a>
      * @param value returns colors based on the value
      * @return the appropriate color for the BMI
      */
     public Color getColor( final double value ) {
-        if ( value < UNDERWEIGHT_THESHOLD) {
-            return UNDERWEIGHT;
-        } else if ( value < NORMAL_THRESHOLD) {
-            return NORMAL;
-        } else if ( value < OVERWEIGHT_THRESHOLD) {
-            return OVERWEIGHT;
+        if ( value < UNDERWEIGHT_BMI_THRESHOLD) {
+            return COLOR_UNDERWEIGHT;
+        } else if ( value < NORMAL_BMI_THRESHOLD) {
+            return COLOR_NORMAL_WEIGHT;
+        } else if ( value < OVERWEIGHT_BMI_THRESHOLD) {
+            return COLOR_OVERWEIGHT;
         } else {
-            return OBESE;
+            return COLOR_OBESE;
         }
     }
 }

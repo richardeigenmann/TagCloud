@@ -93,8 +93,8 @@ public class TagCloud extends JScrollPane {
 
         fontMapper.setMinimumValue(result.get("minFontSizeValue"));
         fontMapper.setMaximumValue(result.get("maxFontSizeValue"));
-        colorMapper.setMinimumValue(result.get("minColorValue"));
-        colorMapper.setMaximumValue(result.get("maxColorValue"));
+        colorMapper.setMinimumValue(result.get("minColorValue"))
+                .setMaximumValue(result.get("maxColorValue"));
     }
 
     /**

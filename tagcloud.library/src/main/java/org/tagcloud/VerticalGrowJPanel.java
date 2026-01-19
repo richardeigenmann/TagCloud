@@ -41,7 +41,7 @@ public class VerticalGrowJPanel extends JPanel implements Scrollable {
     /**
      * This method gets called by the JScrollPane to figure out the size of the
      * Viewport. The getScrollableTracksViewportWidth prevents the components
-     * from growing horizontally but we need to figure out the height.
+     * from growing horizontally, but we need to figure out the height.
      *
      * @return the preferred size based on the getWidth and getPreferredHeight
      */
@@ -71,12 +71,6 @@ public class VerticalGrowJPanel extends JPanel implements Scrollable {
         return rv;
     }
 
-    /**
-     * Source:
-     * http://forums.sun.com/thread.jspa?forumID=57&threadID=5117549&start=7
-     *
-     * @return super.getPreferredSize()
-     */
     @Override
     public Dimension getPreferredScrollableViewportSize() {
         return super.getPreferredSize();

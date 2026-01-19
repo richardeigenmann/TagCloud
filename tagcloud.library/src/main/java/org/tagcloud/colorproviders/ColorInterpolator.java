@@ -28,6 +28,12 @@ import java.awt.Color;
  */
 public abstract class ColorInterpolator implements ColorProvider {
 
+    /**
+     * Creates a ColorInterpolator object
+     */
+    protected ColorInterpolator() {
+        // for javadoc purposes
+    }
 
     /**
      * The extending class must implement this method and provide an array of
@@ -38,8 +44,8 @@ public abstract class ColorInterpolator implements ColorProvider {
     public abstract Color[] getColorPoints();
 
     /**
-     * This method returns a color along a multi point color gradiant. The
-     * Gradiant color points are specified by an array of Colors. The Array must
+     * This method returns a color along a multipoint color gradient. The
+     * Gradient color points are specified by an array of Colors. The Array must
      * have at least 2 color entries. The interpolation uses the weight parameter.
      *
      * @param value the value in the range from 0 to 1
