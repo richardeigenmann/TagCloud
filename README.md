@@ -1,6 +1,7 @@
 # TagCloud
 
-[![Build Status](https://app.travis-ci.com/richardeigenmann/JPO.svg?branch=master)](https://app.travis-ci.com/richardeigenmann/JPO)
+[![Build Status](https://app.travis-ci.com/richardeigenmann/TagCloud.svg?token=VmzzZZpm8kAFey4zxdox&branch=master)](https://app.travis-ci.com/richardeigenmann/TagCloud)
+
 
 ![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/images/Screenshot1.png)
 
@@ -178,9 +179,10 @@ rm -rf build/jlink
 
 ## ToDo
 
-- Package this as a proper library
 - Change the first example to be population vs per capita income
 - Improve documentation (forget applets, build instructions)
 - Describe more clearly what numbers are being weighted in the GUI
 - Improve color scheme (yellow on gray doesn't work well)
 - Fix screenshots
+- Fix jlink
+- publish to maven central
