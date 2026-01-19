@@ -1,21 +1,23 @@
 # TagCloud
 
+[![Build Status](https://app.travis-ci.com/richardeigenmann/JPO.svg?branch=master)](https://app.travis-ci.com/richardeigenmann/JPO)
+
 ![Screenshot of TagCloud demo code](http://richardeigenmann.github.io/TagCloud/images/Screenshot1.png)
 
 TagCloud is an Open Source library that creates a Java SWING Component that renders a 
 list of words. Each word is given a font color and font size based on two weights.
-The order of the words is preserved. But you can limit the number of words being shown.
 
 See also the [Presentation](http://richardeigenmann.github.io/TagCloud/presentation.html) and the [Project Page](http://richardeigenmann.github.io/TagCloud)
 
 ## Try it out
 
-If you can still run Java Web Start, click on the  [link](http://richardeigenmann.github.io/TagCloud/TagCloud.jnlp)
-
-Otherwise, Download the [JAR](https://github.com/richardeigenmann/TagCloud/raw/refs/heads/gh-pages/TagCloud.jar) and run the sample program as follows:
+Install Gradle 9.3 on your Computer
+Install Java 25 on your Computer
 
 ```bash
-java  -jar ./TagCloud.jar
+git clone https://github.com/richardeigenmann/TagCloud.git
+cd TagCloud
+gradlew run  # on Windows: gradlew.bat run
 ```
 
 ## How to use it
@@ -49,7 +51,7 @@ public void doTagClicked( final WeightedWordInterface weightedWord ) {
 }
 ```
 
-See the included [sample program](https://github.com/richardeigenmann/TagCloud/blob/master/src/main/java/org/TagCloud/Sample/SampleTagCloud.java) for a worked example.
+See the included [sample program](https://github.com/richardeigenmann/TagCloud/blob/master/tagcloud.samplegui/src/main/java/my/samplegui/SampleTagCloud.java) for a worked example.
 
 ## Customisation
 
@@ -57,15 +59,15 @@ The library is designed so that you can customise the fonts and the colors. Here
 
 ![Screenshot of customised TagCloud showing famous people and their BMI](http://richardeigenmann.github.io/TagCloud/images/Screenshot2.png)
 
-The data on the people came from some casual research on the Internet. See the source code [People.java](https://github.com/richardeigenmann/TagCloud/blob/master/src/main/java/org/TagCloud/Sample/People.java)
+The data on the people came from some casual research on the Internet. See the source code [People.java](https://github.com/richardeigenmann/TagCloud/blob/master/tagcloud.samplegui/src/main/java/my/samplegui/FamousPeople.java)
 
-To get the colors to change according to the BMI of the person you have to tell TagCloud to use a special [ColorProvider](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorProvider.html). Some sample ColorProviders are bundled in the code. See the [Javadoc](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorProviders/package-summary.html).
+To get the colors to change according to the BMI of the person you have to tell TagCloud to use a special [ColorProvider](https://github.com/richardeigenmann/TagCloud/blob/master/tagcloud.library/src/main/java/org/tagcloud/colorproviders/ColorProvider.java). Some sample ColorProviders are bundled in the code. See the [Javadoc](https://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorProviders/package-summary.html).
 
 ```Java
 tagCloud.setColorProvider( new BMIColorProvider() );
 ```
 
-If you dig into the code you will notice that some ColorProviders extend the [ColorInterpolator](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/ColorInterpolator.html) which allows the extending class to supply an array of colors between which the ColorInterpolator will interpolate an appropriate hue:
+If you dig into the code you will notice that some ColorProviders extend the [ColorInterpolator](https://github.com/richardeigenmann/TagCloud/blob/master/tagcloud.library/src/main/java/org/tagcloud/colorproviders/ColorInterpolator.java) which allows the extending class to supply an array of colors between which the ColorInterpolator will interpolate an appropriate hue:
 
 ```Java
 public class SampleGradientColors extends ColorInterpolator {
@@ -83,7 +85,7 @@ public class SampleGradientColors extends ColorInterpolator {
 }
 ```
 
-Similarly, to customise the fonts used to render the tags, supply a [FontProvider](http://richardeigenmann.github.io/TagCloud/javadoc/org/TagCloud/FontProvider.html) to the TagCloud:
+Similarly, to customise the fonts used to render the tags, supply a [FontProvider](https://github.com/richardeigenmann/TagCloud/blob/master/tagcloud.library/src/main/java/org/tagcloud/fontproviders/FontProvider.java) to the TagCloud:
 
 ```Java
 tagCloud.setFontProvider( new SansSerifFontProvider() );
@@ -178,7 +180,7 @@ rm -rf build/jlink
 
 - Package this as a proper library
 - Change the first example to be population vs per capita income
-- Improve documentation (zulu 17 to zulu25, forget applets, build instructions)
+- Improve documentation (forget applets, build instructions)
 - Describe more clearly what numbers are being weighted in the GUI
 - Improve color scheme (yellow on gray doesn't work well)
 - Fix screenshots
